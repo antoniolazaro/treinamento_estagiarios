@@ -18,6 +18,54 @@ public class MidiaModel extends ModelAB {
 		this.valorDeAluguel = valorDeAluguel;
 		this.valorDeVenda = valorDeVenda;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getCodigoDeBarras() {
+		return codigoDeBarras;
+	}
+
+	public void setCodigoDeBarras(String codigoDeBarras) {
+		this.codigoDeBarras = codigoDeBarras;
+	}
+
+	public String getDataDeCompra() {
+		return dataDeCompra;
+	}
+
+	public void setDataDeCompra(String dataDeCompra) {
+		this.dataDeCompra = dataDeCompra;
+	}
+
+	public String getValorDeCompra() {
+		return valorDeCompra;
+	}
+
+	public void setValorDeCompra(String valorDeCompra) {
+		this.valorDeCompra = valorDeCompra;
+	}
+
+	public String getValorDeAluguel() {
+		return valorDeAluguel;
+	}
+
+	public void setValorDeAluguel(String valorDeAluguel) {
+		this.valorDeAluguel = valorDeAluguel;
+	}
+
+	public String getValorDeVenda() {
+		return valorDeVenda;
+	}
+
+	public void setValorDeVenda(String valorDeVenda) {
+		this.valorDeVenda = valorDeVenda;
+	}
 	
 	
 	
