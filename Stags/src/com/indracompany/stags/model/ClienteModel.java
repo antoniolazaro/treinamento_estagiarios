@@ -6,6 +6,14 @@ public class ClienteModel extends ModelAB{
 	private String idade;
 	private String cpf;
 
+	public ClienteModel(String nome, String codigo, String idade, String cpf) {
+		super();
+		this.nome = nome;
+		this.codigo = codigo;
+		this.idade = idade;
+		this.cpf = cpf;
+	}
+
 	public String getNome() {
 		return nome;
 	}
