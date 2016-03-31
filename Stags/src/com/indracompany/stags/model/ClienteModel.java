@@ -37,9 +37,44 @@ public class ClienteModel extends ModelAB{
 	}
 
 	@Override
-	public String toString() {
-		return super.toString() + ", nome=" + nome;
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((idade == null) ? 0 : idade.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClienteModel other = (ClienteModel) obj;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		if (idade == null) {
+			if (other.idade != null)
+				return false;
+		} else if (!idade.equals(other.idade))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ClienteModel [Nome: " + getNome() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + " ] \n";
+	}	
 }
