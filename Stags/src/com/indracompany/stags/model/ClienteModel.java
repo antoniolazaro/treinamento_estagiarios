@@ -5,11 +5,13 @@ public class ClienteModel extends ModelAB{
 	private String idade;
 	private String cpf;
 
-	public ClienteModel(String nome, String codigo, String idade, String cpf) {
+	public ClienteModel(String nome, Long codigo, String idade, String cpf, Boolean ativo) {
 		super();
 		this.nome = nome;
+		this.codigo = codigo;
 		this.idade = idade;
 		this.cpf = cpf;
+		this.ativo = ativo;
 	}
 
 	public String getNome() {
@@ -75,6 +77,6 @@ public class ClienteModel extends ModelAB{
 
 	@Override
 	public String toString() {
-		return "ClienteModel [Nome: " + getNome() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + " ] \n";
+		return "ClienteModel [Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + " ] \n";
 	}	
 }
