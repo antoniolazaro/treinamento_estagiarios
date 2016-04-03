@@ -85,6 +85,40 @@ public class MidiaModel extends ModelAB {
 	public void setTipoDeMidia(TipoDeMidiaModel tipoDeMidia) {
 		this.tipoDeMidia = tipoDeMidia;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((codigoDeBarras == null) ? 0 : codigoDeBarras.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((tipoDeMidia == null) ? 0 : tipoDeMidia.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MidiaModel other = (MidiaModel) obj;
+		if (codigoDeBarras == null) {
+			if (other.codigoDeBarras != null)
+				return false;
+		} else if (!codigoDeBarras.equals(other.codigoDeBarras))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (tipoDeMidia != other.tipoDeMidia)
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
