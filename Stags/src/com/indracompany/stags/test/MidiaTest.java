@@ -1,10 +1,10 @@
 package com.indracompany.stags.test;
 
 import java.util.List;
-
 import com.indracompany.stags.bo.MidiaBO;
 import com.indracompany.stags.bo.ab.MidiaBOIf;
 import com.indracompany.stags.model.MidiaModel;
+import com.indracompany.stags.model.TipoDeMidiaModel;
 
 public class MidiaTest {
 	
@@ -19,8 +19,13 @@ public class MidiaTest {
 		MidiaModel lMidia1 = new MidiaModel(null, null, null, null, null, null, null);
 		lMidia1.setNome("Antônio Visionário");
 		lMidia1.setCodigo((long) 1);
-		lMidia1.setIdade("25");
-		lMidia1.setCpf("7364736435246");
+		lMidia1.setDescricao("25");
+		lMidia1.setCodigoDeBarras("7364736435246");
+		lMidia1.setDataDeCompra("20/03/2016");
+		lMidia1.setValorDeCompra("R$40,00");
+		lMidia1.setValorDeAluguel("R$3,50");
+		lMidia1.setValorDeVenda("lMidia1.getValorDeCompra() ou lMidia1.getValorDeAluguel()");
+		lMidia1.setTipoDeMidia(TipoDeMidiaModel.DVD);
 		lMidia1.setAtivo(true);
 		
 		MidiaModel lMidia2 = new MidiaModel(null, null, null, null, null);
