@@ -7,6 +7,7 @@ import com.indracompany.stags.bo.MidiaBO;
 import com.indracompany.stags.bo.ab.ClienteBOIf;
 import com.indracompany.stags.bo.ab.MidiaBOIf;
 import com.indracompany.stags.model.ClienteModel;
+import com.indracompany.stags.model.MidiaModel;
 
 public class Main {
 	private static ClienteBOIf clienteBO;
@@ -21,6 +22,9 @@ public class Main {
 		try {
 			inserirCliente();
 			exibirCliente();
+			
+			inserirMidia();
+			exibirMidia();
 			
 //			inserirCliente();
 //			exibirCliente();
@@ -63,6 +67,31 @@ public class Main {
 		
 	}
 	
+	public static void inserirMidia() throws Exception{
+		
+		MidiaModel lMidia1 = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia1.setNome("Harry Potter");		
+		
+		MidiaModel lMidia2 = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia2.setNome("2012");
+		
+		MidiaModel lMidia3 = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia3.setNome("Avengers");
+		
+		MidiaModel lMidia4 = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia4.setNome("Thor: O Mundo Sombrio");
+		
+		MidiaModel lMidia5 = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia5.setNome("Batman vc Superman");
+		
+		midiaBO.inserir(lMidia1);
+		midiaBO.inserir(lMidia2);
+		midiaBO.inserir(lMidia3);
+		midiaBO.inserir(lMidia4);
+		midiaBO.inserir(lMidia5);
+		
+	}
+	
 	public static void excluirCliente() throws Exception{
 		ClienteModel lCliente = new ClienteModel(null, null, null, null, null);
 		lCliente.setCodigo(2L);
@@ -70,6 +99,12 @@ public class Main {
 		clienteBO.excluir(lCliente);
 	}
 	
+	public static void excluirMidia() throws Exception{
+		MidiaModel lMidia = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia.setCodigo(2L);
+		
+		midiaBO.excluir(lMidia);
+	}
 	
 	public static void editarCliente() throws Exception{
 		ClienteModel lCliente = new ClienteModel(null, null, null, null, null);
@@ -83,12 +118,34 @@ public class Main {
 		}
 	}
 	
+	public static void editarMidia() throws Exception{
+		MidiaModel lMidia = new MidiaModel(null, null, null, null, null, null, null);
+		lMidia.setCodigo(2L);		
+		
+		MidiaModel lMidiaBusca = midiaBO.buscar(lMidia);
+		
+		if(lMidiaBusca !=null){
+			lMidiaBusca.setNome("Luis de Jah");
+			midiaBO.editar(lMidiaBusca);
+		}
+	}
+	
 	public static void exibirCliente()throws Exception{
 		System.out.println("*******************************************************");
 		List<ClienteModel> lListaCliente = clienteBO.listar();
 		if(lListaCliente !=null && lListaCliente.size() > 0){
 			for(ClienteModel lCliente:lListaCliente){
 				System.out.println(lCliente);
+			}
+		}
+	}
+	
+	public static void exibirMidia()throws Exception{
+		System.out.println("*******************************************************");
+		List<MidiaModel> lListaMidia = midiaBO.listar();
+		if(lListaMidia !=null && lListaMidia.size() > 0){
+			for(MidiaModel lMidia:lListaMidia){
+				System.out.println(lMidia);
 			}
 		}
 	}
