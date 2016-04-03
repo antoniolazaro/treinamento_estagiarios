@@ -1,8 +1,8 @@
 package com.indracompany.stags.model;
 
 public abstract class ModelAB {
-	private Long codigo;
-	private Boolean ativo;
+	protected Long codigo;
+	protected Boolean ativo;
 	
 	public ModelAB() {
 		ativo = true;
