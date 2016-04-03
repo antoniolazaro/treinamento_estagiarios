@@ -15,8 +15,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		try {
-//			inserirCliente();
-//			exibirCliente();
+			inserirCliente();
+			exibirCliente();
 			
 //			inserirCliente();
 //			exibirCliente();
