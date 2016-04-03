@@ -36,19 +36,19 @@ public class Main {
 	
 	public static void inserirCliente() throws Exception{
 		
-		ClienteModel lCliente1 = new ClienteModel();
+		ClienteModel lCliente1 = new ClienteModel(null, null, null, null, null);
 		lCliente1.setNome("Antônio Visionário");		
 		
-		ClienteModel lCliente2 = new ClienteModel();
+		ClienteModel lCliente2 = new ClienteModel(null, null, null, null, null);
 		lCliente2.setNome("Luis Cardoso");
 		
-		ClienteModel lCliente3 = new ClienteModel();
+		ClienteModel lCliente3 = new ClienteModel(null, null, null, null, null);
 		lCliente3.setNome("Caio");
 		
-		ClienteModel lCliente4 = new ClienteModel();
+		ClienteModel lCliente4 = new ClienteModel(null, null, null, null, null);
 		lCliente4.setNome("Karen");
 		
-		ClienteModel lCliente5 = new ClienteModel();
+		ClienteModel lCliente5 = new ClienteModel(null, null, null, null, null);
 		lCliente5.setNome("Matheus");
 		
 		clienteBO.inserir(lCliente1);
@@ -60,7 +60,7 @@ public class Main {
 	}
 	
 	public static void excluirCliente() throws Exception{
-		ClienteModel lCliente = new ClienteModel();
+		ClienteModel lCliente = new ClienteModel(null, null, null, null, null);
 		lCliente.setCodigo(2L);
 		
 		clienteBO.excluir(lCliente);
@@ -68,7 +68,7 @@ public class Main {
 	
 	
 	public static void editarCliente() throws Exception{
-		ClienteModel lCliente = new ClienteModel();
+		ClienteModel lCliente = new ClienteModel(null, null, null, null, null);
 		lCliente.setCodigo(2L);		
 		
 		ClienteModel lClienteBusca = clienteBO.buscar(lCliente);
