@@ -1,7 +1,7 @@
 package com.indracompany.stags.model;
 
 public enum TipoDeMidiaModel {
-		DVD(1L,"DVD"),CD(2L,"CD"), STREAMING(3L, "STREAMING");
+		DVD(1L,"DVD"),BLURAY(2L,"BLURAY"), STREAMING(3L, "STREAMING");
 		
 		private Long codigo;
 		private String descricao;	
