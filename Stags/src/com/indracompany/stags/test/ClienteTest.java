@@ -16,8 +16,12 @@ public class ClienteTest {
 		
 	public void inserirCliente() throws Exception{
 		
-		ClienteModel lCliente1 = new ClienteModel();
-		lCliente1.setNome("Antônio Visionário");		
+		ClienteModel lCliente1 = new ClienteModel(null, null, null, null, null);
+		lCliente1.setNome("Antônio Visionário");
+		lCliente1.setCodigo((long) 1);
+		lCliente1.setIdade("25");
+		lCliente1.setCpf("7364736435246");
+		lCliente1.setAtivo(true);
 		
 		ClienteModel lCliente2 = new ClienteModel();
 		lCliente2.setNome("Luis Cardoso");
