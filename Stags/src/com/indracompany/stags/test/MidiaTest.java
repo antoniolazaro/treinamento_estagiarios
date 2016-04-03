@@ -7,7 +7,8 @@ import com.indracompany.stags.bo.ab.MidiaBOIf;
 import com.indracompany.stags.model.MidiaModel;
 
 public class MidiaTest {
-private static MidiaBOIf midiaBO;
+	
+	private static MidiaBOIf midiaBO;
 	
 	static{
 		midiaBO = new MidiaBO();

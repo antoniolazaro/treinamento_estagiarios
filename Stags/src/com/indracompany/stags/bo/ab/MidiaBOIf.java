@@ -1,7 +1,6 @@
 package com.indracompany.stags.bo.ab;
 
 import java.util.List;
-
 import com.indracompany.stags.model.MidiaModel;
 
 public interface MidiaBOIf {
@@ -14,5 +13,4 @@ public interface MidiaBOIf {
 	public List<MidiaModel> listar() throws Exception;
 	
 	public MidiaModel buscar(MidiaModel pModel) throws Exception;
-
 }

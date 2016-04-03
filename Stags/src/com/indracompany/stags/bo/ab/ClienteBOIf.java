@@ -1,7 +1,6 @@
 package com.indracompany.stags.bo.ab;
 
 import java.util.List;
-
 import com.indracompany.stags.model.ClienteModel;
 
 public interface ClienteBOIf {
