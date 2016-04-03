@@ -88,8 +88,8 @@ public class MidiaModel extends ModelAB {
 
 	@Override
 	public String toString() {
-		return "MidiaModel [Nome: " + getNome() + "\n Descrição: " + getDescricao() + "\n Codigo de Barras: " + getCodigoDeBarras()
+		return "\n Nome: " + getNome() + "\n Descrição: " + getDescricao() + "\n Codigo de Barras: " + getCodigoDeBarras()
 				+ "\n Data de Compra: " + getDataDeCompra() + "\n Valor de Compra: " + getValorDeCompra() + "\n Valor de Aluguel: "
-				+ getValorDeAluguel() + "\n Valor de Venda: " + getValorDeVenda() + "\n Tipo de mídia: " + getTipoDeMidia() + "]";
+				+ getValorDeAluguel() + "\n Valor de Venda: " + getValorDeVenda() + "\n Tipo de mídia: " + getTipoDeMidia();
 	}
 }
