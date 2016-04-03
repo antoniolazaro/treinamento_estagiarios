@@ -31,7 +31,8 @@ public class ProdutoDaoMemory implements IProdutoDao {
 	@Override
 	public void excluir(ProdutoModel pModel) throws Exception {
 		if (pModel != null) {
-			DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel.setAtivo(false);
+			pModel.setAtivo(false);
+			DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel);
 	
 	}else {
 		throw new Exception("Produto Nulo");
