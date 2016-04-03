@@ -1,5 +1,9 @@
 package com.indracompany.stags.model;
 
+import java.util.Collection;
+
+import com.indracompany.stags.dao.util.DataBase;
+
 public class MidiaModel extends ModelAB {
 	private String nome;
 	private String descricao;
@@ -126,4 +130,22 @@ public class MidiaModel extends ModelAB {
 				+ "\n Data de Compra: " + getDataDeCompra() + "\n Valor de Compra: " + getValorDeCompra() + "\n Valor de Aluguel: "
 				+ getValorDeAluguel() + "\n Valor de Venda: " + getValorDeVenda() + "\n Tipo de mídia: " + getTipoDeMidia();
 	}
+
+	public MidiaModel getNomeBusca(String busca) {
+		MidiaModel retorno = null;
+		if(nome != null && codigoDeBarras != null && tipoDeMidia != null && DataBase.getListaMidia().size() > 0 ){
+			Collection<MidiaModel> listaMidia = (DataBase.getListaMidia()).values();
+			for(MidiaModel midia  : DataBase.getListaMidia()){
+				if(midia != null){
+					if(nome.equalsIgnoreCase(midia.getNome())){
+						retorno = midia;
+						break;
+					} else {
+						System.out.println("Registro não encontrado.");
+					}
+				}				
+			}
+		}
+		return retorno;
+	}	
 }

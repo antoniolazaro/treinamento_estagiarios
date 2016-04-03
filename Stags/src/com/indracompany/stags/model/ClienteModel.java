@@ -1,5 +1,9 @@
 package com.indracompany.stags.model;
 
+import java.util.Collection;
+
+import com.indracompany.stags.dao.util.DataBase;
+
 public class ClienteModel extends ModelAB{
 	private String nome;
 	private String idade;
@@ -76,5 +80,23 @@ public class ClienteModel extends ModelAB{
 	@Override
 	public String toString() {
 		return "\n Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + "\n";
+	}
+
+	public ClienteModel getNomeBusca(String busca) {
+		ClienteModel retorno = null;
+		if(nome != null && cpf != null && idade != null && DataBase.getListaCliente().size() > 0 ){
+			Collection<ClienteModel> listaCliente = (DataBase.getListaCliente()).values();
+			for(ClienteModel cliente  : DataBase.getListaCliente()){
+				if(cliente != null){
+					if(nome.equalsIgnoreCase(cliente.getNome())){
+						retorno = cliente;
+						break;
+					} else {
+						System.out.println("Registro não encontrado.");
+					}
+				}				
+			}
+		}
+		return retorno;
 	}	
 }
