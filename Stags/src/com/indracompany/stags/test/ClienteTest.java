@@ -60,7 +60,7 @@ public class ClienteTest {
 	}
 	
 	public void excluirCliente() throws Exception{
-		ClienteModel lCliente = new ClienteModel();
+		ClienteModel lCliente = new ClienteModel(null, null, null, null, null);
 		lCliente.setCodigo(2L);
 		
 		clienteBO.excluir(lCliente);
@@ -68,7 +68,7 @@ public class ClienteTest {
 	
 	
 	public void editarCliente() throws Exception{
-		ClienteModel lCliente = new ClienteModel();
+		ClienteModel lCliente = new ClienteModel(null, null, null, null, null);
 		lCliente.setCodigo(2L);		
 		
 		ClienteModel lClienteBusca = clienteBO.buscar(lCliente);
