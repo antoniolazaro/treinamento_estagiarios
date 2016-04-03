@@ -8,6 +8,7 @@ public class MidiaModel extends ModelAB {
 	private String valorDeCompra;
 	private String valorDeAluguel;
 	private String valorDeVenda;
+	private TipoDeMidia tipoDeMidia;
 
 	public MidiaModel(String nome, String descricao, String codigoDeBarras, String dataDeCompra, String valorDeCompra,
 			String valorDeAluguel, String valorDeVenda) {
@@ -77,10 +78,18 @@ public class MidiaModel extends ModelAB {
 		this.valorDeVenda = valorDeVenda;
 	}
 
+	public TipoDeMidia getTipoDeMidia() {
+		return tipoDeMidia;
+	}
+
+	public void setTipoDeMidia(TipoDeMidia tipoDeMidia) {
+		this.tipoDeMidia = tipoDeMidia;
+	}
+
 	@Override
 	public String toString() {
-		return "MidiaModel [nome=" + nome + ", descricao=" + descricao + ", codigoDeBarras=" + codigoDeBarras
-				+ ", dataDeCompra=" + dataDeCompra + ", valorDeCompra=" + valorDeCompra + ", valorDeAluguel="
-				+ valorDeAluguel + ", valorDeVenda=" + valorDeVenda + "]";
+		return "MidiaModel [Nome: " + getNome() + "\n Descrição: " + getDescricao() + "\n Codigo de Barras: " + getCodigoDeBarras()
+				+ "\n Data de Compra: " + getDataDeCompra() + "\n Valor de Compra: " + getValorDeCompra() + "\n Valor de Aluguel: "
+				+ getValorDeAluguel() + "\n Valor de Venda: " + getValorDeVenda() + "\n Tipo de mídia: " + getTipoDeMidia() + "]";
 	}
 }
