@@ -77,6 +77,6 @@ public class ClienteModel extends ModelAB{
 
 	@Override
 	public String toString() {
-		return "ClienteModel [Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + " ] \n";
+		return "\n Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + "\n";
 	}	
 }
