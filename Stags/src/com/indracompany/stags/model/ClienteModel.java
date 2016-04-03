@@ -5,13 +5,11 @@ public class ClienteModel extends ModelAB{
 	private String idade;
 	private String cpf;
 
-	public ClienteModel(String nome, Long codigo, String idade, String cpf, Boolean ativo) {
+	public ClienteModel(String nome, String idade, String cpf) {
 		super();
 		this.nome = nome;
-		this.codigo = codigo;
 		this.idade = idade;
 		this.cpf = cpf;
-		this.ativo = ativo;
 	}
 
 	public String getNome() {
