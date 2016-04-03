@@ -1,20 +1,20 @@
 package com.indracompany.stags.model;
 
-public enum TipoDeMidia {
+public enum TipoDeMidiaModel {
 		DVD(1L,"DVD"),CD(2L,"CD"), STREAMING(3L, "STREAMING");
 		
 		private Long codigo;
 		private String descricao;	
 		
-		private TipoDeMidia(Long codigo, String descricao) {
+		private TipoDeMidiaModel(Long codigo, String descricao) {
 			this.codigo = codigo;
 			this.descricao = descricao;
 		}		
 		
-		public static TipoDeMidia getTipoDeMidiaPorCodigo(Long codigo){
-			TipoDeMidia retorno = null;
+		public static TipoDeMidiaModel getTipoDeMidiaPorCodigo(Long codigo){
+			TipoDeMidiaModel retorno = null;
 			
-			for(TipoDeMidia tipoDeMidia:TipoDeMidia.values()){
+			for(TipoDeMidiaModel tipoDeMidia:TipoDeMidiaModel.values()){
 				if(tipoDeMidia.getCodigo().equals(codigo)){
 					retorno = tipoDeMidia;
 					break;

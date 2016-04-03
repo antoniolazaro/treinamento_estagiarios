@@ -8,7 +8,7 @@ public class MidiaModel extends ModelAB {
 	private String valorDeCompra;
 	private String valorDeAluguel;
 	private String valorDeVenda;
-	private TipoDeMidia tipoDeMidia;
+	private TipoDeMidiaModel tipoDeMidia;
 
 	public MidiaModel(String nome, String descricao, String codigoDeBarras, String dataDeCompra, String valorDeCompra,
 			String valorDeAluguel, String valorDeVenda) {
@@ -78,11 +78,11 @@ public class MidiaModel extends ModelAB {
 		this.valorDeVenda = valorDeVenda;
 	}
 
-	public TipoDeMidia getTipoDeMidia() {
+	public TipoDeMidiaModel getTipoDeMidia() {
 		return tipoDeMidia;
 	}
 
-	public void setTipoDeMidia(TipoDeMidia tipoDeMidia) {
+	public void setTipoDeMidia(TipoDeMidiaModel tipoDeMidia) {
 		this.tipoDeMidia = tipoDeMidia;
 	}
 
