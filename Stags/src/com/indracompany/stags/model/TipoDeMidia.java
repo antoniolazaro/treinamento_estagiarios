@@ -9,7 +9,7 @@ public enum TipoDeMidia {
 		private TipoDeMidia(Long codigo, String descricao) {
 			this.codigo = codigo;
 			this.descricao = descricao;
-		}
+		}		
 		
 		public static TipoDeMidia getTipoDeMidiaPorCodigo(Long codigo){
 			TipoDeMidia retorno = null;
@@ -33,5 +33,5 @@ public enum TipoDeMidia {
 		}
 		public void setDescricao(String descricao) {
 			this.descricao = descricao;
-		}
+		}		
 }
