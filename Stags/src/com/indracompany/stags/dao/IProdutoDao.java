@@ -16,7 +16,7 @@ public interface IProdutoDao {
 
 	public ProdutoModel buscar(Long codProduto) throws Exception;
 
-	public void vender();
+	public void vender(Long codProduto, Integer quantidade) throws Exception;
 
-	public void alugar();
+	public void alugar(Long codProduto, Integer quantidade) throws Exception;
 }

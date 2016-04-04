@@ -1,11 +1,13 @@
 package com.indracompany.stags.dao.memory;
 
 import java.util.Map;
+
 import java.util.Map.Entry;
 
 import com.indracompany.stags.dao.IProdutoDao;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.ProdutoModel;
+
 //fazer alterações depois
 public class ProdutoDaoMemory implements IProdutoDao {
 
@@ -22,10 +24,7 @@ public class ProdutoDaoMemory implements IProdutoDao {
 	public void editar(ProdutoModel pModel) throws Exception {
 		if (pModel != null) {
 
-			if (DataBase.getMapProduto().containsKey(pModel.getCodigo())) {
-
-				DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel);
-			}
+			DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel);
 		} else {
 			throw new Exception("Produto Nulo");
 		}
@@ -51,25 +50,40 @@ public class ProdutoDaoMemory implements IProdutoDao {
 	@Override
 	public ProdutoModel buscar(Long codProduto) throws Exception {
 		ProdutoModel produto = null;
-		for (Entry<Long, ProdutoModel> iterar : DataBase.getMapProduto().entrySet()) {
+		if (DataBase.getMapProduto().containsKey(codProduto)) {
 
-			if (iterar.getKey().equals(codProduto) && iterar.getValue().getAtivo() == true) {
-				produto = (ProdutoModel) iterar;
-			} else {
-				throw new Exception("Produto não encontrado!");
+			for (Entry<Long, ProdutoModel> iterar : DataBase.getMapProduto().entrySet()) {
+
+				if (iterar.getKey().equals(codProduto) && iterar.getValue().getAtivo() == true) {
+					produto = (ProdutoModel) iterar;
+
+				}
 			}
+
+		} else {
+			throw new Exception("Produto não encontrado!");
+
 		}
 		return produto;
 	}
 
 	@Override
-	public void vender() {
+	public void vender(Long codProduto, Integer quantidade) throws Exception {
+		ProdutoModel produto = buscar(codProduto);
+		produto.setQuantidade(produto.getQuantidade() - quantidade);
+		DataBase.getMapProduto().put(codProduto, produto);
+		// add em uma lista como compra
 
 	}
 
 	@Override
-	public void alugar() {
+	public void alugar(Long codProduto, Integer quantidade) throws Exception {
 
+		ProdutoModel produto = buscar(codProduto);
+		produto.setQuantidade(produto.getQuantidade() - quantidade);
+		DataBase.getMapProduto().put(codProduto, produto);
+
+		// add em uma lista como aluguel
 	}
 
 }
