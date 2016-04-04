@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import com.indracompany.stags.dao.IProdutoDao;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.ProdutoModel;
-
+//fazer alterações depois
 public class ProdutoDaoMemory implements IProdutoDao {
 
 	@Override
@@ -21,7 +21,11 @@ public class ProdutoDaoMemory implements IProdutoDao {
 	@Override
 	public void editar(ProdutoModel pModel) throws Exception {
 		if (pModel != null) {
-			DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel);
+
+			if (DataBase.getMapProduto().containsKey(pModel.getCodigo())) {
+
+				DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel);
+			}
 		} else {
 			throw new Exception("Produto Nulo");
 		}
@@ -33,10 +37,10 @@ public class ProdutoDaoMemory implements IProdutoDao {
 		if (pModel != null) {
 			pModel.setAtivo(false);
 			DataBase.getMapProduto().put(buscar(pModel.getCodigo()).getCodigo(), pModel);
-	
-	}else {
-		throw new Exception("Produto Nulo");
-	}
+
+		} else {
+			throw new Exception("Produto Nulo");
+		}
 	}
 
 	@Override
