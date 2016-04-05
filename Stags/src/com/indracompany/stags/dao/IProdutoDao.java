@@ -18,5 +18,6 @@ public interface IProdutoDao {
 
 	public void vender(Long codProduto, Integer quantidade) throws Exception;
 
+	// add tempo para devolução
 	public void alugar(Long codProduto, Integer quantidade) throws Exception;
 }
