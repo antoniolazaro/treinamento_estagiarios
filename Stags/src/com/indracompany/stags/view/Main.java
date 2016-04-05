@@ -3,11 +3,11 @@ package com.indracompany.stags.view;
 import java.util.List;
 
 import com.indracompany.stags.bo.ClienteBO;
-import com.indracompany.stags.bo.ab.ClienteBOIf;
+import com.indracompany.stags.bo.ab.IClienteBO;
 import com.indracompany.stags.model.ClienteModel;
 
 public class Main {
-	private static ClienteBOIf clienteBO;
+	private static IClienteBO clienteBO;
 	
 	static{
 		clienteBO = new ClienteBO();

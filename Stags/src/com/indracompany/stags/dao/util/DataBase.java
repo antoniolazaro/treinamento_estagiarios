@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.indracompany.stags.model.ClienteModel;
-import com.indracompany.stags.model.Compra;
+import com.indracompany.stags.model.CompraModel;
 import com.indracompany.stags.model.ProdutoModel;
 
 public class DataBase {
 	static {
 		listaCliente = new ArrayList<ClienteModel>();
 		mapProduto = new LinkedHashMap<Long, ProdutoModel>();
-		listaCompra = new ArrayList<Compra>();
+		listaCompra = new ArrayList<CompraModel>();
 	}
 
 	private static long sequencialCliente;
@@ -22,7 +22,7 @@ public class DataBase {
 
 	private static List<ClienteModel> listaCliente;
 	private static Map<Long, ProdutoModel> mapProduto;
-	private static List<Compra> listaCompra;
+	private static List<CompraModel> listaCompra;
 
 	public static long getCodigoCliente() {
 		return ++sequencialCliente;
@@ -68,7 +68,7 @@ public class DataBase {
 		return mapProduto;
 	}
 
-	public static List<Compra> getListaCompra() {
+	public static List<CompraModel> getListaCompra() {
 		return listaCompra;
 	}
 
@@ -80,7 +80,7 @@ public class DataBase {
 		DataBase.mapProduto = mapProduto;
 	}
 
-	public static void setListaCompra(List<Compra> listaCompra) {
+	public static void setListaCompra(List<CompraModel> listaCompra) {
 		DataBase.listaCompra = listaCompra;
 	}
 

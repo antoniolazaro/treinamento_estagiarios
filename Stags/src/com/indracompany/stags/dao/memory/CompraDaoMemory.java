@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.indracompany.stags.dao.ICompraDao;
 import com.indracompany.stags.dao.util.DataBase;
-import com.indracompany.stags.model.Compra;
+import com.indracompany.stags.model.CompraModel;
 
 public class CompraDaoMemory implements ICompraDao {
 
 	@Override
-	public void iserir(Compra compra) {
+	public void iserir(CompraModel compra) {
 		if (compra != null) {
 			compra.setCodigo(DataBase.getCodigoCompra());
 			DataBase.getListaCompra().add(compra);
@@ -17,10 +17,10 @@ public class CompraDaoMemory implements ICompraDao {
 	}
 
 	@Override
-	public Compra buscar(Long cod) {
-		Compra compraEncontrada = null;
+	public CompraModel buscar(Long cod) {
+		CompraModel compraEncontrada = null;
 		if (DataBase.getListaCompra().contains(cod)) {
-			for (Compra compra : DataBase.getListaCompra()) {
+			for (CompraModel compra : DataBase.getListaCompra()) {
 				if (compra.getCodigo().equals(cod)) {
 					compraEncontrada = compra;
 				}
@@ -31,7 +31,7 @@ public class CompraDaoMemory implements ICompraDao {
 	}
 
 	@Override
-	public List<Compra> listar() {
+	public List<CompraModel> listar() {
 		return DataBase.getListaCompra();
 	}
 

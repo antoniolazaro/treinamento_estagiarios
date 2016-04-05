@@ -1,13 +1,15 @@
 package com.indracompany.stags.model;
 
-public class Compra extends ModelAB {
+public class CompraModel extends ModelAB {
 
 	private TipoCompra tipoCompra;
 	private ProdutoModel produto;
+	private ClienteModel clienteModel;
 
-	public Compra(TipoCompra tipoCompra, ProdutoModel produto) {
+	public CompraModel(TipoCompra tipoCompra, ProdutoModel produto, ClienteModel clienteModel) {
 		this.tipoCompra = tipoCompra;
 		this.produto = produto;
+		this.setClienteModel(clienteModel);
 	}
 
 	public TipoCompra getTipoCompra() {
@@ -24,6 +26,14 @@ public class Compra extends ModelAB {
 
 	public void setProduto(ProdutoModel produto) {
 		this.produto = produto;
+	}
+
+	public ClienteModel getClienteModel() {
+		return clienteModel;
+	}
+
+	public void setClienteModel(ClienteModel clienteModel) {
+		this.clienteModel = clienteModel;
 	}
 
 }
