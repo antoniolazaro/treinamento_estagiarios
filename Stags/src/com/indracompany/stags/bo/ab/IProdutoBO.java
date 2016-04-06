@@ -1,6 +1,6 @@
 package com.indracompany.stags.bo.ab;
 
-import java.util.Map;
+import java.util.Collection;
 
 import com.indracompany.stags.model.ProdutoModel;
 
@@ -12,11 +12,8 @@ public interface IProdutoBO {
 
 	public void excluir(ProdutoModel pModel) throws Exception;
 
-	public Map<Long, ProdutoModel> listar() throws Exception;
+	public Collection<ProdutoModel> listar() throws Exception;
 
-	public ProdutoModel buscar(Long codProduto) throws Exception;
+	public ProdutoModel buscar(ProdutoModel pModel) throws Exception;
 
-	public void vender(Long codProduto, Integer quantidade) throws Exception;
-
-	public void alugar(Long codProduto, Integer quantidade) throws Exception;
 }

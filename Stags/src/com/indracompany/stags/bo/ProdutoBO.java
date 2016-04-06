@@ -1,6 +1,6 @@
 package com.indracompany.stags.bo;
 
-import java.util.Map;
+import java.util.Collection;
 
 import com.indracompany.stags.bo.ab.IProdutoBO;
 import com.indracompany.stags.dao.IProdutoDao;
@@ -16,44 +16,32 @@ public class ProdutoBO implements IProdutoBO {
 		this.produtoDaoMemory = new ProdutoDaoMemory();
 	}
 
-	@Override
 	public void inserir(ProdutoModel pModel) throws Exception {
+		validate(pModel);
 		produtoDaoMemory.inserir(pModel);
 	}
 
-	@Override
 	public void editar(ProdutoModel pModel) throws Exception {
 		produtoDaoMemory.editar(pModel);
-
 	}
 
-	@Override
 	public void excluir(ProdutoModel pModel) throws Exception {
-
 		produtoDaoMemory.excluir(pModel);
 	}
 
-	@Override
-	public Map<Long, ProdutoModel> listar() throws Exception {
+	public Collection<ProdutoModel> listar() throws Exception {
 
 		return produtoDaoMemory.listar();
 	}
 
-	@Override
-	public ProdutoModel buscar(Long codProduto) throws Exception {
+	public ProdutoModel buscar(ProdutoModel pModel) throws Exception {
 
-		return produtoDaoMemory.buscar(codProduto);
+		return produtoDaoMemory.buscar(pModel);
 	}
 
-	@Override
-	public void vender(Long codProduto, Integer quantidade) throws Exception {
-		produtoDaoMemory.vender(codProduto, quantidade);
+	private void validate(ProdutoModel pModel) throws Exception {
+		if (pModel == null) {
+			throw new Exception("Produto nulo");
+		}
 	}
-
-	@Override
-	public void alugar(Long codProduto, Integer quantidade) throws Exception {
-
-		produtoDaoMemory.alugar(codProduto, quantidade);
-	}
-
 }

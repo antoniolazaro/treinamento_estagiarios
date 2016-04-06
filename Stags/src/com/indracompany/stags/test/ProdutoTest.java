@@ -6,23 +6,41 @@ import com.indracompany.stags.model.ProdutoModel;
 import com.indracompany.stags.model.TipoProduto;
 
 public class ProdutoTest {
-	public static void main(String[] args) {
 
-		IProdutoBO iProdutoBO = new ProdutoBO();
-		ProdutoModel produto1 = new ProdutoModel("produto1", 10, true, true, 50, TipoProduto.DVD);
-		ProdutoModel produto2 = new ProdutoModel("produto2", 10, true, true, 50, TipoProduto.BLURAY);
-		try {
-			iProdutoBO.inserir(produto1);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			iProdutoBO.inserir(produto2);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private static IProdutoBO produtoBO;
+
+	static {
+		produtoBO = new ProdutoBO();
+	}
+
+	public void inserir() throws Exception {
+//		ProdutoModel produto1 = new ProdutoModel("produto1", 100, true, true, 10, TipoProduto.BLURAY);
+//		ProdutoModel produto2 = new ProdutoModel("produto2", 40, true, true, 10, TipoProduto.DVD);
+//		ProdutoModel produto3 = new ProdutoModel("produto3", 30, true, true, 100, TipoProduto.STREAM);
+
+	}
+
+	public void editar() throws Exception {
+
+	}
+
+	public void excluir() throws Exception {
+
+	}
+
+	public void listar() throws Exception {
+
+	}
+
+	public ProdutoModel buscar(Long codProduto) throws Exception {
+		return null;
+	}
+
+	public void vender() throws Exception {
+
+	}
+
+	public void alugar(Long codProduto, Integer quantidade) throws Exception {
 
 	}
 

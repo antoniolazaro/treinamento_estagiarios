@@ -3,35 +3,41 @@ package com.indracompany.stags.dao.memory;
 import java.util.List;
 
 import com.indracompany.stags.dao.ICompraDao;
+import com.indracompany.stags.dao.IProdutoDao;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.CompraModel;
+import com.indracompany.stags.model.ProdutoModel;
 
 public class CompraDaoMemory implements ICompraDao {
 
-	@Override
-	public void iserir(CompraModel compra) {
-		if (compra != null) {
-			compra.setCodigo(DataBase.getCodigoCompra());
-			DataBase.getListaCompra().add(compra);
-		}
+	IProdutoDao produtoDao = new ProdutoDaoMemory();
+
+	public void alugar(ProdutoModel pModel, Integer quantidade) {
+		// lembrar de verificar posição de estoque
+		ProdutoModel produto = produtoDao.buscar(pModel);
+		produto.setQuantidade(produto.getQuantidade() - quantidade);
+		DataBase.getMapProduto().put(pModel.getCodigo(), produto);
+
+		// add em uma lista como aluguel
 	}
 
-	@Override
-	public CompraModel buscar(Long cod) {
-		CompraModel compraEncontrada = null;
-		if (DataBase.getListaCompra().contains(cod)) {
-			for (CompraModel compra : DataBase.getListaCompra()) {
-				if (compra.getCodigo().equals(cod)) {
-					compraEncontrada = compra;
-				}
-			}
-		}
-		return compraEncontrada;
+	public void vender(ProdutoModel pModel, Integer quantidade) {
+		// lembrar de verificar posição de estoque
+		ProdutoModel produto = produtoDao.buscar(pModel);
+		produto.setQuantidade(produto.getQuantidade() - quantidade);
+		DataBase.getMapProduto().put(pModel.getCodigo(), produto);
+
+		// add em uma lista como compra
 
 	}
 
-	@Override
+	public void inserir(CompraModel compra) {
+		compra.setCodigo(DataBase.getCodigoCompra());
+		DataBase.getListaCompra().add(compra);
+	}
+
 	public List<CompraModel> listar() {
+
 		return DataBase.getListaCompra();
 	}
 

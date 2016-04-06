@@ -1,15 +1,24 @@
 package com.indracompany.stags.model;
 
+import java.util.Date;
+import java.util.List;
+
 public class CompraModel extends ModelAB {
 
 	private TipoCompra tipoCompra;
-	private ProdutoModel produto;
+	private List<ProdutoModel> produto;
 	private ClienteModel clienteModel;
+	private Date dataCompra;
 
-	public CompraModel(TipoCompra tipoCompra, ProdutoModel produto, ClienteModel clienteModel) {
+	public CompraModel() {
+
+	}
+
+	public CompraModel(TipoCompra tipoCompra, List<ProdutoModel> produto, ClienteModel clienteModel, Date dataCompra) {
 		this.tipoCompra = tipoCompra;
 		this.produto = produto;
-		this.setClienteModel(clienteModel);
+		this.clienteModel = clienteModel;
+		this.dataCompra = dataCompra;
 	}
 
 	public TipoCompra getTipoCompra() {
@@ -20,20 +29,28 @@ public class CompraModel extends ModelAB {
 		this.tipoCompra = tipoCompra;
 	}
 
-	public ProdutoModel getProduto() {
-		return produto;
-	}
-
-	public void setProduto(ProdutoModel produto) {
-		this.produto = produto;
-	}
-
 	public ClienteModel getClienteModel() {
 		return clienteModel;
 	}
 
 	public void setClienteModel(ClienteModel clienteModel) {
 		this.clienteModel = clienteModel;
+	}
+
+	public Date getDataCompra() {
+		return dataCompra;
+	}
+
+	public void setDataCompra(Date dataCompra) {
+		this.dataCompra = dataCompra;
+	}
+
+	public List<ProdutoModel> getListaProduto() {
+		return produto;
+	}
+
+	public void setListaProduto(List<ProdutoModel> produto) {
+		this.produto = produto;
 	}
 
 }

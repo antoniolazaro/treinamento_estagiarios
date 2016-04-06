@@ -1,23 +1,19 @@
 package com.indracompany.stags.dao;
 
-import java.util.Map;
+import java.util.Collection;
 
 import com.indracompany.stags.model.ProdutoModel;
 
 public interface IProdutoDao {
 
-	public void inserir(ProdutoModel pModel) throws Exception;
+	public void inserir(ProdutoModel pModel);
 
-	public void editar(ProdutoModel pModel) throws Exception;
+	public void editar(ProdutoModel pModel);
 
-	public void excluir(ProdutoModel pModel) throws Exception;
+	public void excluir(ProdutoModel pModel);
 
-	public Map<Long, ProdutoModel> listar() throws Exception;
+	public Collection<ProdutoModel> listar();
 
-	public ProdutoModel buscar(Long codProduto) throws Exception;
+	public ProdutoModel buscar(ProdutoModel pModel);
 
-	public void vender(Long codProduto, Integer quantidade) throws Exception;
-
-	// add tempo para devolução
-	public void alugar(Long codProduto, Integer quantidade) throws Exception;
 }
