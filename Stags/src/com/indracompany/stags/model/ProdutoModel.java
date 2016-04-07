@@ -5,8 +5,6 @@ public class ProdutoModel extends ModelAB {
 	private String nome;
 	private Double precoVenda;
 	private Double precoAluguel;
-	// private boolean aluguel;
-	// private boolean venda;
 	private Integer quantidade = 0;
 	private TipoProduto tipoProduto;
 
@@ -31,22 +29,6 @@ public class ProdutoModel extends ModelAB {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	// public boolean isAluguel() {
-	// return aluguel;
-	// }
-	//
-	// public void setAluguel(boolean aluguel) {
-	// this.aluguel = aluguel;
-	// }
-	//
-	// public boolean isVenda() {
-	// return venda;
-	// }
-	//
-	// public void setVenda(boolean venda) {
-	// this.venda = venda;
-	// }
 
 	public Integer getQuantidade() {
 		return quantidade;
