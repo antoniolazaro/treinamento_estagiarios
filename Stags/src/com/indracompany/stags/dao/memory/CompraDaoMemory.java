@@ -12,22 +12,24 @@ public class CompraDaoMemory implements ICompraDao {
 
 	IProdutoDao produtoDao = new ProdutoDaoMemory();
 
-	public void alugar(ProdutoModel pModel, Integer quantidade) {
-		// lembrar de verificar posição de estoque
+	public Double alugar(ProdutoModel pModel, Integer quantidade, Integer dias) {
+
+		Double valor;
+
 		ProdutoModel produto = produtoDao.buscar(pModel);
 		produto.setQuantidade(produto.getQuantidade() - quantidade);
 		DataBase.getMapProduto().put(pModel.getCodigo(), produto);
-
-		// add em uma lista como aluguel
+		valor = pModel.getPrecoAluguel() * quantidade * dias;
+		return valor;
 	}
 
-	public void vender(ProdutoModel pModel, Integer quantidade) {
-		// lembrar de verificar posição de estoque
+	public Double vender(ProdutoModel pModel, Integer quantidade) {
+		Double valor;
 		ProdutoModel produto = produtoDao.buscar(pModel);
 		produto.setQuantidade(produto.getQuantidade() - quantidade);
 		DataBase.getMapProduto().put(pModel.getCodigo(), produto);
-
-		// add em uma lista como compra
+		valor = pModel.getPrecoAluguel() * quantidade;
+		return valor;
 
 	}
 
