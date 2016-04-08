@@ -26,9 +26,9 @@ public class MainExecutorMenu {
 		                	menuBuilder.editarCliente(cliente);
 		                    break;
 		                    
-//		                case "3":
-//		                	menuBuilder.removerCliente(cliente);	                   
-//		                    break;
+		                case "3":
+		                	menuBuilder.excluirCliente(cliente);	                   
+		                    break;
 		                    
 		                case "0":
 		                	continuar = finalizarPrograma();

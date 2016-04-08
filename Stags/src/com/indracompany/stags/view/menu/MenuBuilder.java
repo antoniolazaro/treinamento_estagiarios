@@ -11,7 +11,7 @@ public class MenuBuilder {
 			System.out.println("\t\tMenu de opções:");
 			System.out.println("\t1. Inserir cliente");
 			System.out.println("\t2. Editar cliente");
-//			System.out.println("\t3. Excluir cliente");
+			System.out.println("\t3. Excluir cliente");
 			System.out.println("\t0. Sair");
 			
 			return pedirEntrada("\nInsira sua opção: ");
@@ -34,6 +34,7 @@ public class MenuBuilder {
 				pModel.setCodigo(cliente.getCodigo());
 				DataBase.getListaCliente().add(pModel);
 				DataBase.getCodigoCliente();
+				System.out.println("Cliente inserido com sucesso: "+pModel.toString());
 			} catch (Exception e) {
 				throw new Exception("Erro ao tentar adicionar um cliente -> "+e.getMessage());
 			}
@@ -41,44 +42,65 @@ public class MenuBuilder {
 		
 		public void editarCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a ser editado: ");
-			pModel.getNome();
+			pModel.buscarCliente();
 			String opcaoSelecionadaMenuEditar = executarMenuEditar();
 			boolean continuar = true;
-			do{
-				switch(opcaoSelecionadaMenuEditar){
-				case "a":
-					String opcao1 = pedirEntrada("\n Digite novo nome: ");
-					if(opcao1 != null && !opcao1.equals("")){
-						pModel.setNome(opcao1);
-					}else{
-						return;
-					}
-					break;
-				case "b":
-					Integer opcao2 = Integer.parseInt(pedirEntrada("\n Digite nova idade: "));
-					if(opcao2 != null && !opcao2.equals("")){
-						pModel.setIdade(opcao2);
-					}else{
-						return;
-					}
-					break;	
-				case "c":
-					String opcao3 = pedirEntrada("\n Digite novo CPF: ");
-					if(opcao3 != null && !opcao3.equals("")){
-						pModel.setCpf(opcao3);
-					}else{
-						return;
-					}							
-					break;
-				case "d":
-					break;
-				default: 
-					break;
-				}						
-			}while(continuar);
+			try {
+				do{
+					switch(opcaoSelecionadaMenuEditar){
+					case "a":
+						String opcao1 = pedirEntrada("\n Digite novo nome: ");
+						if(opcao1 != null && !opcao1.equals("")){
+							pModel.setNome(opcao1);
+						}else{
+							return;
+						}
+						break;
+					case "b":
+						Integer opcao2 = Integer.parseInt(pedirEntrada("\n Digite nova idade: "));
+						if(opcao2 != null && !opcao2.equals("")){
+							pModel.setIdade(opcao2);
+						}else{
+							return;
+						}
+						break;	
+					case "c":
+						String opcao3 = pedirEntrada("\n Digite novo CPF: ");
+						if(opcao3 != null && !opcao3.equals("")){
+							pModel.setCpf(opcao3);
+						}else{
+							return;
+						}							
+						break;
+					case "d":
+						break;
+					default: 
+						break;
+					}						
+				}while(continuar);
+				System.out.println("Cliente editado com sucesso: "+pModel.toString());
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar editar um cliente -> "+e.getMessage());
+			}
 			
 			int posicaoLista = DataBase.getListaCliente().indexOf(pModel);	
 			DataBase.getListaCliente().set(posicaoLista, pModel);
+			}
+		
+		public void excluirCliente(ClienteModel pModel) throws Exception {
+			String nome = pedirEntrada("\n Digite nome do cliente a ser excluído: ");
+			pModel.buscarCliente();
+			try {
+				if(pModel != null && !pModel.equals("")){
+					pModel.setAtivo(false);
+				}
+				System.out.println("Cliente removido com sucesso: "+pModel.toString());
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar excluir um cliente -> "+e.getMessage());
+			}			
+			
+			int posicaoLista = DataBase.getListaCliente().indexOf(pModel);
+			ClienteModel pModel = DataBase.getListaCliente().get(posicaoLista);	
 		}
 		
 		@SuppressWarnings("resource")
