@@ -18,12 +18,12 @@ public class CompraBO implements ICompraBO {
 
 	}
 
-	public Double vender(ProdutoModel pModel, Integer quantidade) throws Exception {
-		return compraDaoMemory.vender(pModel, quantidade);
+	public Double vender(List<ProdutoModel> listaProduto) throws Exception {
+		return compraDaoMemory.vender(listaProduto);
 	}
 
-	public Double alugar(ProdutoModel pModel, Integer quantidade, Integer dias) throws Exception {
-		return compraDaoMemory.alugar(pModel, quantidade, dias);
+	public Double alugar(List<ProdutoModel> listaProduto, Integer dias) throws Exception {
+		return compraDaoMemory.alugar(listaProduto, dias);
 	}
 
 	public void inserir(CompraModel compra) {

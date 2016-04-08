@@ -38,11 +38,7 @@ public class CompraModel extends ModelAB {
 	}
 
 	public Date getDataCompra() {
-		return dataCompra;
-	}
-
-	public void setDataCompra(Date dataCompra) {
-		this.dataCompra = dataCompra;
+		return new Date();
 	}
 
 	public List<ProdutoModel> getListaProduto() {
