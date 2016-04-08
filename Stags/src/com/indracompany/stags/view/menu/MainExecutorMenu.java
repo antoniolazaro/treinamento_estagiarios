@@ -22,9 +22,9 @@ public class MainExecutorMenu {
 		                	menuBuilder.inserirCliente(cliente);
 		                    break;        
 		                    
-//		                case "2":
-//		                	menuBuilder.editarCliente(cliente);
-//		                    break;
+		                case "2":
+		                	menuBuilder.editarCliente(cliente);
+		                    break;
 		                    
 //		                case "3":
 //		                	menuBuilder.removerCliente(cliente);	                   

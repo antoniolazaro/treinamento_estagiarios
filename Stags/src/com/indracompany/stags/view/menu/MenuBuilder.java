@@ -18,10 +18,10 @@ public class MenuBuilder {
 		}
 
 		public void inserirCliente(ClienteModel pModel) throws Exception {
+			String nome, cpf;
+			ClienteModel cliente = new ClienteModel();
+			nome = pedirEntrada("\n Digite nome: ");
 			try {
-				String nome, cpf;
-				ClienteModel cliente = new ClienteModel();
-				nome = pedirEntrada("\n Digite nome: ");
 				if(nome != null && !nome.equals("")){
 					pModel.setNome(nome);
 				}else{
@@ -42,6 +42,40 @@ public class MenuBuilder {
 		public void editarCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a ser editado: ");
 			pModel.getNome();
+			String opcaoSelecionadaMenuEditar = executarMenuEditar();
+			boolean continuar = true;
+			do{
+				switch(opcaoSelecionadaMenuEditar){
+				case "a":
+					String opcao1 = pedirEntrada("\n Digite novo nome: ");
+					if(opcao1 != null && !opcao1.equals("")){
+						pModel.setNome(opcao1);
+					}else{
+						return;
+					}
+					break;
+				case "b":
+					Integer opcao2 = Integer.parseInt(pedirEntrada("\n Digite nova idade: "));
+					if(opcao2 != null && !opcao2.equals("")){
+						pModel.setIdade(opcao2);
+					}else{
+						return;
+					}
+					break;	
+				case "c":
+					String opcao3 = pedirEntrada("\n Digite novo CPF: ");
+					if(opcao3 != null && !opcao3.equals("")){
+						pModel.setCpf(opcao3);
+					}else{
+						return;
+					}							
+					break;
+				case "d":
+					break;
+				default: 
+					break;
+				}						
+			}while(continuar);
 			
 			int posicaoLista = DataBase.getListaCliente().indexOf(pModel);	
 			DataBase.getListaCliente().set(posicaoLista, pModel);
@@ -52,5 +86,15 @@ public class MenuBuilder {
 			Scanner entrada = new Scanner(System.in);
 			System.out.print(mensagemEntrada);
 			return entrada.nextLine();
+		}
+		
+		public String executarMenuEditar() {
+		       System.out.println("\t\tMenu de opções:");
+		       System.out.println("\ta. Editar nome");
+		       System.out.println("\tb. Editar idade");
+		       System.out.println("\tc. Editar cpf");
+		       System.out.println("\td. Sair");
+		        		
+		       return pedirEntrada("\nInsira sua opção: ");
 		}
 }
