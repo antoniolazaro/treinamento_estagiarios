@@ -1,6 +1,7 @@
 package com.indracompany.stags.view.menu;
 import java.util.Scanner;
 
+import com.indracompany.stags.dao.memory.ClienteDAOMemory;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.ClienteModel;
 
@@ -42,7 +43,7 @@ public class MenuBuilder {
 		
 		public void editarCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a ser editado: ");
-			pModel.buscarCliente();
+			ClienteDAOMemory.buscarCliente(nome);
 			String opcaoSelecionadaMenuEditar = executarMenuEditar();
 			boolean continuar = true;
 			try {
@@ -89,7 +90,7 @@ public class MenuBuilder {
 		
 		public void excluirCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a ser excluído: ");
-			pModel.buscarCliente();
+			ClienteDAOMemory.buscarCliente(nome);
 			try {
 				if(pModel != null && !pModel.equals("")){
 					pModel.setAtivo(false);
@@ -97,10 +98,7 @@ public class MenuBuilder {
 				System.out.println("Cliente removido com sucesso: "+pModel.toString());
 			} catch (Exception e) {
 				throw new Exception("Erro ao tentar excluir um cliente -> "+e.getMessage());
-			}			
-			
-			int posicaoLista = DataBase.getListaCliente().indexOf(pModel);
-			ClienteModel pModel = DataBase.getListaCliente().get(posicaoLista);	
+			}
 		}
 		
 		@SuppressWarnings("resource")

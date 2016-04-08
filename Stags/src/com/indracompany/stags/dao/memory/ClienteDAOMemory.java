@@ -1,5 +1,6 @@
 package com.indracompany.stags.dao.memory;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.indracompany.stags.dao.ClienteDAOIf;
@@ -47,5 +48,22 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 			lModel = DataBase.getListaCliente().get(posicaoLista);
 		}			
 		return lModel;		
+	}
+	
+	public ClienteModel buscarCliente(ClienteModel pModel) throws Exception {
+		try {
+				ClienteModel retorno = null;
+					for(ClienteModel cliente  : DataBase.getListaCliente()){
+						if(cliente != null){
+							if(cliente.getNome().equalsIgnoreCase(pModel.getNome())){
+								retorno = cliente;
+								break;
+							}
+						}				
+					}
+					return retorno;
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar buscar um cliente -> "+e.getMessage());
+		}				
 	}
 }
