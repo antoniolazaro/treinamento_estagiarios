@@ -9,8 +9,8 @@ public class MainExecutorMenu {
 	    	String quebraLinha = System.getProperty("line.separator");
 			boolean continuar=true;
 	    	String opcao;
-	        ClienteModel cliente = new ClienteModel(opcao, opcao, opcao);
-	        MidiaModel midia = new MidiaModel(opcao, opcao, opcao, opcao, opcao, opcao, opcao);
+	        ClienteModel cliente = new ClienteModel();
+	        MidiaModel midia = new MidiaModel();
 	        MenuBuilder menuBuilder = new MenuBuilder();
 	        do{
 	            opcao = menuBuilder.executarMenuInicial();
@@ -19,43 +19,15 @@ public class MainExecutorMenu {
 		            switch( opcao )
 		            {
 		                case "1":
-		                	menuBuilder.buscarCliente(ClienteModel cliente);
+		                	menuBuilder.inserirCliente(cliente);
 		                    break;        
 		                    
-		                case "2":
-		                	menuBuilder.buscarMidia(MidiaModel midia);
-		                    break;
+//		                case "2":
+//		                	menuBuilder.editarCliente(cliente);
+//		                    break;
 		                    
 //		                case "3":
-//		                	menuBuilder.editarContato(agenda);	                   
-//		                    break;
-//		                    
-//		                case "4":
-//		                	menuBuilder.excluirContato(agenda);                  
-//			                break;
-//			            
-//		                case "5":
-//		                	menuBuilder.buscarContato(agenda);
-//		                    break;
-//		                    
-//		                case "6":
-//		                	menuBuilder.buscarContato(agenda);
-//		                    break;
-//		                    
-//		                case "7":
-//		                	menuBuilder.buscarContato(agenda);
-//		                    break;
-//		                    
-//		                case "8":
-//		                	menuBuilder.buscarContato(agenda);
-//		                    break;
-//		                    
-//		                case "9":
-//		                	menuBuilder.buscarContato(agenda);
-//		                    break;
-//		                    
-//		                case "10":
-//		                	menuBuilder.buscarContato(agenda);
+//		                	menuBuilder.removerCliente(cliente);	                   
 //		                    break;
 		                    
 		                case "0":

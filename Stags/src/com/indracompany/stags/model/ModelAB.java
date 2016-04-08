@@ -51,8 +51,6 @@ public abstract class ModelAB {
 
 	@Override
 	public String toString() {
-		return " codigo=" + codigo + ", ativo=" + ativo ;
-	}
-	
-	
+		return "\n Código: " + getCodigo() + "\n Ativo: " + getAtivo() ;
+	}	
 }

@@ -1,29 +1,32 @@
 package com.indracompany.stags.model;
 
-import java.util.Collection;
-
-import com.indracompany.stags.dao.util.DataBase;
+import java.util.Date;
 
 public class MidiaModel extends ModelAB {
 	private String nome;
 	private String descricao;
-	private String codigoDeBarras;
-	private String dataDeCompra;
-	private String valorDeCompra;
-	private String valorDeAluguel;
-	private String valorDeVenda;
-	private TipoDeMidiaModel tipoDeMidia;
-
-	public MidiaModel(String nome, String descricao, String codigoDeBarras, String dataDeCompra, String valorDeCompra,
-			String valorDeAluguel, String valorDeVenda) {
+	private String codigoBarras;
+	private Date dataRegistro;
+	private Double valorAluguel;
+	private Double valorVenda;
+	private TipoDeMidiaModel tipoMidia;
+	private Integer quantidadeEstoque;
+	
+	public MidiaModel(String nome, String descricao, String codigoBarras, Date dataRegistro, Double valorAluguel,
+			Double valorVenda, TipoDeMidiaModel tipoMidia, Integer quantidadeEstoque) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
-		this.codigoDeBarras = codigoDeBarras;
-		this.dataDeCompra = dataDeCompra;
-		this.valorDeCompra = valorDeCompra;
-		this.valorDeAluguel = valorDeAluguel;
-		this.valorDeVenda = valorDeVenda;
+		this.codigoBarras = codigoBarras;
+		this.dataRegistro = dataRegistro;
+		this.valorAluguel = valorAluguel;
+		this.valorVenda = valorVenda;
+		this.tipoMidia = tipoMidia;
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
+
+	public MidiaModel() {
+		
 	}
 
 	public String getNome() {
@@ -42,61 +45,65 @@ public class MidiaModel extends ModelAB {
 		this.descricao = descricao;
 	}
 
-	public String getCodigoDeBarras() {
-		return codigoDeBarras;
+	public String getCodigoBarras() {
+		return codigoBarras;
 	}
 
-	public void setCodigoDeBarras(String codigoDeBarras) {
-		this.codigoDeBarras = codigoDeBarras;
+	public void setCodigoBarras(String codigoBarras) {
+		this.codigoBarras = codigoBarras;
 	}
 
-	public String getDataDeCompra() {
-		return dataDeCompra;
+	public Date getDataRegistro() {
+		return dataRegistro;
 	}
 
-	public void setDataDeCompra(String dataDeCompra) {
-		this.dataDeCompra = dataDeCompra;
+	public void setDataRegistro(Date dataRegistro) {
+		this.dataRegistro = dataRegistro;
 	}
 
-	public String getValorDeCompra() {
-		return valorDeCompra;
+	public Double getValorAluguel() {
+		return valorAluguel;
 	}
 
-	public void setValorDeCompra(String valorDeCompra) {
-		this.valorDeCompra = valorDeCompra;
+	public void setValorAluguel(Double valorAluguel) {
+		this.valorAluguel = valorAluguel;
 	}
 
-	public String getValorDeAluguel() {
-		return valorDeAluguel;
+	public Double getValorVenda() {
+		return valorVenda;
 	}
 
-	public void setValorDeAluguel(String valorDeAluguel) {
-		this.valorDeAluguel = valorDeAluguel;
+	public void setValorVenda(Double valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 
-	public String getValorDeVenda() {
-		return valorDeVenda;
+	public TipoDeMidiaModel getTipoMidia() {
+		return tipoMidia;
 	}
 
-	public void setValorDeVenda(String valorDeVenda) {
-		this.valorDeVenda = valorDeVenda;
-	}
-
-	public TipoDeMidiaModel getTipoDeMidia() {
-		return tipoDeMidia;
-	}
-
-	public void setTipoDeMidia(TipoDeMidiaModel tipoDeMidia) {
-		this.tipoDeMidia = tipoDeMidia;
+	public void setTipoMidia(TipoDeMidiaModel tipoMidia) {
+		this.tipoMidia = tipoMidia;
 	}
 	
+	public Integer getQuantidadeEstoque() {
+		return quantidadeEstoque;
+	}
+
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((codigoDeBarras == null) ? 0 : codigoDeBarras.hashCode());
+		result = prime * result + ((codigoBarras == null) ? 0 : codigoBarras.hashCode());
+		result = prime * result + ((dataRegistro == null) ? 0 : dataRegistro.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((tipoDeMidia == null) ? 0 : tipoDeMidia.hashCode());
+		result = prime * result + ((tipoMidia == null) ? 0 : tipoMidia.hashCode());
+		result = prime * result + ((valorAluguel == null) ? 0 : valorAluguel.hashCode());
+		result = prime * result + ((valorVenda == null) ? 0 : valorVenda.hashCode());
 		return result;
 	}
 
@@ -109,43 +116,23 @@ public class MidiaModel extends ModelAB {
 		if (getClass() != obj.getClass())
 			return false;
 		MidiaModel other = (MidiaModel) obj;
-		if (codigoDeBarras == null) {
-			if (other.codigoDeBarras != null)
+		if (codigoBarras == null) {
+			if (other.codigoBarras != null)
 				return false;
-		} else if (!codigoDeBarras.equals(other.codigoDeBarras))
+		} else if (!codigoBarras.equals(other.codigoBarras))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (tipoDeMidia != other.tipoDeMidia)
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "\n Nome: " + getNome() + "\n Descrição: " + getDescricao() + "\n Codigo de Barras: " + getCodigoDeBarras()
-				+ "\n Data de Compra: " + getDataDeCompra() + "\n Valor de Compra: " + getValorDeCompra() + "\n Valor de Aluguel: "
-				+ getValorDeAluguel() + "\n Valor de Venda: " + getValorDeVenda() + "\n Tipo de mídia: " + getTipoDeMidia();
+		return "\n Nome: " + getNome() + "\n Descrição: " + getDescricao() + "\n Codigo de Barras: " + getCodigoBarras()
+				+ "\n Data de Entrada no sistema: " + getDataRegistro() + "\n Valor de Compra: " + getValorVenda() + "\n Valor de Aluguel: "
+				+ getValorAluguel() + "\n Valor de Venda: " + getValorVenda() + "\n Tipo de mídia: " + getTipoMidia() + "\n Quantidade no estoque: " + getQuantidadeEstoque();
 	}
-
-	public MidiaModel getNomeBusca(String busca) {
-		MidiaModel retorno = null;
-		if(nome != null && codigoDeBarras != null && tipoDeMidia != null && DataBase.getListaMidia().size() > 0 ){
-			Collection<MidiaModel> listaMidia = (DataBase.getListaMidia()).values();
-			for(MidiaModel midia  : DataBase.getListaMidia()){
-				if(midia != null){
-					if(nome.equalsIgnoreCase(midia.getNome())){
-						retorno = midia;
-						break;
-					} else {
-						System.out.println("Registro não encontrado.");
-					}
-				}				
-			}
-		}
-		return retorno;
-	}	
 }

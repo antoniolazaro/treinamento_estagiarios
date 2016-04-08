@@ -1,5 +1,6 @@
 package com.indracompany.stags.test;
 
+import java.util.Date;
 import java.util.List;
 import com.indracompany.stags.bo.MidiaBO;
 import com.indracompany.stags.bo.ab.MidiaBOIf;
@@ -16,23 +17,22 @@ public class MidiaTest {
 		
 	public void inserirMidia() throws Exception{
 		
-		MidiaModel lMidia1 = new MidiaModel(null, null, null, null, null, null, null);
+		MidiaModel lMidia1 = new MidiaModel();
 		lMidia1.setNome("2013");
 		lMidia1.setCodigo((long) 1);
 		lMidia1.setDescricao("25");
-		lMidia1.setCodigoDeBarras("7364736435246");
-		lMidia1.setDataDeCompra("20/03/2016");
-		lMidia1.setValorDeCompra("R$40,00");
-		lMidia1.setValorDeAluguel("R$3,50");
-		lMidia1.setValorDeVenda("lMidia1.getValorDeCompra() ou lMidia1.getValorDeAluguel()");
-		lMidia1.setTipoDeMidia(TipoDeMidiaModel.DVD);
+		lMidia1.setCodigoBarras("7364736435246");
+		lMidia1.setDataRegistro(new Date());
+		lMidia1.setValorAluguel(3.50);
+		lMidia1.setValorVenda(40.50);
+		lMidia1.setTipoMidia(TipoDeMidiaModel.DVD);
 		lMidia1.setAtivo(true);
 			
 		midiaBO.inserir(lMidia1);		
 	}
 	
 	public void excluirMidia() throws Exception{
-		MidiaModel lMidia = new MidiaModel(null, null, null, null, null, null, null);
+		MidiaModel lMidia = new MidiaModel();
 		lMidia.setCodigo(2L);
 		
 		midiaBO.excluir(lMidia);
@@ -40,7 +40,7 @@ public class MidiaTest {
 	
 	
 	public void editarMidia() throws Exception{
-		MidiaModel lMidia = new MidiaModel(null, null, null, null, null, null, null);
+		MidiaModel lMidia = new MidiaModel();
 		lMidia.setCodigo(2L);		
 		
 		MidiaModel lMidiaBusca = midiaBO.buscar(lMidia);

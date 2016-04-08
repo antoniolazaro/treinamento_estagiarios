@@ -48,7 +48,4 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 		}			
 		return lModel;		
 	}
-
-	
-
 }

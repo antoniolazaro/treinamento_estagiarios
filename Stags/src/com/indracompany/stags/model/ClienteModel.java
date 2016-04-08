@@ -1,19 +1,19 @@
 package com.indracompany.stags.model;
 
-import java.util.Collection;
-
-import com.indracompany.stags.dao.util.DataBase;
-
 public class ClienteModel extends ModelAB{
 	private String nome;
-	private String idade;
+	private Integer idade;
 	private String cpf;
 
-	public ClienteModel(String nome, String idade, String cpf) {
+	public ClienteModel(String nome, Integer idade, String cpf) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 		this.cpf = cpf;
+	}
+	
+	public ClienteModel() {
+		
 	}
 
 	public String getNome() {
@@ -24,11 +24,11 @@ public class ClienteModel extends ModelAB{
 		this.nome = nome;
 	}
 
-	public String getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
 
-	public void setIdade(String idade) {
+	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 
@@ -81,22 +81,4 @@ public class ClienteModel extends ModelAB{
 	public String toString() {
 		return "\n Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + "\n";
 	}
-
-	public ClienteModel getNomeBusca(String busca) {
-		ClienteModel retorno = null;
-		if(nome != null && cpf != null && idade != null && DataBase.getListaCliente().size() > 0 ){
-			Collection<ClienteModel> listaCliente = (DataBase.getListaCliente()).values();
-			for(ClienteModel cliente  : DataBase.getListaCliente()){
-				if(cliente != null){
-					if(nome.equalsIgnoreCase(cliente.getNome())){
-						retorno = cliente;
-						break;
-					} else {
-						System.out.println("Registro não encontrado.");
-					}
-				}				
-			}
-		}
-		return retorno;
-	}	
 }
