@@ -10,7 +10,7 @@ public class MenuBuilder {
 			
 			System.out.println("\t\tMenu de opções:");
 			System.out.println("\t1. Inserir cliente");
-//			System.out.println("\t2. Editar cliente");
+			System.out.println("\t2. Editar cliente");
 //			System.out.println("\t3. Excluir cliente");
 			System.out.println("\t0. Sair");
 			
@@ -22,7 +22,7 @@ public class MenuBuilder {
 				String nome, cpf;
 				ClienteModel cliente = new ClienteModel();
 				nome = pedirEntrada("\n Digite nome: ");
-				if(nome != null){
+				if(nome != null && !nome.equals("")){
 					pModel.setNome(nome);
 				}else{
 					throw new Exception("Não será possível.");
@@ -34,9 +34,17 @@ public class MenuBuilder {
 				pModel.setCodigo(cliente.getCodigo());
 				DataBase.getListaCliente().add(pModel);
 				DataBase.getCodigoCliente();
-			} catch (Exception ex){
-            	System.out.println("Erro -> "+ex.getMessage());
-            }
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar adicionar um cliente -> "+e.getMessage());
+			}
+		}
+		
+		public void editarCliente(ClienteModel pModel) throws Exception {
+			String nome = pedirEntrada("\n Digite nome do cliente a ser editado: ");
+			pModel.getNome();
+			
+			int posicaoLista = DataBase.getListaCliente().indexOf(pModel);	
+			DataBase.getListaCliente().set(posicaoLista, pModel);
 		}
 		
 		@SuppressWarnings("resource")
