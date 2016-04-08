@@ -44,46 +44,47 @@ public class MenuBuilder {
 		public void editarCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a ser editado: ");
 			ClienteDAOMemory.buscarCliente(nome);
-			String opcaoSelecionadaMenuEditar = executarMenuEditar();
 			boolean continuar = true;
-			try {
-				do{
+			do{
+				String opcaoSelecionadaMenuEditar = executarMenuEditar();
+				try {
 					switch(opcaoSelecionadaMenuEditar){
 					case "a":
 						String opcao1 = pedirEntrada("\n Digite novo nome: ");
 						if(opcao1 != null && !opcao1.equals("")){
 							pModel.setNome(opcao1);
 						}else{
-							return;
+							break;
 						}
-						break;
 					case "b":
 						Integer opcao2 = Integer.parseInt(pedirEntrada("\n Digite nova idade: "));
 						if(opcao2 != null && !opcao2.equals("")){
 							pModel.setIdade(opcao2);
 						}else{
-							return;
+							break;
 						}
-						break;	
 					case "c":
 						String opcao3 = pedirEntrada("\n Digite novo CPF: ");
 						if(opcao3 != null && !opcao3.equals("")){
 							pModel.setCpf(opcao3);
 						}else{
-							return;
-						}							
-						break;
+							break;
+						}
 					case "d":
 						break;
-					default: 
-						break;
-					}						
+					default:
+	                    System.out.printf("Você digitou uma opção inválida.");
+	                    System.lineSeparator();
+					}
+
+				} catch (Exception e) {
+					throw new Exception("Erro ao tentar editar um cliente -> "+e.getMessage());
+				}
+				
 				}while(continuar);
 				System.out.println("Cliente editado com sucesso: "+pModel.toString());
-			} catch (Exception e) {
-				throw new Exception("Erro ao tentar editar um cliente -> "+e.getMessage());
-			}
 			
+			DataBase.getCodigoCliente();
 			int posicaoLista = DataBase.getListaCliente().indexOf(pModel);	
 			DataBase.getListaCliente().set(posicaoLista, pModel);
 			}
