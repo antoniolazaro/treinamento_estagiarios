@@ -1,6 +1,5 @@
 package com.indracompany.stags.dao.memory;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.indracompany.stags.dao.ClienteDAOIf;

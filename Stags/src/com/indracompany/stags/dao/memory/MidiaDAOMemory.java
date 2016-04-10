@@ -1,13 +1,11 @@
 package com.indracompany.stags.dao.memory;
 
 import java.util.List;
-//consertar imports por Midia
 import com.indracompany.stags.dao.MidiaDAOIf;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.MidiaModel;
 
 public class MidiaDAOMemory implements MidiaDAOIf {
-// consertar o implements
 	@Override
 	public void inserir(MidiaModel pModel) throws Exception {
 		pModel.setCodigo(DataBase.getCodigoMidia());
@@ -47,5 +45,41 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 			lModel = DataBase.getListaMidia().get(posicaoLista);
 		}			
 		return lModel;		
+	}
+
+	public MidiaModel buscarMidia(MidiaModel pModel) throws Exception {
+		try {
+			MidiaModel retorno = null;
+					for(MidiaModel midia  : DataBase.getListaMidia()){
+						if(midia != null){
+							if(midia.getNome().equalsIgnoreCase(pModel.getNome())){
+								retorno = midia;
+								System.out.println("Mídia encontrada: "+pModel.toString());
+								break;
+							}
+						}				
+					}
+					return retorno;
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
+		}				
+	}
+	
+	public static MidiaModel buscarMidia(String nome) throws Exception {
+		try {
+			MidiaModel retorno = null;
+					for(MidiaModel midia  : DataBase.getListaMidia()){
+						if(midia != null && nome != null){
+							if(midia.getNome().equalsIgnoreCase(midia.getNome())){
+								retorno = midia;
+								System.out.println("Mídia encontrado: "+midia.toString());
+								break;
+							}
+						}				
+					}
+					return retorno;
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
+		}				
 	}
 }

@@ -30,6 +30,26 @@ public class MainExecutorMenu {
 		                	menuBuilder.excluirCliente(cliente);	                   
 		                    break;
 		                    
+		                case "4":
+		                	menuBuilder.inserirMidia(midia);
+		                    break;        
+		                    
+		                case "5":
+		                	menuBuilder.editarMidia(midia);
+		                    break;
+		                    
+		                case "6":
+		                	menuBuilder.excluirMidia(midia);	                   
+		                    break;
+		                    
+		                case "7":	    
+		                	menuBuilder.buscarCliente(cliente);	                  
+		                    break;
+		                    
+		                case "8":
+		                	menuBuilder.buscarMidia(midia);                
+		                    break;
+		                    
 		                case "0":
 		                	continuar = finalizarPrograma();
 		                    break;
@@ -43,10 +63,17 @@ public class MainExecutorMenu {
 	        } while( continuar );  
 	    }
 
-		private static boolean finalizarPrograma() {
+		public static boolean finalizarPrograma() {
 			boolean continuar;
 			continuar = false;
 			System.out.println("Programa finalizado.");
+			return continuar;
+		}
+		
+		public static boolean voltarPrograma() {
+			boolean continuar;
+			continuar = false;
+			System.out.println("Voltou...");
 			return continuar;
 		}
 }
