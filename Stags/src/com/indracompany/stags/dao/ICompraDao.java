@@ -9,10 +9,12 @@ public interface ICompraDao {
 
 	public Double vender(List<ProdutoModel> listaProduto);
 
-	public Double alugar(List<ProdutoModel> listaProduto,  Integer dias);
+	public Double alugar(List<ProdutoModel> listaProduto, Integer dias);
 
 	public void inserir(CompraModel compra);
 
 	public List<CompraModel> listar();
+
+	public void inserirListaProdutos(ProdutoModel produtoModel, CompraModel compraModel);
 
 }

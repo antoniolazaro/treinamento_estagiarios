@@ -50,14 +50,12 @@ public class ProdutoTest {
 	public void buscar() throws Exception {
 
 		ProdutoModel produto = produtoBO.buscar(produto2);
-		if (produto.getAtivo()) {
 
-			System.out.println(produto.getNome());
-			System.out.println(produto.getPrecoVenda());
-			System.out.println(produto.getPrecoAluguel());
-			System.out.println(produto.getQuantidade());
-			System.out.println(produto.getTipoProduto());
-		}
+		System.out.println(produto.getNome());
+		System.out.println(produto.getPrecoVenda());
+		System.out.println(produto.getPrecoAluguel());
+		System.out.println(produto.getQuantidade());
+		System.out.println(produto.getTipoProduto());
 	}
 
 }

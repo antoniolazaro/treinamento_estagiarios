@@ -46,4 +46,10 @@ public class CompraDaoMemory implements ICompraDao {
 		return DataBase.getListaCompra();
 	}
 
+	// verificar depois
+	public void inserirListaProdutos(ProdutoModel produtoModel, CompraModel compraModel) {
+
+		compraModel.getListaProduto().add(produtoModel);
+	}
+
 }

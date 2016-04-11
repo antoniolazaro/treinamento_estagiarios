@@ -1,11 +1,14 @@
 
 package com.indracompany.stags.bo;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.indracompany.stags.bo.ab.ICompraBO;
 import com.indracompany.stags.dao.ICompraDao;
 import com.indracompany.stags.dao.memory.CompraDaoMemory;
+import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.CompraModel;
 import com.indracompany.stags.model.ProdutoModel;
 
@@ -21,10 +24,17 @@ public class CompraBO implements ICompraBO {
 
 	public Double vender(List<ProdutoModel> listaProduto) throws Exception {
 
+		for (ProdutoModel produtoModel : listaProduto) {
+			produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
+		}
 		return compraDaoMemory.vender(listaProduto);
 	}
 
 	public Double alugar(List<ProdutoModel> listaProduto, Integer dias) throws Exception {
+
+		for (ProdutoModel produtoModel : listaProduto) {
+			produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
+		}
 		return compraDaoMemory.alugar(listaProduto, dias);
 	}
 
@@ -47,6 +57,12 @@ public class CompraBO implements ICompraBO {
 		if (compra == null) {
 			throw new Exception("Produto nulo");
 		}
+	}
+
+	// Construir
+	@Override
+	public void inserirListaProdutos(ProdutoModel produtoModel, CompraModel compraModel) {
+
 	}
 
 }

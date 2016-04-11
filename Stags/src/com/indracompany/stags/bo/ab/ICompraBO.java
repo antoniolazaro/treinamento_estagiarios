@@ -15,4 +15,5 @@ public interface ICompraBO {
 
 	public List<CompraModel> listar();
 
+	public void inserirListaProdutos(ProdutoModel produtoModel, CompraModel compraModel);
 }
