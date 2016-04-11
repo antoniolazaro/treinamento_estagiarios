@@ -17,7 +17,6 @@ public class CompraDaoMemory implements ICompraDao {
 		Double valor = 0.0;
 
 		for (ProdutoModel produtoModel : listaProduto) {
-			produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
 			valor += produtoModel.getPrecoAluguel() * dias;
 		}
 
@@ -28,8 +27,8 @@ public class CompraDaoMemory implements ICompraDao {
 		Double valor = 0.0;
 
 		for (ProdutoModel produtoModel : listaProduto) {
-			produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
-			valor += produtoModel.getPrecoAluguel();
+
+			valor += produtoModel.getPrecoVenda();
 
 		}
 

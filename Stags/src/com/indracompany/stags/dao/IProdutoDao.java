@@ -12,7 +12,7 @@ public interface IProdutoDao {
 
 	public void excluir(ProdutoModel pModel);
 
-	public Collection<ProdutoModel> listar();
+	public Collection<ProdutoModel> buscarPorNome(String nome);
 
 	public ProdutoModel buscar(ProdutoModel pModel);
 

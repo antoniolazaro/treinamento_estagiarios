@@ -29,9 +29,9 @@ public class ProdutoBO implements IProdutoBO {
 		produtoDaoMemory.excluir(pModel);
 	}
 
-	public Collection<ProdutoModel> listar() throws Exception {
+	public Collection<ProdutoModel> buscarPorNome(String nome) {
 
-		return produtoDaoMemory.listar();
+		return produtoDaoMemory.buscarPorNome(nome);
 	}
 
 	public ProdutoModel buscar(ProdutoModel pModel) throws Exception {

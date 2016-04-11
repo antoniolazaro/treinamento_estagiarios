@@ -12,7 +12,7 @@ public interface IProdutoBO {
 
 	public void excluir(ProdutoModel pModel) throws Exception;
 
-	public Collection<ProdutoModel> listar() throws Exception;
+	public Collection<ProdutoModel> buscarPorNome(String nome);
 
 	public ProdutoModel buscar(ProdutoModel pModel) throws Exception;
 

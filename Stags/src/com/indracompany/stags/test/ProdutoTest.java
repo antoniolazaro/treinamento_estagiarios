@@ -16,8 +16,8 @@ public class ProdutoTest {
 	static {
 		produtoBO = new ProdutoBO();
 		produto1 = new ProdutoModel("produto1", 100.0, 15.0, 10, TipoProduto.BLURAY);
-		produto2 = new ProdutoModel("prdoduto2", 40.0, 10.0, 10, TipoProduto.STREAM);
-		produto3 = new ProdutoModel("prdoduto3", 20.0, 6.0, 10, TipoProduto.DVD);
+		produto2 = new ProdutoModel("produto2", 40.0, 10.0, 10, TipoProduto.STREAM);
+		produto3 = new ProdutoModel("produto3", 20.0, 6.0, 10, TipoProduto.DVD);
 	}
 
 	public void inserir() throws Exception {
@@ -38,16 +38,11 @@ public class ProdutoTest {
 		produtoBO.excluir(produto3);
 	}
 
-	public void listar() throws Exception {
-
-		for (ProdutoModel produto : produtoBO.listar()) {
-			if (produto.getAtivo()) {
-				System.out.println(produto.getNome());
-				System.out.println(produto.getPrecoVenda());
-				System.out.println(produto.getPrecoAluguel());
-				System.out.println(produto.getQuantidade());
-				System.out.println(produto.getTipoProduto());
-			}
+	public void buscarPorNome() throws Exception {
+		for (ProdutoModel produtoModel : produtoBO.buscarPorNome("prod")) {
+			System.out.println(produtoModel.getNome());
+			System.out.println(produtoModel.getPrecoVenda());
+			System.out.println(produtoModel.getPrecoAluguel());
 
 		}
 	}

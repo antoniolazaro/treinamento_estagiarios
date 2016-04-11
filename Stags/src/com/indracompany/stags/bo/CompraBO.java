@@ -1,3 +1,4 @@
+
 package com.indracompany.stags.bo;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class CompraBO implements ICompraBO {
 	}
 
 	public Double vender(List<ProdutoModel> listaProduto) throws Exception {
+
 		return compraDaoMemory.vender(listaProduto);
 	}
 

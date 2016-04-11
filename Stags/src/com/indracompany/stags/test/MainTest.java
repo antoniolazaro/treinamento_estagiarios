@@ -13,10 +13,11 @@ public class MainTest {
 		try {
 
 			testInserir();
-//			testExcluir();
-//			testEditar();
-//			testListar();
-			testBuscar();
+			// testExcluir();
+			// testEditar();
+			testListar();
+
+			// testBuscar();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +49,7 @@ public class MainTest {
 	}
 
 	public static void testListar() throws Exception {
-		produtoTest.listar();
+		produtoTest.buscarPorNome();
 	}
 
 	public static void testBuscar() throws Exception {
