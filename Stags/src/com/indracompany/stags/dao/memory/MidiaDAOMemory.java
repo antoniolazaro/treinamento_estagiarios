@@ -9,7 +9,8 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	@Override
 	public void inserir(MidiaModel pModel) throws Exception {
 		pModel.setCodigo(DataBase.getCodigoMidia());
-		DataBase.getListaMidia().add(pModel);		
+		DataBase.getListaMidia().add(pModel);
+		throw new Exception("Mídia adionada");
 	}
 
 	@Override
@@ -18,6 +19,8 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		int posicaoLista = DataBase.getListaMidia().indexOf(pModel);	
 		if(posicaoLista >= 0){
 			 DataBase.getListaMidia().set(posicaoLista, pModel);
+		} else {
+			throw new Exception("Erro ao tentar editar uma mídia");
 		}
 	}
 
@@ -28,6 +31,8 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 			MidiaModel lModel = DataBase.getListaMidia().get(posicaoLista);
 			if(lModel != null){
 				lModel.setAtivo(false);
+			} else {
+				throw new Exception("Erro ao tentar excluir uma mídia");
 			}
 		}	
 	}
@@ -43,7 +48,9 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		int posicaoLista = DataBase.getListaMidia().indexOf(pModel);	
 		if(posicaoLista >= 0){
 			lModel = DataBase.getListaMidia().get(posicaoLista);
-		}			
+		} else {
+			throw new Exception("Erro ao buscar uma mídia");
+		}
 		return lModel;		
 	}
 
@@ -57,6 +64,8 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 								System.out.println("Mídia encontrada: "+pModel.toString());
 								break;
 							}
+						}else {
+							throw new Exception("Erro ao buscar uma mídia");
 						}				
 					}
 					return retorno;
@@ -65,7 +74,7 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		}				
 	}
 	
-	public static MidiaModel buscarMidia(String nome) throws Exception {
+	public MidiaModel buscarMidia(String nome) throws Exception {
 		try {
 			MidiaModel retorno = null;
 					for(MidiaModel midia  : DataBase.getListaMidia()){
@@ -75,6 +84,8 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 								System.out.println("Mídia encontrado: "+midia.toString());
 								break;
 							}
+						} else {
+							throw new Exception("Erro ao buscar uma mídia");
 						}				
 					}
 					return retorno;

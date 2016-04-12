@@ -15,4 +15,6 @@ public interface ClienteDAOIf {
 	public List<ClienteModel> listar() throws Exception;
 	
 	public ClienteModel buscar(ClienteModel pModel) throws Exception;
+
+	public ClienteModel buscarCliente(String nome)  throws Exception;
 }

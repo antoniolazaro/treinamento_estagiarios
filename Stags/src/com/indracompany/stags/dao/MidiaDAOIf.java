@@ -15,4 +15,6 @@ public interface MidiaDAOIf {
 	public List<MidiaModel> listar() throws Exception;
 	
 	public MidiaModel buscar(MidiaModel pModel) throws Exception;
+
+	public MidiaModel buscarMidia(String nome) throws Exception;
 }

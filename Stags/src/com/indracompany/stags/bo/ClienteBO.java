@@ -48,4 +48,9 @@ public class ClienteBO implements ClienteBOIf{
 			}
 		}
 	}
+	
+	@Override
+	public ClienteModel buscarCliente(String nome) throws Exception {
+		return clienteDAO.buscarCliente(nome);
+	}
 }

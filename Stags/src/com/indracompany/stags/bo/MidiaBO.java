@@ -47,5 +47,10 @@ public class MidiaBO implements MidiaBOIf{
 				throw new Exception("Nome é um campo obrigatório");
 			}
 		}
+	}
+
+	@Override
+	public MidiaModel buscarMidia(String nome) throws Exception {
+		return midiaDAO.buscarMidia(nome);
 	}	
 }

@@ -11,7 +11,7 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 	@Override
 	public void inserir(ClienteModel pModel) throws Exception {
 		pModel.setCodigo(DataBase.getCodigoCliente());
-		DataBase.getListaCliente().add(pModel);		
+		DataBase.getListaCliente().add(pModel);
 	}
 
 	@Override
@@ -20,6 +20,8 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 		int posicaoLista = DataBase.getListaCliente().indexOf(pModel);	
 		if(posicaoLista >= 0){
 			 DataBase.getListaCliente().set(posicaoLista, pModel);
+		}else{
+			throw new Exception("Erro ao tentar editar um cliente");
 		}
 	}
 
@@ -30,6 +32,8 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 			ClienteModel lModel = DataBase.getListaCliente().get(posicaoLista);
 			if(lModel != null){
 				lModel.setAtivo(false);
+			}else{
+				throw new Exception("Erro ao tentar excluir um cliente");
 			}
 		}	
 	}
@@ -45,7 +49,9 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 		int posicaoLista = DataBase.getListaCliente().indexOf(pModel);	
 		if(posicaoLista >= 0){
 			lModel = DataBase.getListaCliente().get(posicaoLista);
-		}			
+		}else{
+			throw new Exception("Erro ao tentar buscar um cliente");
+		}		
 		return lModel;		
 	}
 	
@@ -58,8 +64,10 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 								retorno = cliente;
 								System.out.println("Cliente encontrado: "+pModel.toString());
 								break;
-							}
-						}				
+							}						
+						}else{
+							throw new Exception("Erro ao tentar buscar um cliente");
+						}
 					}
 					return retorno;
 		} catch (Exception e) {
@@ -67,7 +75,7 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 		}				
 	}
 	
-	public static ClienteModel buscarCliente(String nome) throws Exception {
+	public ClienteModel buscarCliente(String nome) throws Exception {
 		try {
 				ClienteModel retorno = null;
 					for(ClienteModel cliente  : DataBase.getListaCliente()){
@@ -77,7 +85,9 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 								System.out.println("Cliente encontrado: "+cliente.toString());
 								break;
 							}
-						}				
+						}else{
+							throw new Exception("Erro ao tentar buscar um cliente");
+						}			
 					}
 					return retorno;
 		} catch (Exception e) {

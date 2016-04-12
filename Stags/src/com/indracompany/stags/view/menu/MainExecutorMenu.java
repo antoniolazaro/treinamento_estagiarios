@@ -2,6 +2,7 @@ package com.indracompany.stags.view.menu;
 
 import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.MidiaModel;
+import com.indracompany.stags.model.TransacaoModel;
 
 public class MainExecutorMenu {
 		    
@@ -11,6 +12,7 @@ public class MainExecutorMenu {
 	    	String opcao;
 	        ClienteModel cliente = new ClienteModel();
 	        MidiaModel midia = new MidiaModel();
+	        TransacaoModel transacao = new TransacaoModel();
 	        MenuBuilder menuBuilder = new MenuBuilder();
 	        do{
 	            opcao = menuBuilder.executarMenuInicial();
@@ -50,6 +52,10 @@ public class MainExecutorMenu {
 		                	menuBuilder.buscarMidia(midia);                
 		                    break;
 		                    
+//		                case "9":
+//		                	menuBuilder.vender(midia);                
+//		                    break;
+
 		                case "0":
 		                	continuar = finalizarPrograma();
 		                    break;
