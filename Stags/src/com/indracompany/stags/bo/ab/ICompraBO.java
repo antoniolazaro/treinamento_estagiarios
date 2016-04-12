@@ -7,13 +7,13 @@ import com.indracompany.stags.model.ProdutoModel;
 
 public interface ICompraBO {
 
-	public Double vender(List<ProdutoModel> listaProduto) throws Exception;
+	public Double vender( CompraModel compra) throws Exception;
 
-	public Double alugar(List<ProdutoModel> listaProduto, Integer dias) throws Exception;
+	public Double alugar(Integer dias, CompraModel compra) throws Exception;
 
-	public void inserir(CompraModel compra);
+	public void inserir(CompraModel compra) throws Exception;
 
 	public List<CompraModel> listar();
 
-	public void inserirListaProdutos(ProdutoModel produtoModel, CompraModel compraModel);
+	public void addlistaProduto(ProdutoModel produtoModel, CompraModel compraModel) throws Exception;
 }

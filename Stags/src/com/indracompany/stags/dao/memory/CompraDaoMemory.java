@@ -12,21 +12,21 @@ public class CompraDaoMemory implements ICompraDao {
 
 	IProdutoDao produtoDao = new ProdutoDaoMemory();
 
-	public Double alugar(List<ProdutoModel> listaProduto, Integer dias) {
+	public Double alugar(Integer dias, CompraModel compra) {
 
 		Double valor = 0.0;
 
-		for (ProdutoModel produtoModel : listaProduto) {
+		for (ProdutoModel produtoModel : compra.getListaProduto()) {
 			valor += produtoModel.getPrecoAluguel() * dias;
 		}
 
 		return valor;
 	}
 
-	public Double vender(List<ProdutoModel> listaProduto) {
+	public Double vender(CompraModel compra) {
 		Double valor = 0.0;
 
-		for (ProdutoModel produtoModel : listaProduto) {
+		for (ProdutoModel produtoModel : compra.getListaProduto()) {
 
 			valor += produtoModel.getPrecoVenda();
 
@@ -46,9 +46,8 @@ public class CompraDaoMemory implements ICompraDao {
 		return DataBase.getListaCompra();
 	}
 
-	// verificar depois
-	public void inserirListaProdutos(ProdutoModel produtoModel, CompraModel compraModel) {
-
+	@Override
+	public void addlistaProduto(ProdutoModel produtoModel, CompraModel compraModel) {
 		compraModel.getListaProduto().add(produtoModel);
 	}
 

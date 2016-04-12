@@ -22,10 +22,12 @@ public class ProdutoBO implements IProdutoBO {
 	}
 
 	public void editar(ProdutoModel pModel) throws Exception {
+		validate(pModel);
 		produtoDaoMemory.editar(pModel);
 	}
 
 	public void excluir(ProdutoModel pModel) throws Exception {
+		pModel.setAtivo(false);
 		produtoDaoMemory.excluir(pModel);
 	}
 
@@ -35,6 +37,10 @@ public class ProdutoBO implements IProdutoBO {
 	}
 
 	public ProdutoModel buscar(ProdutoModel pModel) throws Exception {
+
+		if (produtoDaoMemory.buscar(pModel) == null) {
+			throw new Exception("Produto não existe");
+		}
 
 		return produtoDaoMemory.buscar(pModel);
 	}

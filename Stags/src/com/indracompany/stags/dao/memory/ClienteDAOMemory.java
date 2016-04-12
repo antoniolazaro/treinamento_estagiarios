@@ -25,13 +25,9 @@ public class ClienteDAOMemory implements IClienteDAO {
 
 	@Override
 	public void excluir(ClienteModel pModel) {
-		int posicaoLista = DataBase.getListaCliente().indexOf(pModel);
-		if (posicaoLista >= 0) {
-			ClienteModel lModel = DataBase.getListaCliente().get(posicaoLista);
-			if (lModel != null) {
-				lModel.setAtivo(false);
-			}
-		}
+
+		DataBase.getListaCliente().set((int) pModel.getCodigo().longValue() - 1, pModel);
+
 	}
 
 	@Override

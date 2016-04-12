@@ -7,65 +7,105 @@ import com.indracompany.stags.bo.ab.IClienteBO;
 import com.indracompany.stags.model.ClienteModel;
 
 public class ClienteTest {
-	
+
 	private static IClienteBO clienteBO;
-	
-	static{
+	private static ClienteModel lCliente1;
+	private static ClienteModel lCliente2;
+	private static ClienteModel lCliente3;
+	private static ClienteModel lClient4;
+	private static ClienteModel lCliente5;
+	static {
 		clienteBO = new ClienteBO();
-	}
-		
-	public void inserirCliente() throws Exception{
-		
-		ClienteModel lCliente1 = new ClienteModel();
-		lCliente1.setNome("Antônio Visionário");		
-		
-		ClienteModel lCliente2 = new ClienteModel();
+
+		lCliente1 = new ClienteModel();
+		lCliente1.setNome("Antônio Visionário");
+
+		lCliente2 = new ClienteModel();
 		lCliente2.setNome("Luis Cardoso");
-		
-		ClienteModel lCliente3 = new ClienteModel();
+
+		lCliente3 = new ClienteModel();
 		lCliente3.setNome("Caio");
-		
-		ClienteModel lCliente4 = new ClienteModel();
-		lCliente4.setNome("Karen");
-		
-		ClienteModel lCliente5 = new ClienteModel();
+
+		lClient4 = new ClienteModel();
+		lClient4.setNome("Karen");
+
+		lCliente5 = new ClienteModel();
 		lCliente5.setNome("Matheus");
-		
+	}
+
+	public static void inserirCliente() throws Exception {
+
 		clienteBO.inserir(lCliente1);
 		clienteBO.inserir(lCliente2);
 		clienteBO.inserir(lCliente3);
-		clienteBO.inserir(lCliente4);
+		clienteBO.inserir(lClient4);
 		clienteBO.inserir(lCliente5);
-		
+
 	}
-	
-	public void excluirCliente() throws Exception{
+
+	public static void excluirCliente() throws Exception {
+
+		clienteBO.excluir(lCliente1);
+		clienteBO.excluir(lCliente2);
+		clienteBO.excluir(lCliente3);
+	}
+
+	public static void editarCliente() throws Exception {
 		ClienteModel lCliente = new ClienteModel();
 		lCliente.setCodigo(2L);
-		
-		clienteBO.excluir(lCliente);
-	}
-	
-	
-	public void editarCliente() throws Exception{
-		ClienteModel lCliente = new ClienteModel();
-		lCliente.setCodigo(2L);		
-		
+
 		ClienteModel lClienteBusca = clienteBO.buscar(lCliente);
-		
-		if(lClienteBusca !=null){
+
+		if (lClienteBusca != null) {
 			lClienteBusca.setNome("Luis de Jah");
 			clienteBO.editar(lClienteBusca);
 		}
 	}
-	
-	public void exibirCliente()throws Exception{
+
+	public static void exibirCliente() throws Exception {
 		System.out.println("*******************************************************");
 		List<ClienteModel> lListaCliente = clienteBO.listar();
-		if(lListaCliente !=null && lListaCliente.size() > 0){
-			for(ClienteModel lCliente:lListaCliente){
+		if (lListaCliente != null && lListaCliente.size() > 0) {
+			for (ClienteModel lCliente : lListaCliente) {
 				System.out.println(lCliente);
 			}
 		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			inserirCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			editarCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			exibirCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			excluirCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			exibirCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

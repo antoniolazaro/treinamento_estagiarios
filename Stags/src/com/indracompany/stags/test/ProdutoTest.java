@@ -20,7 +20,7 @@ public class ProdutoTest {
 		produto3 = new ProdutoModel("produto3", 20.0, 6.0, 10, TipoProduto.DVD);
 	}
 
-	public void inserir() throws Exception {
+	public static void inserir() throws Exception {
 
 		produtoBO.inserir(produto1);
 		produtoBO.inserir(produto2);
@@ -28,17 +28,17 @@ public class ProdutoTest {
 
 	}
 
-	public void editar() throws Exception {
+	public static void editar() throws Exception {
 
 		produto1.setNome("produtoUm");
 		produtoBO.editar(produto1);
 	}
 
-	public void excluir() throws Exception {
+	public static void excluir() throws Exception {
 		produtoBO.excluir(produto3);
 	}
 
-	public void buscarPorNome() throws Exception {
+	public static void buscarPorNome() throws Exception {
 		for (ProdutoModel produtoModel : produtoBO.buscarPorNome("prod")) {
 			System.out.println(produtoModel.getNome());
 			System.out.println(produtoModel.getPrecoVenda());
@@ -47,7 +47,7 @@ public class ProdutoTest {
 		}
 	}
 
-	public void buscar() throws Exception {
+	public static void buscar() throws Exception {
 
 		ProdutoModel produto = produtoBO.buscar(produto2);
 
@@ -56,6 +56,52 @@ public class ProdutoTest {
 		System.out.println(produto.getPrecoAluguel());
 		System.out.println(produto.getQuantidade());
 		System.out.println(produto.getTipoProduto());
+	}
+
+	public static void main(String[] args) {
+		try {
+			inserir();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			buscarPorNome();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			editar();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		try {
+			buscar();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			excluir();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			buscarPorNome();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

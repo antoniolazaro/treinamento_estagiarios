@@ -29,6 +29,8 @@ public class ClienteBO implements IClienteBO {
 
 	@Override
 	public void excluir(ClienteModel pModel) throws Exception {
+
+		pModel.setAtivo(false);
 		clienteDAO.excluir(pModel);
 	}
 

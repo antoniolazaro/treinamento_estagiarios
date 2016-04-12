@@ -24,7 +24,6 @@ public class ProdutoDaoMemory implements IProdutoDao {
 
 	@Override
 	public void excluir(ProdutoModel pModel) {
-		pModel.setAtivo(false);
 		DataBase.getMapProduto().put(pModel.getCodigo(), pModel);
 
 	}
