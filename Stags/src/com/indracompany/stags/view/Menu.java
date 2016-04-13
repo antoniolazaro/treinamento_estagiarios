@@ -45,13 +45,13 @@ public class Menu {
 					break;
 
 				case "9":
-					menuBuilder.editarCliente();
+					menuBuilder.editarProduto();
 					break;
 				case "0":
 					continuar = finalizarPrograma();
 					break;
 				default:
-					System.out.printf("Você digitou uma opção inválida.");
+					System.out.println("Você digitou uma opção inválida.\n");
 				}
 			} catch (Exception ex) {
 				System.out.println("Erro -> " + ex.getMessage());

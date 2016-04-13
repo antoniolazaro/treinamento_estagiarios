@@ -159,9 +159,10 @@ public class MenuBuilder {
 			quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
 			produtoBO.editar(nome, nomeAtualizar, precoVenda, precoAluguel, quantidade);
 
-			opcao = pedirEntrada("Digite 0 para sair da edição ");
-			if (opcao.equals("0")) {
+			opcao = pedirEntrada("Digite 1 para editar outro Produto");
+			if (!opcao.equals("1")) {
 				continuar = false;
+
 			}
 
 		} while (continuar);
@@ -177,7 +178,7 @@ public class MenuBuilder {
 
 	public String pedirEntrada(String mensagemEntrada) {
 		System.out.print(mensagemEntrada);
-		return scanner.nextLine();
+		return scanner.next();
 	}
 
 	public double pedirEntradaNumeroDouble(String mensagemEntrada) {
