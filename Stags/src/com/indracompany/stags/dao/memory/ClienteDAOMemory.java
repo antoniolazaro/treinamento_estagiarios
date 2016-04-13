@@ -36,13 +36,15 @@ public class ClienteDAOMemory implements IClienteDAO {
 	}
 
 	@Override
-	public ClienteModel buscar(ClienteModel pModel) {
-		ClienteModel lModel = null;
-		int posicaoLista = DataBase.getListaCliente().indexOf(pModel);
-		if (posicaoLista >= 0) {
-			lModel = DataBase.getListaCliente().get(posicaoLista);
+	public ClienteModel buscar(String nome) {
+
+		ClienteModel retorno = null;
+		for (ClienteModel cliente : DataBase.getListaCliente()) {
+			if (cliente.getNome().startsWith(nome)) {
+				retorno = cliente;
+			}
 		}
-		return lModel;
+		return retorno;
 	}
 
 }

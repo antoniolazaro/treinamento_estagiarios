@@ -14,5 +14,5 @@ public interface IClienteDAO {
 
 	public List<ClienteModel> listar();
 
-	public ClienteModel buscar(ClienteModel pModel);
+	public ClienteModel buscar(String nome);
 }

@@ -22,16 +22,17 @@ public class ClienteBO implements IClienteBO {
 	}
 
 	@Override
-	public void editar(ClienteModel pModel) throws Exception {
-		validate(pModel);
-		clienteDAO.editar(pModel);
+	public void editar(String nomebusca , String nomeAtualizar) {
+		ClienteModel buscaEditar = clienteDAO.buscar(nomebusca);
+		buscaEditar.setNome(nomeAtualizar);
+		clienteDAO.editar(buscaEditar);
 	}
 
 	@Override
-	public void excluir(ClienteModel pModel) throws Exception {
-
-		pModel.setAtivo(false);
-		clienteDAO.excluir(pModel);
+	public void excluir(String nome) throws Exception {
+		ClienteModel exclusao = clienteDAO.buscar(nome);
+		exclusao.setAtivo(false);
+		clienteDAO.excluir(exclusao);
 	}
 
 	@Override
@@ -40,8 +41,8 @@ public class ClienteBO implements IClienteBO {
 	}
 
 	@Override
-	public ClienteModel buscar(ClienteModel pModel) throws Exception {
-		return clienteDAO.buscar(pModel);
+	public ClienteModel buscar(String nome) throws Exception {
+		return clienteDAO.buscar(nome);
 	}
 
 	private void validate(ClienteModel pModel) throws Exception {
