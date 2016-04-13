@@ -41,7 +41,6 @@ public class MenuBuilder {
 
 		public void inserirCliente(ClienteModel pModel) throws Exception {
 			String nome = "", cpf="";
-			
 			nome = pedirEntrada("\n Digite nome: ");
 			try {
 				if(nome != null && !nome.equals("")){
@@ -116,14 +115,7 @@ public class MenuBuilder {
 		public void excluirCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a ser excluído: ");
 			pModel = clienteBO.buscarCliente(nome);
-			try {
-				if(pModel != null && !pModel.equals("")){
-					pModel.setAtivo(false);
-				}
-				System.out.println("Cliente removido com sucesso: "+pModel.toString());
-			} catch (Exception e) {
-				throw new Exception("Erro ao tentar excluir um cliente -> "+e.getMessage());
-			}
+			clienteBO.excluir(pModel);
 		}
 		
 		//Segue a parte de mídia
@@ -141,8 +133,7 @@ public class MenuBuilder {
 				String dataRegistroStr = pedirEntrada("\n Digite data(Formato: dd/MM/yyyy): ");
 				java.sql.Date dataRegistro = new java.sql.Date(format.parse(dataRegistroStr).getTime()); 
 				pModel.setDataRegistro(dataRegistro);
-				String tipoMidia = pedirEntrada("\nDigite tipo de mídia: ");
-				pModel.setDescricao(tipoMidia);
+				executarMenuInserirTipoMidia();
 				midiaBO.inserir(pModel);
 				exibirTodos();
 				System.out.println("Mídia inserida com sucesso: "+pModel.toString());
@@ -183,11 +174,7 @@ public class MenuBuilder {
 							midiaBO.editar(pModel);
 							
 						case "d":
-							String opcaod = pedirEntrada("\nDigite novo tipo de mídia: ");
-							if(opcaod != null && !opcaod.equals("")){
-								pModel.setDescricao(opcaod);
-								midiaBO.editar(pModel);
-							}
+							executarMenuEditarTipoMidia();
 							
 						case "e":
 		                	continuar = MainExecutorMenu.voltarPrograma();
@@ -203,31 +190,107 @@ public class MenuBuilder {
 			}				
 				}while(continuar);
 			    }			
-			}
+		}
 		
-		public void excluirMidia(MidiaModel midia) throws Exception {
+		public void tipoMidiaInserirMenu(MidiaModel pModel) throws Exception {
+			String nome = pedirEntrada("\n Digite nome da mídia a ser inserida: ");
+			pModel = midiaBO.buscarMidia(nome);
+			
+			if(pModel !=null){
+				boolean continuar = true;
+				do{
+					String opcaoSelecionadaMenuTipoMidia = executarMenuInserirTipoMidia();
+					try {
+						switch(opcaoSelecionadaMenuTipoMidia){
+						case "a":							
+								pModel.setCodigo(1L);
+								midiaBO.inserir(pModel);
+			                    System.out.printf("Você escolheu DVD");
+							
+
+						case "b":						
+								pModel.setCodigo(2L);
+								midiaBO.inserir(pModel);
+			                    System.out.printf("Você escolheu BLU-RAY");
+							
+						case "c":						
+							pModel.setCodigo(3L);
+							midiaBO.inserir(pModel);		
+		                    System.out.printf("Você escolheu STREAMING");
+							
+						default:
+		                    System.out.printf("Você digitou uma opção inválida.");
+		                    System.lineSeparator();
+						}
+						break;
+					} catch (Exception e) {
+						throw new Exception("Erro ao tentar estabelecer tipo de mídia -> "+e.getMessage());
+			}				
+				}while(continuar);
+			    }			
+		}
+		
+		public void tipoMidiaEditarMenu(MidiaModel pModel) throws Exception {
+			String nome = pedirEntrada("\n Digite nome da mídia a ser editada: ");
+			pModel = midiaBO.buscarMidia(nome);
+			
+			if(pModel !=null){
+				boolean continuar = true;
+				do{
+					String opcaoSelecionadaMenuTipoMidia = executarMenuEditarTipoMidia();
+					try {
+						switch(opcaoSelecionadaMenuTipoMidia){
+						case "a":							
+								pModel.setCodigo(1L);
+								midiaBO.editar(pModel);
+			                    System.out.printf("Você escolheu DVD");
+							
+
+						case "b":						
+								pModel.setCodigo(2L);
+								midiaBO.editar(pModel);
+			                    System.out.printf("Você escolheu BLU-RAY");
+							
+						case "c":						
+							pModel.setCodigo(3L);
+							midiaBO.editar(pModel);		
+		                    System.out.printf("Você escolheu STREAMING");					
+							
+						case "d":
+		                	continuar = MainExecutorMenu.voltarPrograma();
+							executarMenuInicial();						
+							
+						default:
+		                    System.out.printf("Você digitou uma opção inválida.");
+		                    System.lineSeparator();
+						}
+						break;
+					} catch (Exception e) {
+						throw new Exception("Erro ao tentar estabelecer tipo de mídia -> "+e.getMessage());
+			}				
+				}while(continuar);
+			    }			
+		}	
+		
+		public void excluirMidia(MidiaModel pModel) throws Exception {
 			String nome = pedirEntrada("\n Digite nome da mídia a ser excluída: ");
-			midia = midiaBO.buscarMidia(nome);
-			try {
-				if(midia != null && !midia.equals("")){
-					midia.setAtivo(false);
-				}
-				System.out.println("Mídia removida com sucesso: "+midia.toString());
-			} catch (Exception e) {
-				throw new Exception("Erro ao tentar excluir uma mídia -> "+e.getMessage());
-			}
+			pModel = midiaBO.buscarMidia(nome);
+			midiaBO.excluir(pModel);
 		}
 		
 		public void buscarCliente(ClienteModel cliente) throws Exception {
 			String nome = pedirEntrada("\n Digite nome do cliente a detalhar: ");
 			clienteBO.buscarCliente(nome);
+			
 		}		
 		
 		public void buscarMidia(MidiaModel midia) throws Exception {
 			String nome = pedirEntrada("\n Digite nome da mídia a detalhar: ");
 			midiaBO.buscarMidia(nome);
 		}
-				
+		
+		
+		//método vender
 		public void vender(TransacaoModel transacaoBO) {
 			
 		}
@@ -260,11 +323,37 @@ public class MenuBuilder {
 		       return pedirEntrada("\nInsira sua opção: ");
 		}
 		
+		public String executarMenuEditarTipoMidia() {
+		       System.out.println("\t\tTipo de mídia a editar:");
+		       System.out.println("\ta. DVD");
+		       System.out.println("\tb. BLU-RAY");
+		       System.out.println("\tc. STREAMING");
+		       System.out.println("\td. Sair");
+		        		
+		       return pedirEntrada("\nInsira sua opção: ");
+		}
+		
+		public String executarMenuInserirTipoMidia() {
+		       System.out.println("\t\tTipo de mídia a inserir:");
+		       System.out.println("\ta. DVD");
+		       System.out.println("\tb. BLU-RAY");
+		       System.out.println("\tc. STREAMING");
+		        		
+		       return pedirEntrada("\nInsira sua opção: ");
+		}
+		
 		public void exibirTodos() throws Exception{
 			List<ClienteModel> listaCliente = clienteBO.listar();
 			if(listaCliente != null && listaCliente.size()>0){
 				for(ClienteModel cliente:listaCliente){
 					System.out.println(cliente);
+				}
+			}
+			
+			List<MidiaModel> listaMidia = midiaBO.listar();
+			if(listaMidia != null && listaMidia.size()>0){
+				for(MidiaModel midia:listaMidia){
+					System.out.println(midia);
 				}
 			}
 		}

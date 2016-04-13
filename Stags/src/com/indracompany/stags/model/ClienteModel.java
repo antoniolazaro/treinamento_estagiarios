@@ -19,7 +19,7 @@ public class ClienteModel extends ModelAB{
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -59,16 +59,6 @@ public class ClienteModel extends ModelAB{
 		if (getClass() != obj.getClass())
 			return false;
 		ClienteModel other = (ClienteModel) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (idade == null) {
-			if (other.idade != null)
-				return false;
-		} else if (!idade.equals(other.idade))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;

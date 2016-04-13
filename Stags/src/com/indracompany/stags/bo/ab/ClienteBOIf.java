@@ -16,4 +16,6 @@ public interface ClienteBOIf {
 	public ClienteModel buscar(ClienteModel pModel) throws Exception;
 
 	public ClienteModel buscarCliente(String nome) throws Exception;
+
+	public ClienteModel buscarCliente(ClienteModel pModel) throws Exception;
 }

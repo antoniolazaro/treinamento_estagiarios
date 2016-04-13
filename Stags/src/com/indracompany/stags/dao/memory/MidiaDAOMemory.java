@@ -10,7 +10,6 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	public void inserir(MidiaModel pModel) throws Exception {
 		pModel.setCodigo(DataBase.getCodigoMidia());
 		DataBase.getListaMidia().add(pModel);
-		throw new Exception("Mídia adionada");
 	}
 
 	@Override
