@@ -31,6 +31,22 @@ public class Menu {
 				case "5":
 					menuBuilder.listarCliente();
 
+					break;
+				case "6":
+					menuBuilder.inserirProduto();
+					break;
+
+				case "7":
+					menuBuilder.buscarProduto();
+					break;
+
+				case "8":
+					menuBuilder.excluirProduto();
+					break;
+
+				case "9":
+					menuBuilder.editarCliente();
+					break;
 				case "0":
 					continuar = finalizarPrograma();
 					break;

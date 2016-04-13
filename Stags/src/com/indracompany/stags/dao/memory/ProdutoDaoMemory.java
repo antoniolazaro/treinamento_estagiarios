@@ -29,10 +29,18 @@ public class ProdutoDaoMemory implements IProdutoDao {
 	}
 
 	@Override
-	public ProdutoModel buscar(ProdutoModel pModel) {
-
-		ProdutoModel produto = DataBase.getMapProduto().get(pModel.getCodigo());
-
+	public ProdutoModel buscar(String nome) {
+		ProdutoModel produto = null;
+		Collection<ProdutoModel> listaRetorno = new ArrayList<>();
+		Collection<ProdutoModel> listaProduto = DataBase.getMapProduto().values();
+		for (ProdutoModel produtoModel : listaProduto) {
+			listaRetorno.add(produtoModel);
+		}
+		for (ProdutoModel produtoModel : listaRetorno) {
+			if (produtoModel.getNome().startsWith(nome)) {
+				produto = produtoModel;
+			}
+		}
 		return produto;
 	}
 

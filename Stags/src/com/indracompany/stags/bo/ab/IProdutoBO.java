@@ -8,12 +8,13 @@ public interface IProdutoBO {
 
 	public void inserir(ProdutoModel pModel) throws Exception;
 
-	public void editar(ProdutoModel pModel) throws Exception;
+	public void editar(String nome, String nomeAtualizar, Double precoVenda, Double precoAluguel, Integer quantidade)
+			throws Exception;
 
-	public void excluir(ProdutoModel pModel) throws Exception;
+	public void excluir(String nome) throws Exception;
 
 	public Collection<ProdutoModel> buscarPorNome(String nome);
 
-	public ProdutoModel buscar(ProdutoModel pModel) throws Exception;
+	public ProdutoModel buscar(String nome) throws Exception;
 
 }

@@ -21,14 +21,21 @@ public class ProdutoBO implements IProdutoBO {
 		produtoDaoMemory.inserir(pModel);
 	}
 
-	public void editar(ProdutoModel pModel) throws Exception {
-		validate(pModel);
-		produtoDaoMemory.editar(pModel);
+	public void editar(String nome, String nomeAtualizar, Double precoVenda, Double precoAluguel, Integer quantidade)
+			throws Exception {
+		ProdutoModel produto = produtoDaoMemory.buscar(nome);
+		produto.setNome(nomeAtualizar);
+		produto.setPrecoAluguel(precoAluguel);
+		produto.setPrecoVenda(precoVenda);
+		produto.setQuantidade(quantidade);
+
+		produtoDaoMemory.editar(produto);
 	}
 
-	public void excluir(ProdutoModel pModel) throws Exception {
-		pModel.setAtivo(false);
-		produtoDaoMemory.excluir(pModel);
+	public void excluir(String nome) throws Exception {
+		ProdutoModel exclusao = produtoDaoMemory.buscar(nome);
+		exclusao.setAtivo(false);
+		produtoDaoMemory.excluir(exclusao);
 	}
 
 	public Collection<ProdutoModel> buscarPorNome(String nome) {
@@ -36,13 +43,8 @@ public class ProdutoBO implements IProdutoBO {
 		return produtoDaoMemory.buscarPorNome(nome);
 	}
 
-	public ProdutoModel buscar(ProdutoModel pModel) throws Exception {
-
-		if (produtoDaoMemory.buscar(pModel) == null) {
-			throw new Exception("Produto não existe");
-		}
-
-		return produtoDaoMemory.buscar(pModel);
+	public ProdutoModel buscar(String nome) throws Exception {
+		return produtoDaoMemory.buscar(nome);
 	}
 
 	private void validate(ProdutoModel pModel) throws Exception {
@@ -50,4 +52,5 @@ public class ProdutoBO implements IProdutoBO {
 			throw new Exception("Produto nulo");
 		}
 	}
+
 }
