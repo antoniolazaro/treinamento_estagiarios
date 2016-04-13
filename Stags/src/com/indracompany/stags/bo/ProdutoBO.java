@@ -6,6 +6,7 @@ import com.indracompany.stags.bo.ab.IProdutoBO;
 import com.indracompany.stags.dao.IProdutoDao;
 import com.indracompany.stags.dao.memory.ProdutoDaoMemory;
 import com.indracompany.stags.model.ProdutoModel;
+import com.indracompany.stags.model.TipoProduto;
 
 public class ProdutoBO implements IProdutoBO {
 
@@ -51,6 +52,23 @@ public class ProdutoBO implements IProdutoBO {
 		if (pModel == null) {
 			throw new Exception("Produto nulo");
 		}
+	}
+
+	public TipoProduto validarTipoProduto(String tipo) throws Exception {
+		TipoProduto tipoProduto = null;
+
+		if (tipo.equalsIgnoreCase("dvd")) {
+			tipoProduto = TipoProduto.DVD;
+		} else if (tipo.equalsIgnoreCase("bluray")) {
+			tipoProduto = TipoProduto.BLURAY;
+
+		} else if (tipo.equalsIgnoreCase("stream")) {
+			tipoProduto = TipoProduto.STREAM;
+
+		} else {
+			throw new Exception("Tipo inválido");
+		}
+		return tipoProduto;
 	}
 
 }

@@ -103,41 +103,26 @@ public class MenuBuilder {
 		String nome;
 		Double precoVenda;
 		Double precoAluguel;
-		Integer quantidade = 0;
+		Integer quantidade;
 		String tipoProduto;
 		TipoProduto tipo;
+		ProdutoModel produto = new ProdutoModel();
 
 		nome = pedirEntrada("Digite o nome: ");
 		precoVenda = pedirEntradaNumeroDouble("Digite o preço de venda: ");
 		precoAluguel = pedirEntradaNumeroDouble("Digite o preço de aluguel: ");
-		quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
 		tipoProduto = pedirEntrada("Digite o tipo do produto DVD, BLURAY, STREAM: ");
-		tipo = validarTipoProduto(tipoProduto);
+		tipo = produtoBO.validarTipoProduto(tipoProduto);
+		quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
 
-		ProdutoModel produto = new ProdutoModel();
 		produto.setNome(nome);
 		produto.setPrecoVenda(precoVenda);
 		produto.setPrecoAluguel(precoAluguel);
-		produto.setQuantidade(quantidade);
 		produto.setTipoProduto(tipo);
+		produto.setQuantidade(quantidade);
 
 		produtoBO.inserir(produto);
 
-	}
-
-	public TipoProduto validarTipoProduto(String tipo) {
-		TipoProduto tipoProduto = null;
-
-		if (tipo.equalsIgnoreCase("dvd")) {
-			tipoProduto = TipoProduto.DVD;
-		} else if (tipo.equalsIgnoreCase("bluray")) {
-			tipoProduto = TipoProduto.BLURAY;
-
-		} else if (tipo.equalsIgnoreCase("stream")) {
-			tipoProduto = TipoProduto.STREAM;
-
-		}
-		return tipoProduto;
 	}
 
 	public void buscarProduto() {
