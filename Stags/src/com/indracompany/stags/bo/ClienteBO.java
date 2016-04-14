@@ -70,4 +70,12 @@ public class ClienteBO implements IClienteBO {
 		}
 	}
 
+	@Override
+	public void tratarSituacaoCliente(ClienteModel cliente) {
+		if (cliente.getAtivo() == true) {
+			System.out.println("Situação: Ativo");
+		} else {
+			System.out.println("Situação inativo");
+		}
+	}
 }

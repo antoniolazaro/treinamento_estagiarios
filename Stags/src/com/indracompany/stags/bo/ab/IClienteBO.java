@@ -15,4 +15,6 @@ public interface IClienteBO {
 
 	public ClienteModel buscar(String nome) throws Exception;
 
+	public void tratarSituacaoCliente(ClienteModel cliente);
+
 }

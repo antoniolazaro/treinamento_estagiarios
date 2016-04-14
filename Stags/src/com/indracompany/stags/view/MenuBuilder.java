@@ -52,16 +52,17 @@ public class MenuBuilder {
 		ClienteModel cliente = new ClienteModel();
 		cliente.setNome(nome);
 		clienteBo.inserir(cliente);
+		System.out.println("Cliente Inserirdo com sucesso");
 
 	}
 
 	public void buscarCliente() throws Exception {
 		String nome;
 		nome = pedirEntrada("Digite o nome.");
-
+		System.out.println("Clientes: " + quebraLinha);
 		ClienteModel busca = clienteBo.buscar(nome);
 		System.out.println("Nome = " + busca.getNome());
-		System.out.println("Situação = " + busca.getAtivo());
+		clienteBo.tratarSituacaoCliente(busca);
 		System.out.println("Código = " + busca.getCodigo());
 	}
 
@@ -73,6 +74,7 @@ public class MenuBuilder {
 		String nome = pedirEntrada("Digite o nome do cliente para excluir");
 		ClienteModel cliente = clienteBo.buscar(nome);
 		clienteBo.excluir(cliente);
+		System.out.println("Cliente excluido com sucesso!");
 	}
 
 	public void editarCliente() throws Exception {
@@ -89,6 +91,7 @@ public class MenuBuilder {
 			ClienteModel cliente = clienteBo.buscar(nome);
 			cliente.setNome(nomeAtualizar);
 			clienteBo.editar(cliente);
+			System.out.println("Cliente Editado com sucesso!");
 			opcao = pedirEntrada("Digite 1 para editar outro Cliente");
 			if (!opcao.equals("1")) {
 				continuar = false;
@@ -101,9 +104,10 @@ public class MenuBuilder {
 
 	public void listarCliente() throws Exception {
 		List<ClienteModel> listagem = clienteBo.listar();
+		System.out.println("Clientes: ");
 		for (ClienteModel clienteModel : listagem) {
 			System.out.println(clienteModel.getNome());
-			System.out.println(clienteModel.getAtivo());
+			clienteBo.tratarSituacaoCliente(clienteModel);
 			System.out.println(clienteModel.getCodigo());
 			System.out.println();
 			System.out.println();
@@ -136,7 +140,7 @@ public class MenuBuilder {
 		produto.setQuantidade(quantidade);
 
 		produtoBO.inserir(produto);
-
+		System.out.println("Produto Inserido Com sucesso!");
 	}
 
 	public void buscarProduto() throws Exception {
@@ -144,13 +148,14 @@ public class MenuBuilder {
 		nome = pedirEntrada("Digite o nome.");
 
 		Collection<ProdutoModel> busca = produtoBO.buscarPorNome(nome);
+		System.out.println("Produtos: ");
 		for (ProdutoModel produtoModel : busca) {
 			System.out.println("Codigo: " + produtoModel.getCodigo());
 			System.out.println("Nome: " + produtoModel.getNome());
 			System.out.println("Preço Venda: " + produtoModel.getPrecoVenda());
 			System.out.println("Preço Aluguel: " + produtoModel.getPrecoAluguel());
-			System.out.println("Tipo: " + produtoModel.getTipoProduto().toString() + quebraLinha);
-
+			System.out.print("Tipo: ");
+			produtoBO.tratarSituacaoProduto(produtoModel);
 		}
 
 	}
@@ -176,7 +181,7 @@ public class MenuBuilder {
 			produto.setPrecoVenda(precoVenda);
 			produto.setQuantidade(quantidade);
 			produtoBO.editar(produto);
-
+			System.out.println("Produto Editado Com sucesso!");
 			opcao = pedirEntrada("Digite 1 para editar outro Produto");
 			if (!opcao.equals("1")) {
 				continuar = false;
@@ -193,6 +198,7 @@ public class MenuBuilder {
 		ProdutoModel produto = produtoBO.buscar(nomeProduto);
 
 		produtoBO.excluir(produto);
+		System.out.println("Produto Excluir: ");
 	}
 
 	public String pedirEntrada(String mensagemEntrada) {

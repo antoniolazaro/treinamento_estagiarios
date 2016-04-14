@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.indracompany.stags.bo.ab.IProdutoBO;
 import com.indracompany.stags.dao.IProdutoDao;
 import com.indracompany.stags.dao.memory.ProdutoDaoMemory;
+import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.ProdutoModel;
 import com.indracompany.stags.model.TipoProduto;
 
@@ -89,4 +90,13 @@ public class ProdutoBO implements IProdutoBO {
 			throw new Exception("Produto  Não Existe!");
 		}
 	}
+
+	public void tratarSituacaoProduto(ProdutoModel produto) {
+		if (produto.getAtivo() == true) {
+			System.out.println("Situação: Ativo");
+		} else {
+			System.out.println("Situação inativo");
+		}
+	}
+
 }

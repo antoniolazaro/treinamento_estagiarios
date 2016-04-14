@@ -37,7 +37,7 @@ public class ProdutoDaoMemory implements IProdutoDao {
 			listaRetorno.add(produtoModel);
 		}
 		for (ProdutoModel produtoModel : listaRetorno) {
-			if (produtoModel.getNome().startsWith(nome)) {
+			if (produtoModel.getNome().equalsIgnoreCase(nome)) {
 				produto = produtoModel;
 			}
 		}
@@ -50,7 +50,7 @@ public class ProdutoDaoMemory implements IProdutoDao {
 		Collection<ProdutoModel> listaProduto = DataBase.getMapProduto().values();
 
 		for (ProdutoModel produtoModel : listaProduto) {
-			if (produtoModel.getNome().startsWith(nome)) {
+			if (produtoModel.getNome().equalsIgnoreCase(nome)) {
 				if (produtoModel.getAtivo()) {
 					listaRetorno.add(produtoModel);
 				}

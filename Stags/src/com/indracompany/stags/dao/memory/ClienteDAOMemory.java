@@ -40,7 +40,7 @@ public class ClienteDAOMemory implements IClienteDAO {
 
 		ClienteModel retorno = null;
 		for (ClienteModel cliente : DataBase.getListaCliente()) {
-			if (cliente.getNome().startsWith(nome)) {
+			if (cliente.getNome().equalsIgnoreCase(nome)) {
 				retorno = cliente;
 			}
 		}
