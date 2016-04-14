@@ -1,6 +1,7 @@
 package com.indracompany.stags.view;
 
 import java.util.Collection;
+
 import java.util.List;
 
 import java.util.Scanner;
@@ -18,23 +19,28 @@ public class MenuBuilder {
 	IClienteBO clienteBo = new ClienteBO();
 	IProdutoBO produtoBO = new ProdutoBO();
 	static Scanner scanner = new Scanner(System.in);
+	static String quebraLinha = System.lineSeparator();
 
 	public String executarMenuInicial() {
 
 		// cliente
-		System.out.println("\t\tMenu de opções:");
+		System.out.println("\t\tMenu de opções:" + "" + quebraLinha);
+		System.out.println("Cliente" + quebraLinha);
 		System.out.println("\t1. Adicionar Cliente");
 		System.out.println("\t2. Buscar Cliente");
 		System.out.println("\t3.  Excluir Cliente");
 		System.out.println("\t4. Editar contato");
-		System.out.println("\t5. listar clientes");
+		System.out.println("\t5. listar clientes" + "" + quebraLinha);
+
+		System.out.println("Produto" + quebraLinha);
+
 		// produto
 		System.out.println("\t6. Adicionar Produto");
 		System.out.println("\t7. Buscar Produto");
 		System.out.println("\t8. Excluir Produto");
 		System.out.println("\t9. Editar Produto");
 		// add_maisopções
-		System.out.println("\t0. Sair");
+		System.out.println("\t0. Sair" + quebraLinha);
 
 		return pedirEntrada("\nInsira sua opção: ");
 	}
@@ -60,28 +66,36 @@ public class MenuBuilder {
 	}
 
 	public void excluirCliente() throws Exception {
-		String nomeExcluir = pedirEntrada("\n Digite o Nome: ");
+		// String nomeExcluir = pedirEntrada("\n Digite o Nome: ");
+		//
+		// clienteBo.excluir(nomeExcluir);
 
-		clienteBo.excluir(nomeExcluir);
+		String nome = pedirEntrada("Digite o nome do cliente para excluir");
+		ClienteModel cliente = clienteBo.buscar(nome);
+		clienteBo.excluir(cliente);
 	}
 
 	public void editarCliente() throws Exception {
 
-		boolean cotinuar = true;
+		boolean continuar = true;
 
 		do {
 
 			String nome;
 			String nomeAtualizar;
+			String opcao;
 			nome = pedirEntrada("Digite o nome do Cliente:");
 			nomeAtualizar = pedirEntrada("Digite o nome para atualizar");
-			clienteBo.editar(nome, nomeAtualizar);
-			String opcao = pedirEntrada("Digite 1 para continuar ou 0 para sair");
-			if (opcao.equals(0)) {
-				cotinuar = false;
+			ClienteModel cliente = clienteBo.buscar(nome);
+			cliente.setNome(nomeAtualizar);
+			clienteBo.editar(cliente);
+			opcao = pedirEntrada("Digite 1 para editar outro Cliente");
+			if (!opcao.equals("1")) {
+				continuar = false;
+
 			}
 
-		} while (cotinuar);
+		} while (continuar);
 
 	}
 
@@ -125,19 +139,18 @@ public class MenuBuilder {
 
 	}
 
-	public void buscarProduto() {
+	public void buscarProduto() throws Exception {
 		String nome;
 		nome = pedirEntrada("Digite o nome.");
 
 		Collection<ProdutoModel> busca = produtoBO.buscarPorNome(nome);
 		for (ProdutoModel produtoModel : busca) {
-			System.out.println(produtoModel.getCodigo());
-			System.out.println(produtoModel.getNome());
-			System.out.println(produtoModel.getPrecoVenda());
-			System.out.println(produtoModel.getPrecoAluguel());
-			System.out.println(produtoModel.getTipoProduto());
-			System.out.println();
-			System.out.println();
+			System.out.println("Codigo: " + produtoModel.getCodigo());
+			System.out.println("Nome: " + produtoModel.getNome());
+			System.out.println("Preço Venda: " + produtoModel.getPrecoVenda());
+			System.out.println("Preço Aluguel: " + produtoModel.getPrecoAluguel());
+			System.out.println("Tipo: " + produtoModel.getTipoProduto().toString() + quebraLinha);
+
 		}
 
 	}
@@ -153,11 +166,16 @@ public class MenuBuilder {
 			Integer quantidade;
 
 			nome = pedirEntrada("Digite o nome: ");
+			ProdutoModel produto = produtoBO.buscar(nome);
 			nomeAtualizar = pedirEntrada("Novo Nome : ");
 			precoVenda = pedirEntradaNumeroDouble("Digite o valor de venda: ");
 			precoAluguel = pedirEntradaNumeroDouble("Digite o valor de aluguel: ");
 			quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
-			produtoBO.editar(nome, nomeAtualizar, precoVenda, precoAluguel, quantidade);
+			produto.setNome(nomeAtualizar);
+			produto.setPrecoAluguel(precoAluguel);
+			produto.setPrecoVenda(precoVenda);
+			produto.setQuantidade(quantidade);
+			produtoBO.editar(produto);
 
 			opcao = pedirEntrada("Digite 1 para editar outro Produto");
 			if (!opcao.equals("1")) {
@@ -172,8 +190,9 @@ public class MenuBuilder {
 	public void excluirProduto() throws Exception {
 
 		String nomeProduto = pedirEntrada("Digite o nome do produto: ");
+		ProdutoModel produto = produtoBO.buscar(nomeProduto);
 
-		produtoBO.excluir(nomeProduto);
+		produtoBO.excluir(produto);
 	}
 
 	public String pedirEntrada(String mensagemEntrada) {

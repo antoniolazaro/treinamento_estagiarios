@@ -22,35 +22,42 @@ public class ProdutoBO implements IProdutoBO {
 		produtoDaoMemory.inserir(pModel);
 	}
 
-	public void editar(String nome, String nomeAtualizar, Double precoVenda, Double precoAluguel, Integer quantidade)
-			throws Exception {
-		ProdutoModel produto = produtoDaoMemory.buscar(nome);
-		produto.setNome(nomeAtualizar);
-		produto.setPrecoAluguel(precoAluguel);
-		produto.setPrecoVenda(precoVenda);
-		produto.setQuantidade(quantidade);
-
+	public void editar(ProdutoModel produto) throws Exception {
+		validate(produto);
 		produtoDaoMemory.editar(produto);
 	}
 
-	public void excluir(String nome) throws Exception {
-		ProdutoModel exclusao = produtoDaoMemory.buscar(nome);
-		exclusao.setAtivo(false);
-		produtoDaoMemory.excluir(exclusao);
+	public void excluir(ProdutoModel produto) throws Exception {
+		if (produto == null) {
+			throw new Exception("produto nao encontrado");
+		} else {
+			produto.setAtivo(false);
+			produtoDaoMemory.excluir(produto);
+		}
 	}
 
-	public Collection<ProdutoModel> buscarPorNome(String nome) {
-
+	public Collection<ProdutoModel> buscarPorNome(String nome) throws Exception {
+		validateList(produtoDaoMemory.buscarPorNome(nome));
 		return produtoDaoMemory.buscarPorNome(nome);
 	}
 
 	public ProdutoModel buscar(String nome) throws Exception {
+		validateBusca(produtoDaoMemory.buscar(nome));
 		return produtoDaoMemory.buscar(nome);
 	}
 
 	private void validate(ProdutoModel pModel) throws Exception {
 		if (pModel == null) {
 			throw new Exception("Produto nulo");
+
+		} else if (pModel.getNome().equals("")) {
+			throw new Exception("Nome Obrigatorio");
+
+		} else if (pModel.getPrecoAluguel() <= 0 || pModel.getPrecoVenda() <= 0) {
+			throw new Exception("Os valores devem ser maiores que zero");
+		} else if (pModel.getQuantidade() <= 0) {
+			throw new Exception("Quantidade Invalida");
+
 		}
 	}
 
@@ -71,4 +78,15 @@ public class ProdutoBO implements IProdutoBO {
 		return tipoProduto;
 	}
 
+	private void validateList(Collection<ProdutoModel> lista) throws Exception {
+		if (lista == null) {
+			throw new Exception("Lista Vazia");
+		}
+	}
+
+	private void validateBusca(ProdutoModel produto) throws Exception {
+		if (produto == null) {
+			throw new Exception("Produto  Não Existe!");
+		}
+	}
 }
