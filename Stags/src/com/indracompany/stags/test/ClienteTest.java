@@ -79,6 +79,13 @@ public class ClienteTest {
 		}
 	}
 	
+	public void buscarCliente() throws Exception{		
+		clienteBO.buscarCliente("Antônio");		
+		clienteBO.buscarCliente("Caio");		
+		clienteBO.buscarCliente("Karen");		
+		clienteBO.buscarCliente("Matheus");
+	}
+	
 	public void exibirCliente()throws Exception{
 		System.out.println("*******************************************************");
 		List<ClienteModel> lListaCliente = clienteBO.listar();

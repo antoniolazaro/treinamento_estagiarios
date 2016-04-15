@@ -19,7 +19,7 @@ public class ClienteModel extends ModelAB{
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -39,7 +39,7 @@ public class ClienteModel extends ModelAB{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -49,7 +49,7 @@ public class ClienteModel extends ModelAB{
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -59,16 +59,6 @@ public class ClienteModel extends ModelAB{
 		if (getClass() != obj.getClass())
 			return false;
 		ClienteModel other = (ClienteModel) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (idade == null) {
-			if (other.idade != null)
-				return false;
-		} else if (!idade.equals(other.idade))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -80,5 +70,6 @@ public class ClienteModel extends ModelAB{
 	@Override
 	public String toString() {
 		return "\n Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + "\n";
+//		if(getAtivo()==true){System.out.println("Ativo");}
 	}
 }

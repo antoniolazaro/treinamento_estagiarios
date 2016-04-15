@@ -116,11 +116,6 @@ public class MidiaModel extends ModelAB {
 		if (getClass() != obj.getClass())
 			return false;
 		MidiaModel other = (MidiaModel) obj;
-		if (codigoBarras == null) {
-			if (other.codigoBarras != null)
-				return false;
-		} else if (!codigoBarras.equals(other.codigoBarras))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -132,7 +127,7 @@ public class MidiaModel extends ModelAB {
 	@Override
 	public String toString() {
 		return "\n Nome: " + getNome() + "\n Descrição: " + getDescricao() + "\n Codigo de Barras: " + getCodigoBarras()
-				+ "\n Data de Entrada no sistema: " + getDataRegistro() + "\n Valor de Compra: " + getValorVenda() + "\n Valor de Aluguel: "
-				+ getValorAluguel() + "\n Valor de Venda: " + getValorVenda() + "\n Tipo de mídia: " + getTipoMidia() + "\n Quantidade no estoque: " + getQuantidadeEstoque();
+				+ "\n Data de Entrada no sistema: " + getDataRegistro() + "\n Valor de Compra: " + getValorVenda() + "\n Valor de Venda: " + getValorVenda() + "\n Tipo de mídia: " + getTipoMidia() + "\n Quantidade no estoque: " + getQuantidadeEstoque();
+//		"\n Valor de Aluguel: "	+ getValorAluguel() + 
 	}
 }

@@ -17,40 +17,68 @@ public class MidiaBO implements MidiaBOIf{
 	@Override
 	public void inserir(MidiaModel pModel) throws Exception {
 		validate(pModel);
-		midiaDAO.inserir(pModel);		
+		try {
+			midiaDAO.inserir(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar adicionar uma mídia -> "+e.getMessage());
+		}
 	}
 
 	@Override
 	public void editar(MidiaModel pModel) throws Exception {
 		validate(pModel);
-		midiaDAO.editar(pModel);		
+		try {
+			midiaDAO.editar(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar editar uma mídia -> "+e.getMessage());
+		}
 	}
 
 	@Override
 	public void excluir(MidiaModel pModel) throws Exception {
-		midiaDAO.excluir(pModel);		
+		try {
+			midiaDAO.excluir(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar adicionar uma mídia -> "+e.getMessage());
+		}
 	}
 
 	@Override
-	public List<MidiaModel> listar() throws Exception {		
-		return midiaDAO.listar();
+	public List<MidiaModel> listar() throws Exception {
+		try {
+			return midiaDAO.listar();
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar listar mídia -> "+e.getMessage());
+		}
 	}
 
 	@Override
-	public MidiaModel buscar(MidiaModel pModel) throws Exception {		
-		return midiaDAO.buscar(pModel);
+	public MidiaModel buscar(MidiaModel pModel) throws Exception {
+		try {
+			return midiaDAO.buscar(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
+		}
 	}
 
-	private void validate(MidiaModel pModel)throws Exception {	
-		if(pModel != null){
-			if(pModel.getNome() == null || pModel.getNome() .equals("")){
-				throw new Exception("Nome é um campo obrigatório");
+	private void validate(MidiaModel pModel)throws Exception {
+		try {
+			if(pModel != null){
+				if(pModel.getNome() == null || pModel.getNome().equals("")){
+					throw new Exception("Nome é um campo obrigatório");
+				}
 			}
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar validar uma mídia -> "+e.getMessage());
 		}
 	}
 
 	@Override
 	public MidiaModel buscarMidia(String nome) throws Exception {
-		return midiaDAO.buscarMidia(nome);
-	}	
+		try {
+			return midiaDAO.buscarMidia(nome);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar buscar uma mídia pelo nome -> "+e.getMessage());
+		}
+		}
 }

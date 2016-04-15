@@ -26,6 +26,7 @@ public class MidiaTest {
 		lMidia1.setValorAluguel(3.50);
 		lMidia1.setValorVenda(40.50);
 		lMidia1.setTipoMidia(TipoDeMidiaModel.DVD);
+		lMidia1.setQuantidadeEstoque(5);
 		lMidia1.setAtivo(true);
 			
 		midiaBO.inserir(lMidia1);		
@@ -49,6 +50,10 @@ public class MidiaTest {
 			lMidiaBusca.setNome("Luis de Jah");
 			midiaBO.editar(lMidiaBusca);
 		}
+	}
+	
+	public void buscarMidia() throws Exception{		
+		midiaBO.buscarMidia("2013");	
 	}
 	
 	public void exibirMidia()throws Exception{

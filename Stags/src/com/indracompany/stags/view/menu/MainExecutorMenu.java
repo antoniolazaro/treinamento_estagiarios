@@ -2,7 +2,7 @@ package com.indracompany.stags.view.menu;
 
 import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.MidiaModel;
-import com.indracompany.stags.model.TransacaoModel;
+//import com.indracompany.stags.model.TransacaoModel;
 
 public class MainExecutorMenu {
 		    
@@ -12,16 +12,14 @@ public class MainExecutorMenu {
 	    	String opcao;
 	        ClienteModel cliente = new ClienteModel();
 	        MidiaModel midia = new MidiaModel();
-	        TransacaoModel transacao = new TransacaoModel();
+//	        TransacaoModel transacao = new TransacaoModel();
 	        MenuBuilder menuBuilder = new MenuBuilder();
 	        do{
 	            opcao = menuBuilder.executarMenuInicial();
-	            
-	            try{
 		            switch( opcao )
 		            {
 		                case "1":
-		                	menuBuilder.inserirCliente(cliente);
+		                	menuBuilder.inserirCliente();
 		                    break;        
 		                    
 		                case "2":
@@ -33,7 +31,7 @@ public class MainExecutorMenu {
 		                    break;
 		                    
 		                case "4":
-		                	menuBuilder.inserirMidia(midia);
+		                	menuBuilder.inserirMidia();
 		                    break;        
 		                    
 		                case "5":
@@ -62,10 +60,7 @@ public class MainExecutorMenu {
 		                default:
 		                    System.out.printf("Você digitou uma opção inválida.");
 		                    System.lineSeparator();
-		            }       
-	            }catch(Exception ex){
-	            	System.out.println("Erro -> "+ex.getMessage());
-	            }
+		            }
 	        } while( continuar );  
 	    }
 
