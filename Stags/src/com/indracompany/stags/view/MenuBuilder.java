@@ -25,14 +25,14 @@ public class MenuBuilder {
 
 		// cliente
 		System.out.println("\t\tMenu de opções:" + "" + quebraLinha);
-		System.out.println("Cliente" + quebraLinha);
+		System.out.println("Cliente:" + quebraLinha);
 		System.out.println("\t1. Adicionar Cliente");
 		System.out.println("\t2. Buscar Cliente");
-		System.out.println("\t3.  Excluir Cliente");
-		System.out.println("\t4. Editar contato");
-		System.out.println("\t5. listar clientes" + "" + quebraLinha);
+		System.out.println("\t3. Excluir Cliente");
+		System.out.println("\t4. Editar Cliente");
+		System.out.println("\t5. listar Clientes" + "" + quebraLinha);
 
-		System.out.println("Produto" + quebraLinha);
+		System.out.println("Produto:" + quebraLinha);
 
 		// produto
 		System.out.println("\t6. Adicionar Produto");
@@ -52,7 +52,7 @@ public class MenuBuilder {
 		ClienteModel cliente = new ClienteModel();
 		cliente.setNome(nome);
 		clienteBo.inserir(cliente);
-		System.out.println("Cliente Inserirdo com sucesso");
+		System.out.println("Cliente Inserido com sucesso");
 
 	}
 
@@ -61,9 +61,9 @@ public class MenuBuilder {
 		nome = pedirEntrada("Digite o nome.");
 		System.out.println("Clientes: " + quebraLinha);
 		ClienteModel busca = clienteBo.buscar(nome);
-		System.out.println("Nome = " + busca.getNome());
+		System.out.println("Nome: " + busca.getNome());
 		clienteBo.tratarSituacaoCliente(busca);
-		System.out.println("Código = " + busca.getCodigo());
+		System.out.println("Código: " + busca.getCodigo());
 	}
 
 	public void excluirCliente() throws Exception {
@@ -71,7 +71,7 @@ public class MenuBuilder {
 		//
 		// clienteBo.excluir(nomeExcluir);
 
-		String nome = pedirEntrada("Digite o nome do cliente para excluir");
+		String nome = pedirEntrada("Digite o nome do cliente para excluir:");
 		ClienteModel cliente = clienteBo.buscar(nome);
 		clienteBo.excluir(cliente);
 		System.out.println("Cliente excluido com sucesso!");
@@ -92,7 +92,7 @@ public class MenuBuilder {
 			cliente.setNome(nomeAtualizar);
 			clienteBo.editar(cliente);
 			System.out.println("Cliente Editado com sucesso!");
-			opcao = pedirEntrada("Digite 1 para editar outro Cliente");
+			opcao = pedirEntrada("Digite 1 para editar outro Cliente ou outra tecla para cancelar a edição");
 			if (!opcao.equals("1")) {
 				continuar = false;
 
@@ -129,7 +129,7 @@ public class MenuBuilder {
 		nome = pedirEntrada("Digite o nome: ");
 		precoVenda = pedirEntradaNumeroDouble("Digite o preço de venda: ");
 		precoAluguel = pedirEntradaNumeroDouble("Digite o preço de aluguel: ");
-		tipoProduto = pedirEntrada("Digite o tipo do produto DVD, BLURAY, STREAM: ");
+		tipoProduto = pedirEntrada("Digite o tipo do produto a-> DVD, b-> BLURAY, c-> STREAM: ");
 		tipo = produtoBO.validarTipoProduto(tipoProduto);
 		quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
 
@@ -182,7 +182,7 @@ public class MenuBuilder {
 			produto.setQuantidade(quantidade);
 			produtoBO.editar(produto);
 			System.out.println("Produto Editado Com sucesso!");
-			opcao = pedirEntrada("Digite 1 para editar outro Produto");
+			opcao = pedirEntrada("Digite 1 para editar outro ou qualquer outra tecla para cancelar a Edição");
 			if (!opcao.equals("1")) {
 				continuar = false;
 

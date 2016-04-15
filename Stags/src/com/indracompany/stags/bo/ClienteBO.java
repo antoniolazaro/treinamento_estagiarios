@@ -75,7 +75,7 @@ public class ClienteBO implements IClienteBO {
 		if (cliente.getAtivo() == true) {
 			System.out.println("Situação: Ativo");
 		} else {
-			System.out.println("Situação inativo");
+			System.out.println("Situação: inativo");
 		}
 	}
 }

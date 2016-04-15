@@ -5,7 +5,6 @@ import java.util.Collection;
 import com.indracompany.stags.bo.ab.IProdutoBO;
 import com.indracompany.stags.dao.IProdutoDao;
 import com.indracompany.stags.dao.memory.ProdutoDaoMemory;
-import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.ProdutoModel;
 import com.indracompany.stags.model.TipoProduto;
 
@@ -48,16 +47,15 @@ public class ProdutoBO implements IProdutoBO {
 	}
 
 	private void validate(ProdutoModel pModel) throws Exception {
-		if (pModel == null) {
-			throw new Exception("Produto nulo");
-
-		} else if (pModel.getNome().equals("")) {
-			throw new Exception("Nome Obrigatorio");
-
-		} else if (pModel.getPrecoAluguel() <= 0 || pModel.getPrecoVenda() <= 0) {
-			throw new Exception("Os valores devem ser maiores que zero");
-		} else if (pModel.getQuantidade() <= 0) {
-			throw new Exception("Quantidade Invalida");
+		if (pModel != null) {
+			if (pModel.getNome().equals(""))
+				throw new Exception("Nome Obrigatorio");
+			if (pModel.getPrecoVenda() <= 0)
+				throw new Exception("Os valores devem ser maiores que zero");
+			if (pModel.getPrecoAluguel() <= 0)
+				throw new Exception("Os valores devem ser maiores que zero");
+			if (pModel.getQuantidade() <= 0)
+				throw new Exception("Quantidade Invalida");
 
 		}
 	}
@@ -65,12 +63,12 @@ public class ProdutoBO implements IProdutoBO {
 	public TipoProduto validarTipoProduto(String tipo) throws Exception {
 		TipoProduto tipoProduto = null;
 
-		if (tipo.equalsIgnoreCase("dvd")) {
+		if (tipo.equalsIgnoreCase("a")) {
 			tipoProduto = TipoProduto.DVD;
-		} else if (tipo.equalsIgnoreCase("bluray")) {
+		} else if (tipo.equalsIgnoreCase("b")) {
 			tipoProduto = TipoProduto.BLURAY;
 
-		} else if (tipo.equalsIgnoreCase("stream")) {
+		} else if (tipo.equalsIgnoreCase("c")) {
 			tipoProduto = TipoProduto.STREAM;
 
 		} else {
@@ -95,7 +93,7 @@ public class ProdutoBO implements IProdutoBO {
 		if (produto.getAtivo() == true) {
 			System.out.println("Situação: Ativo");
 		} else {
-			System.out.println("Situação inativo");
+			System.out.println("Situação: inativo");
 		}
 	}
 
