@@ -41,7 +41,7 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 		int posicaoLista = listar().indexOf(pModel);	
 		ClienteBO.validatePosicaoLista(posicaoLista);
 		lModel = listar().get(posicaoLista);
-		return lModel;		
+		return lModel;	
 	}
 	
 	public ClienteModel buscarCliente(String nome) throws Exception {

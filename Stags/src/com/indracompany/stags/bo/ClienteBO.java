@@ -127,4 +127,9 @@ public class ClienteBO implements ClienteBOIf{
 		}
 		return null;
 	}
+	
+	@Override
+	public ClienteModel buscarCliente(ClienteModel pModel) throws Exception {		
+		return clienteDAO.buscarCliente(pModel);
+	}
 }

@@ -39,21 +39,26 @@ public class MenuBuilder {
 			
 			return pedirEntrada("\nInsira sua opção: ");
 		}
-		
-		public void inserirCliente() throws Exception {
-			String nome="", cpf="";
+
+		public void inserirCliente(ClienteModel pModel) throws Exception {
+			String nome = "", cpf="";
 			ClienteModel pModel = new ClienteModel();
 			nome = pedirEntrada("\nDigite nome: ");
-			clienteBO.validateNome(nome);
-			pModel.setNome(nome);
-			int idade = Integer.parseInt(pedirEntrada("\nDigite idade: "));
-			clienteBO.validateIdade(idade);
-			pModel.setIdade(idade);
-			cpf = pedirEntrada("\nDigite cpf: ");
-			clienteBO.validateCPF(cpf);
-			pModel.setCpf(cpf);
-			clienteBO.inserir(pModel);
-//			exibirTodos();
+			try {
+				if(nome != null && !nome.equals("")){
+					pModel.setNome(nome);
+				}else{
+					throw new Exception("Não será possível.");
+				}
+				int idade = Integer.parseInt(pedirEntrada("\nDigite idade: "));
+				pModel.setIdade(idade);
+				cpf = pedirEntrada("\nDigite cpf: ");
+				pModel.setCpf(cpf);
+				clienteBO.inserir(pModel);
+				exibirTodos();
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar adicionar um cliente -> "+e.getMessage());
+			}
 		}
 		
 		public void editarCliente(ClienteModel pModel) throws Exception {
@@ -65,25 +70,29 @@ public class MenuBuilder {
 				boolean continuar = true;
 				do{
 					String opcaoSelecionadaMenuEditar = executarMenuEditar();
+					try {
 						switch(opcaoSelecionadaMenuEditar){
 						case "a":
-							String opcao1 = pedirEntrada("\nDigite novo nome: ");
-							clienteBO.validateNome(opcao1);
-							pModel.setNome(opcao1);
+							String opcao1 = pedirEntrada("\n Digite novo nome: ");
+							if(opcao1 != null && !opcao1.equals("")){
+								pModel.setNome(opcao1);
+							}
 							clienteBO.editar(pModel);
 							break;
 							
 						case "b":
-							Integer opcao2 = Integer.parseInt(pedirEntrada("\nDigite nova idade: "));
-							clienteBO.validateIdade(opcao2);
-							pModel.setIdade(opcao2);
+							Integer opcao2 = Integer.parseInt(pedirEntrada("\n Digite nova idade: "));
+							if(opcao2 != null && !opcao2.equals("")){
+								pModel.setIdade(opcao2);
+							}
 							clienteBO.editar(pModel);
 							break;
 							
 						case "c":
-							String opcao3 = pedirEntrada("\nDigite novo CPF: ");;
-							clienteBO.validateCPF(opcao3);
-							pModel.setCpf(opcao3);
+							String opcao3 = pedirEntrada("\nDigite novo CPF: ");
+							if(opcao3 != null && !opcao3.equals("")){
+								pModel.setCpf(opcao3);
+							}
 							clienteBO.editar(pModel);
 							break;
 							
@@ -97,6 +106,10 @@ public class MenuBuilder {
 		                    System.lineSeparator();
 							break;
 						}
+					} catch (Exception e) {
+						throw new Exception("Erro ao tentar editar um cliente -> "+e.getMessage());
+					}
+					
 					}while(continuar);
 			}
 			}
@@ -104,31 +117,48 @@ public class MenuBuilder {
 		public void excluirCliente(ClienteModel pModel) throws Exception {
 			String nome = pedirEntrada("\nDigite nome do cliente a ser excluído: ");
 			pModel = clienteBO.buscarCliente(nome);
-			clienteBO.excluir(pModel);
+			try {
+				if(pModel != null && !pModel.equals("")){
+					clienteBO.excluir(pModel);
+				}
+				System.out.println("Cliente removido com sucesso: "+pModel.toString());
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar excluir um cliente -> "+e.getMessage());
+			}
 		}
 		
 		//Segue a parte de mídia
-		public void inserirMidia() throws Exception {
+		public void inserirMidia(MidiaModel pModel) throws Exception {
+
 			MidiaModel pModel = new MidiaModel();
-			String nome = pedirEntrada("\nDigite nome: ");
-			pModel.setNome(nome);
-			String descricao = pedirEntrada("\nDigite descrição: ");
-			pModel.setDescricao(descricao);
-			String codBarras = pedirEntrada("\nDigite código de barras: ");
-			pModel.setCodigoBarras(codBarras);
-			Double valorVenda = Double.parseDouble(pedirEntrada("\nDigite valor de venda: "));
-			pModel.setValorVenda(valorVenda);
-			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-			String dataRegistroStr = pedirEntrada("\nDigite data(Formato: dd/MM/yyyy): ");
-			java.sql.Date dataRegistro = new java.sql.Date(format.parse(dataRegistroStr).getTime());
-			pModel.setDataRegistro(dataRegistro);
-			Integer quantidadequantidadeEstoque = Integer.parseInt(pedirEntrada("\nDigite quantidade em estoque: "));
-			pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
-			tipoMidiaInserirMenu(pModel);
-			midiaBO.inserir(pModel);
-//			exibirTodos();
-//			System.out.println("Mídia inserida com sucesso: "+pModel.toString());
-		}
+			String nome = pedirEntrada("\n Digite nome: ");
+			try {
+				if(nome != null && !nome.equals("")){
+					pModel.setNome(nome);
+				}else{
+					throw new Exception("Não será possível.");
+				}
+
+				String descricao = pedirEntrada("\nDigite descrição: ");
+				pModel.setDescricao(descricao);
+				String codBarras = pedirEntrada("\nDigite código de barras: ");
+				pModel.setCodigoBarras(codBarras);
+				Double valorVenda = Double.parseDouble(pedirEntrada("\nDigite valor de venda: "));
+				pModel.setValorVenda(valorVenda);
+				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+				String dataRegistroStr = pedirEntrada("\nDigite data(Formato: dd/MM/yyyy): ");
+				java.sql.Date dataRegistro = new java.sql.Date(format.parse(dataRegistroStr).getTime()); 
+				pModel.setDataRegistro(dataRegistro);
+				tipoMidiaInserirMenu(pModel);
+				Integer quantidadequantidadeEstoque = Integer.parseInt(pedirEntrada("\nDigite quantidade em estoque: "));
+				pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
+				midiaBO.inserir(pModel);
+				exibirTodos();
+				System.out.println("Mídia inserida com sucesso: "+pModel.toString());
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar adicionar uma mídia -> "+e.getMessage());
+			}
+}
 		
 		public void editarMidia(MidiaModel pModel) throws Exception {
 			String nome = pedirEntrada("\nDigite nome da mídia a ser editada: ");
@@ -138,17 +168,22 @@ public class MenuBuilder {
 				boolean continuar = true;
 				do{
 					String opcaoSelecionadaMenuEditarMidia = executarMenuEditarMidia();
+					try {
 						switch(opcaoSelecionadaMenuEditarMidia){
 						case "a":
-							String opcaoa = pedirEntrada("\nDigite novo nome: ");
-							pModel.setNome(opcaoa);
-							midiaBO.editar(pModel);							
+							String opcaoa = pedirEntrada("\n Digite novo nome: ");
+							if(opcaoa != null && !opcaoa.equals("")){
+								pModel.setNome(opcaoa);
+								midiaBO.editar(pModel);
+							}							
 							break;
 
 						case "b":
 							Double opcaob = Double.parseDouble(pedirEntrada("\nDigite novo valor de venda: "));
-							pModel.setValorVenda(opcaob);
-							midiaBO.editar(pModel);
+							if(opcaob != null && !opcaob.equals("")){
+								pModel.setValorVenda(opcaob);
+								midiaBO.editar(pModel);
+							}
 							break;
 							
 						case "c":
@@ -156,11 +191,14 @@ public class MenuBuilder {
 							String opcaoc = pedirEntrada("\nDigite nova data de registro(Formato: dd/MM/yyyy): ");
 							java.sql.Date dataRegistro = new java.sql.Date(format.parse(opcaoc).getTime()); 
 							pModel.setDataRegistro(dataRegistro);
-							midiaBO.editar(pModel); 
+							midiaBO.editar(pModel);
 							break;
 							
 						case "d":
-							tipoMidiaEditarMenu(pModel); 
+							// Colocar essa validação na entrada do menu de editar
+							if(opcaod != null && !opcaod.equals("")){
+								tipoMidiaEditarMenu(pModel); 
+							}
 							break;
 							
 						case "e":
@@ -173,33 +211,45 @@ public class MenuBuilder {
 		                    break;
 						}
 						break;
+					} catch (Exception e) {
+						throw new Exception("Erro ao tentar editar uma mídia -> "+e.getMessage());
+			}				
 				}while(continuar);
 			    }			
 		}
 		
-		public void tipoMidiaInserirMenu(MidiaModel pModel) throws Exception {
+		public void tipoMidiaInserirMenu(MidiaModel pModel) throws Exception {			
 			if(pModel !=null){
 				boolean continuar = true;
 				do{
 					String opcaoSelecionadaMenuTipoMidia = executarMenuInserirTipoMidia();
+				try {
+					try {
 						switch(opcaoSelecionadaMenuTipoMidia){
 						case "a":	
 							pModel.setTipoMidia(TipoDeMidiaModel.DVD);			
 							continuar = false;
+			                    		System.out.printf("Você escolheu DVD");
 							break;
 						case "b":
 							pModel.setTipoMidia(TipoDeMidiaModel.BLURAY);
 							continuar = false;
+			                    		System.out.printf("Você escolheu BLU-RAY");
 							break;
 						case "c":					
 							pModel.setTipoMidia(TipoDeMidiaModel.STREAMING);
-							continuar = false;
+							continuar = false;	
+		                    			System.out.printf("Você escolheu STREAMING");
 							break;
 						default:
-		                    System.out.printf("Você digitou uma opção inválida.");
-		                    System.lineSeparator();
-		                    break;
+		                    			System.out.printf("Você digitou uma opção inválida.");
+		                    			System.lineSeparator();
+		                    			break;
 						}
+						break;
+					} catch (Exception e) {
+						throw new Exception("Erro ao tentar estabelecer tipo de mídia -> "+e.getMessage());
+			}				
 				}while(continuar);
 			    }			
 		}
@@ -209,41 +259,61 @@ public class MenuBuilder {
 				boolean continuar = true;
 				do{
 					String opcaoSelecionadaMenuTipoMidia = executarMenuEditarTipoMidia();
+					try {
 						switch(opcaoSelecionadaMenuTipoMidia){
 						case "a":	
-							pModel.setTipoMidia(TipoDeMidiaModel.DVD); 
+							pModel.setTipoMidia(TipoDeMidiaModel.DVD);
+							midiaBO.editar(pModel);
+			                    		System.out.printf("Você escolheu DVD");
 							continuar = false;
 							break;
+
 						case "b":	
-							pModel.setTipoMidia(TipoDeMidiaModel.BLURAY); 
+							pModel.setTipoMidia(TipoDeMidiaModel.BLURAY);
+							midiaBO.editar(pModel);
+			                    		System.out.printf("Você escolheu BLU-RAY");
 							continuar = false;
 							break;
+
 						case "c":			
-							pModel.setTipoMidia(TipoDeMidiaModel.STREAMING); 
+							pModel.setTipoMidia(TipoDeMidiaModel.STREAMING);
+							midiaBO.editar(pModel);
+		                    			System.out.printf("Você escolheu STREAMING"); 
 							continuar = false;
 							break;
+
 						case "d":
-		                	continuar = MainExecutorMenu.voltarPrograma();
-		                	break;							
+		                			continuar = MainExecutorMenu.voltarPrograma();
+		                			break;		
+					
 						default:
-		                    System.out.printf("Você digitou uma opção inválida.");
-		                    System.lineSeparator();
-		                    break;
+		                    			System.out.printf("Você digitou uma opção inválida.");
+		                   			System.lineSeparator();
+		                   			break;
 						}
+					} catch (Exception e) {
+						throw new Exception("Erro ao tentar estabelecer tipo de mídia -> "+e.getMessage());
+			}				
 				}while(continuar);
 			    }			
 		}	
 		
 		public void excluirMidia(MidiaModel pModel) throws Exception {
 			String nome = pedirEntrada("\nDigite nome da mídia a ser excluída: ");
-			pModel = midiaBO.buscarMidia(nome);
-			midiaBO.excluir(pModel);
+			try {
+				pModel = midiaBO.buscarMidia(nome);
+				if(pModel != null && !pModel.equals("")){
+					midiaBO.excluir(pModel);
+				}
+				System.out.println("Mídia removida com sucesso: "+pModel.toString());
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar excluir uma mídia -> "+e.getMessage());
+			}
 		}
 		
 		public void buscarCliente(ClienteModel cliente) throws Exception {
 			String nome = pedirEntrada("\nDigite nome do cliente a detalhar: ");
 			clienteBO.buscarCliente(nome);
-			
 		}		
 		
 		public void buscarMidia(MidiaModel midia) throws Exception {
