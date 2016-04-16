@@ -67,9 +67,8 @@ public class ClienteModel extends ModelAB{
 		return true;
 	}
 
-	@Override
+//	Como adicionar o toString de ModelAB
 	public String toString() {
-		return "\n Nome: " + getNome() + "\n Código: " + getCodigo() +  "\n Idade: " + getIdade() + "\n CPF: " + getCpf() + "\n Está ativo? " + getAtivo() + "\n";
-//		if(getAtivo()==true){System.out.println("Ativo");}
+		return "\n Nome: " + getNome() + "\n Idade: " + getIdade() + "\n CPF: " + getCpf();
 	}
 }

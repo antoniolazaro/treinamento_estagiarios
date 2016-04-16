@@ -14,8 +14,10 @@ public class MainExecutorMenu {
 	        MidiaModel midia = new MidiaModel();
 //	        TransacaoModel transacao = new TransacaoModel();
 	        MenuBuilder menuBuilder = new MenuBuilder();
+	        
 	        do{
-	            opcao = menuBuilder.executarMenuInicial();
+	        	try{
+	        		opcao = menuBuilder.executarMenuInicial();
 		            switch( opcao )
 		            {
 		                case "1":
@@ -61,7 +63,11 @@ public class MainExecutorMenu {
 		                    System.out.printf("Você digitou uma opção inválida.");
 		                    System.lineSeparator();
 		            }
+	            }catch(Exception ex){
+		        	System.err.println("LOG DE ERRO: "+ex.getMessage());
+		        }
 	        } while( continuar );  
+	        
 	    }
 
 		public static boolean finalizarPrograma() {

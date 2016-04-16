@@ -55,51 +55,37 @@ public class ClienteBO implements ClienteBOIf{
 
 	@Override
 	public ClienteModel buscar(ClienteModel pModel) throws Exception {
-		validate(pModel);
+		
 		try {
+			validate(pModel);
 			return clienteDAO.buscar(pModel);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar buscar um cliente -> "+e.getMessage());
 		}
 	}
 
-	public void validate(ClienteModel pModel)throws Exception {
-		try {	
-			if(pModel != null){
-				if(pModel.getNome() == null || pModel.getNome().equals("")){
-					throw new Exception("Nome é um campo obrigatório. ");
-				}
-			} 
-		} catch (Exception e) {
-			throw new Exception("Erro ao tentar validar um cliente -> "+e.getMessage());
-		}
-	}
-	
-	public void validateNome(String nome) throws Exception {
-		try {	
-			if(nome == null || nome == ""){
+	public void validate(ClienteModel pModel) throws Exception {
+		if(pModel != null){
+			if(pModel.getNome() == null || pModel.getNome().equals("")){
 				throw new Exception("Nome é um campo obrigatório. ");
 			}
-		} catch (Exception e) {
-			throw new Exception("Erro ao tentar validar um cliente -> "+e.getMessage());
-		}
+		} 
 	}
 	
-	public void validateIdade(int idade)throws Exception {
-		try {
-			if(idade <= 0){
+	public void validateNome(ClienteModel pModel) throws Exception {
+		try {	
+			if(pModel.getNome() == null || pModel.getNome() == ""){
+				throw new Exception("Nome é um campo obrigatório. ");
+			}
+			if(pModel.getIdade() <= 0){
 				throw new Exception("Idade não pode ser negativa. ");
 			}
-		} catch (Exception e) {
-			throw new Exception("Erro ao tentar validar um cliente -> "+e.getMessage());
-		}
-	}
-	
-	public void validateCPF(String cpf)throws Exception {
-		try {	
-			if(cpf == null || cpf == ""){
-					throw new Exception("CPF é um campo obrigatório. ");
-			} 
+			if(pModel.getCpf() == null || pModel.getCpf() == ""){
+				throw new Exception("CPF é um campo obrigatório. ");
+			}
+//			if(posicaoLista <= 0){
+//				throw new Exception("Posição na lista tem de ser positiva. ");
+//			}
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar validar um cliente -> "+e.getMessage());
 		}
@@ -127,9 +113,22 @@ public class ClienteBO implements ClienteBOIf{
 		}
 		return null;
 	}
-	
+
 	@Override
-	public ClienteModel buscarCliente(ClienteModel pModel) throws Exception {		
-		return clienteDAO.buscarCliente(pModel);
+	public void validateIdade(int idade) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validateCPF(String cpf) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validateNome(String nome) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,5 +1,7 @@
 package com.indracompany.stags.test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import com.indracompany.stags.bo.MidiaBO;
@@ -22,7 +24,10 @@ public class MidiaTest {
 		lMidia1.setCodigo((long) 1);
 		lMidia1.setDescricao("25");
 		lMidia1.setCodigoBarras("7364736435246");
-		lMidia1.setDataRegistro(new Date());
+//		Data automática
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		lMidia1.setDataRegistro(dateFormat.format(date));		
 		lMidia1.setValorAluguel(3.50);
 		lMidia1.setValorVenda(40.50);
 		lMidia1.setTipoMidia(TipoDeMidiaModel.DVD);

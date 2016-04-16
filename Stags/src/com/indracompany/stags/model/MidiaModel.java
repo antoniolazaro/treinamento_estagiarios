@@ -1,18 +1,16 @@
 package com.indracompany.stags.model;
 
-import java.util.Date;
-
 public class MidiaModel extends ModelAB {
 	private String nome;
 	private String descricao;
 	private String codigoBarras;
-	private Date dataRegistro;
+	private String dataRegistro;
 	private Double valorAluguel;
 	private Double valorVenda;
 	private TipoDeMidiaModel tipoMidia;
 	private Integer quantidadeEstoque;
 	
-	public MidiaModel(String nome, String descricao, String codigoBarras, Date dataRegistro, Double valorAluguel,
+	public MidiaModel(String nome, String descricao, String codigoBarras, String dataRegistro, Double valorAluguel,
 			Double valorVenda, TipoDeMidiaModel tipoMidia, Integer quantidadeEstoque) {
 		super();
 		this.nome = nome;
@@ -53,12 +51,12 @@ public class MidiaModel extends ModelAB {
 		this.codigoBarras = codigoBarras;
 	}
 
-	public Date getDataRegistro() {
+	public String getDataRegistro() {
 		return dataRegistro;
 	}
 
-	public void setDataRegistro(Date dataRegistro) {
-		this.dataRegistro = dataRegistro;
+	public void setDataRegistro(String string) {
+		this.dataRegistro = string;
 	}
 
 	public Double getValorAluguel() {
