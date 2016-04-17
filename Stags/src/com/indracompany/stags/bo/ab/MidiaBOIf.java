@@ -15,4 +15,6 @@ public interface MidiaBOIf {
 	public MidiaModel buscar(MidiaModel pModel) throws Exception;
 
 	public MidiaModel buscarMidia(String nome) throws Exception;
+	
+	public void validate(MidiaModel pModel) throws Exception;
 }

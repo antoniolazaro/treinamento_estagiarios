@@ -48,18 +48,9 @@ public abstract class ModelAB {
 			return false;
 		return true;
 	}
-
-	public Object atividades() {
-		if(getAtivo()==true){
-			return ativo;
-		} else {
-			Object nao = null;
-			return nao;
-		}
-	}
 	
 	@Override
 	public String toString() {
-		return "\n Código: " + getCodigo() + "\n Está ativo? " + atividades();
+		return "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo();
 	}	
 }

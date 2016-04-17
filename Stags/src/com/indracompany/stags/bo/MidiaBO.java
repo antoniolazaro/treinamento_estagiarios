@@ -16,8 +16,8 @@ public class MidiaBO implements MidiaBOIf{
 
 	@Override
 	public void inserir(MidiaModel pModel) throws Exception {
-		validate(pModel);
 		try {
+			validate(pModel);
 			midiaDAO.inserir(pModel);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar adicionar uma mídia -> "+e.getMessage());
@@ -26,8 +26,8 @@ public class MidiaBO implements MidiaBOIf{
 
 	@Override
 	public void editar(MidiaModel pModel) throws Exception {
-		validate(pModel);
 		try {
+			validate(pModel);
 			midiaDAO.editar(pModel);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar editar uma mídia -> "+e.getMessage());
@@ -37,6 +37,7 @@ public class MidiaBO implements MidiaBOIf{
 	@Override
 	public void excluir(MidiaModel pModel) throws Exception {
 		try {
+			validate(pModel);
 			midiaDAO.excluir(pModel);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar adicionar uma mídia -> "+e.getMessage());
@@ -55,24 +56,51 @@ public class MidiaBO implements MidiaBOIf{
 	@Override
 	public MidiaModel buscar(MidiaModel pModel) throws Exception {
 		try {
+			validate(pModel);
 			return midiaDAO.buscar(pModel);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
 		}
 	}
 
-	private void validate(MidiaModel pModel)throws Exception {
-		try {
-			if(pModel != null){
+	public void validate(MidiaModel pModel)throws Exception {
+		if(pModel != null){
+			try {
 				if(pModel.getNome() == null || pModel.getNome().equals("")){
 					throw new Exception("Nome é um campo obrigatório");
 				}
+				
+				if(pModel.getDescricao() == null || pModel.getDescricao().equals("")){
+					throw new Exception("Descrição é um campo obrigatório");
+				}
+				
+				if(pModel.getCodigoBarras() == null || pModel.getCodigoBarras().equals("")){
+					throw new Exception("Código de barras é um campo obrigatório");
+				}
+				
+				if(pModel.getCodigoBarras() == null || pModel.getCodigoBarras().equals("")){
+					throw new Exception("Código de barras é um campo obrigatório");
+				}
+				
+				if(pModel.getQuantidadeEstoque() == null || pModel.getQuantidadeEstoque().equals("")){
+					throw new Exception("Quantidade em estoque é um campo obrigatório");
+				}
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar validar uma mídia -> "+e.getMessage());				
 			}
+		}
+	}
+
+	public static void validatePosicaoLista(int posicaoLista)throws Exception {
+		try {
+			if(posicaoLista < 0){
+				throw new Exception("Posição na lista tem de ser positiva. ");
+			} 
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar validar uma mídia -> "+e.getMessage());
 		}
 	}
-
+	
 	@Override
 	public MidiaModel buscarMidia(String nome) throws Exception {
 		try {
@@ -80,5 +108,5 @@ public class MidiaBO implements MidiaBOIf{
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar buscar uma mídia pelo nome -> "+e.getMessage());
 		}
-		}
+	}
 }

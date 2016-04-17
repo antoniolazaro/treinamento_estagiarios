@@ -17,11 +17,5 @@ public interface ClienteBOIf {
 
 	public ClienteModel buscarCliente(String nome) throws Exception;
 	
-	public void validateIdade(int idade)throws Exception;
-	
-	public void validateCPF(String cpf)throws Exception;
-
-	public void validateNome(String nome) throws Exception;
-	
-//	public static void validatePosicaoLista(int posicaoLista)throws Exception;
+	public void validate(ClienteModel pModel) throws Exception;
 }

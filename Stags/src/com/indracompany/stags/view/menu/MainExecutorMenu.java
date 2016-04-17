@@ -55,6 +55,10 @@ public class MainExecutorMenu {
 //		                case "9":
 //		                	menuBuilder.vender(midia);                
 //		                    break;
+		                    
+//		                case "10":
+//		                	menuBuilder.alugar(midia);                
+//		                    break;
 
 		                case "0":
 		                	continuar = finalizarPrograma();
@@ -64,7 +68,7 @@ public class MainExecutorMenu {
 		                    System.lineSeparator();
 		            }
 	            }catch(Exception ex){
-		        	System.err.println("LOG DE ERRO: "+ex.getMessage());
+		        	System.err.println(quebraLinha+"LOG DE ERRO: "+ex.getMessage());
 		        }
 	        } while( continuar );  
 	        

@@ -4,12 +4,14 @@ public class ClienteModel extends ModelAB{
 	private String nome;
 	private Integer idade;
 	private String cpf;
+	private String dataRegistro;
 
-	public ClienteModel(String nome, Integer idade, String cpf) {
+	public ClienteModel(String nome, Integer idade, String cpf, String dataRegistro) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 		this.cpf = cpf;
+		this.dataRegistro = dataRegistro;
 	}
 	
 	public ClienteModel() {
@@ -40,6 +42,14 @@ public class ClienteModel extends ModelAB{
 		this.cpf = cpf;
 	}
 	
+	public String getDataRegistro() {
+		return dataRegistro;
+	}
+
+	public void setDataRegistro(String dataRegistro) {
+		this.dataRegistro = dataRegistro;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,6 +79,6 @@ public class ClienteModel extends ModelAB{
 
 //	Como adicionar o toString de ModelAB
 	public String toString() {
-		return "\n Nome: " + getNome() + "\n Idade: " + getIdade() + "\n CPF: " + getCpf();
+		return "\n\nNome: " + getNome() + "\nIdade: " + getIdade() + "\nCPF: " + getCpf() + "\nRegistrado em: " + getDataRegistro() + "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo() + "\n";
 	}
 }
