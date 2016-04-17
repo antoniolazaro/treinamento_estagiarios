@@ -17,4 +17,6 @@ public interface MidiaDAOIf {
 	public MidiaModel buscar(MidiaModel pModel) throws Exception;
 
 	public MidiaModel buscarMidia(String nome) throws Exception;
+	
+	public MidiaModel buscar(Long codigo) throws Exception;
 }

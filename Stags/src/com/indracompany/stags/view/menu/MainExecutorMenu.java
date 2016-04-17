@@ -52,11 +52,15 @@ public class MainExecutorMenu {
 		                	menuBuilder.buscarMidia(midia);                
 		                    break;
 		                    
-//		                case "9":
+		                case "9":
+		                	menuBuilder.buscar(midia);                
+		                    break;
+		                    
+//		                case "10":
 //		                	menuBuilder.vender(midia);                
 //		                    break;
 		                    
-//		                case "10":
+//		                case "11":
 //		                	menuBuilder.alugar(midia);                
 //		                    break;
 

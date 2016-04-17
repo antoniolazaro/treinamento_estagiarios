@@ -36,9 +36,10 @@ public class MenuBuilder {
 			System.out.println("\t5. Editar mídia");
 			System.out.println("\t6. Excluir mídia");
 			System.out.println("\t7. Buscar cliente");
-			System.out.println("\t8. Buscar mídia");
-//			System.out.println("\t9. Vender");
-//			System.out.println("\t10. Alugar");
+			System.out.println("\t8. Buscar mídia por nome");
+			System.out.println("\t9. Buscar mídia por código");
+//			System.out.println("\t10. Vender");
+//			System.out.println("\t11. Alugar");
 			System.out.println("\t0. Sair");
 			
 			return pedirEntrada("\nInsira sua opção: ");
@@ -341,6 +342,22 @@ public class MenuBuilder {
 				throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
 			}
 		}		
+		
+		public void buscar(MidiaModel pModel) throws Exception {
+			try {
+				try {
+					Long codigo = Long.parseLong(pedirEntrada(quebraLinha + "Digite código da mídia a detalhar: "));
+					if(pModel.getAtivo() != false){
+						midiaBO.buscar(codigo);		
+					} else 
+						throw new Exception("Mídia não encontrada. ");					
+				} catch (Exception e) {	
+					throw new Exception("Formato inválido ");
+				}
+			} catch (Exception e) {	
+				throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
+			}
+		}
 		
 		//método vender
 		public void vender(TransacaoModel transacaoBO) {

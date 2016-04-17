@@ -56,7 +56,9 @@ public class MidiaBO implements MidiaBOIf{
 	@Override
 	public MidiaModel buscar(MidiaModel pModel) throws Exception {
 		try {
-			validate(pModel);
+			if(pModel.getCodigo() == null || pModel.getCodigo().equals("")){
+				throw new Exception("Campo não pode ser nulo");
+			}
 			return midiaDAO.buscar(pModel);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
@@ -107,6 +109,15 @@ public class MidiaBO implements MidiaBOIf{
 			return midiaDAO.buscarMidia(nome);
 		} catch (Exception e) {
 			throw new Exception("Erro ao tentar buscar uma mídia pelo nome -> "+e.getMessage());
+		}
+	}
+
+	@Override
+	public MidiaModel buscar(Long codigo) throws Exception {
+		try {
+			return midiaDAO.buscar(codigo);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar buscar uma mídia pelo código -> "+e.getMessage());
 		}
 	}
 }
