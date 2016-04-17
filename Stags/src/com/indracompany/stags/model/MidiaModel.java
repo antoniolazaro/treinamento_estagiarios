@@ -7,12 +7,11 @@ public class MidiaModel extends ModelAB {
 	private String dataRegistro;
 	private Double valorAluguel;
 	private Double valorVenda;
-	private Double valorCompra;
 	private TipoDeMidiaModel tipoMidia;
 	private Integer quantidadeEstoque;
 	
 	public MidiaModel(String nome, String descricao, String codigoBarras, String dataRegistro, Double valorAluguel,
-			Double valorVenda, TipoDeMidiaModel tipoMidia, Integer quantidadeEstoque, Double valorCompra) {
+			Double valorVenda, TipoDeMidiaModel tipoMidia, Integer quantidadeEstoque) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
@@ -20,7 +19,6 @@ public class MidiaModel extends ModelAB {
 		this.dataRegistro = dataRegistro;
 		this.valorAluguel = valorAluguel;
 		this.valorVenda = valorVenda;
-		this.valorCompra = valorCompra;
 		this.tipoMidia = tipoMidia;
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
@@ -77,14 +75,6 @@ public class MidiaModel extends ModelAB {
 		this.valorVenda = valorVenda;
 	}
 
-	public Double getValorCompra() {
-		return valorCompra;
-	}
-
-	public void setValorCompra(Double valorCompra) {
-		this.valorCompra = valorCompra;
-	}
-
 	public TipoDeMidiaModel getTipoMidia() {
 		return tipoMidia;
 	}
@@ -134,6 +124,6 @@ public class MidiaModel extends ModelAB {
 
 	@Override
 	public String toString() {
-		return "\n\nNome: " + getNome() + "\nDescrição: " + getDescricao() + "\nCodigo de Barras: " + getCodigoBarras() + "\nData da última modificação: " + getDataRegistro() + "\nValor de Compra: " + getValorCompra() + "\nValor de Venda: " + getValorVenda() + "\nValor de Aluguel: " + getValorAluguel() +  "\nTipo de mídia: " + getTipoMidia() + "\nQuantidade no estoque: " + getQuantidadeEstoque() + "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo() + "\n";
+		return "\n\nNome: " + getNome() + "\nDescrição: " + getDescricao() + "\nCodigo de Barras: " + getCodigoBarras() + "\nData da última modificação: " + getDataRegistro() + "\nValor de Venda: " + getValorVenda() + "\nValor de Aluguel: " + getValorAluguel() +  "\nTipo de mídia: " + getTipoMidia() + "\nQuantidade no estoque: " + getQuantidadeEstoque() + "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo() + "\n";
 	}
 }
