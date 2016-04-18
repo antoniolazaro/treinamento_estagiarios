@@ -56,9 +56,8 @@ public class MenuBuilder {
 			if(idade  != null && !idade.equals("")){
 				int valor = Integer.parseInt(idade);
 				pModel.setIdade(valor);
-				cpf = pedirEntrada(quebraLinha + "Digite cpf: ");
+				cpf = pedirEntrada(quebraLinha + "Digite cpf válido: ");
 				pModel.setCpf(cpf);
-	//			Data automática
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				Date date = new Date();
 				pModel.setDataRegistro(dateFormat.format(date));
@@ -68,7 +67,6 @@ public class MenuBuilder {
 			} else {
 				throw new Exception("Formato inválido.");
 			}
-//			exibirTodos();
 		}
 		
 		public void editarCliente(ClienteModel pModel) throws Exception {
@@ -101,7 +99,7 @@ public class MenuBuilder {
 								break;
 								
 							case "c":
-								String opcao3 = pedirEntrada(quebraLinha + "Digite novo CPF: ");;
+								String opcao3 = pedirEntrada(quebraLinha + "Digite novo CPF válido: ");;
 								if(opcao3 != null && !opcao3.equals("")){
 									pModel.setCpf(opcao3);
 									clienteBO.validate(pModel);
@@ -217,7 +215,6 @@ public class MenuBuilder {
 							
 						case "f":		
 		                	continuar = MainExecutorMenu.voltarPrograma();
-//		        			Data automática
 		        			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		        			Date date = new Date();
 		        			pModel.setDataRegistro(dateFormat.format(date));
@@ -369,45 +366,33 @@ public class MenuBuilder {
 			try{
 				TransacaoModel tModel = new TransacaoModel();
 				String nomeMidia = null;
-				try {
-					String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a comprar: ");
-					pModel = clienteBO.buscarCliente(nomeCliente);
-					tModel.setCliente(pModel);				
-				}catch (Exception e) {	
+				String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a comprar: ");
+				pModel = clienteBO.buscarCliente(nomeCliente);
+				if(pModel == null){
 					throw new Exception("Cliente inválido ");
 				}
-				try {
-					Double acumular = null;
-					do{
-						nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a comprar (para cancelar, digite N): ");
-					    if(!nomeMidia.equalsIgnoreCase("N")){
-							lModel = midiaBO.buscarMidia(nomeMidia);
-							// acumular tá dando erro no debug
-							acumular = acumular + lModel.getValorVenda();
-							transacaoBO.setValorTotal(acumular);
-					    	tModel.addMidia(lModel);
-					    	System.out.printf("Mídia adicionada com sucesso. ");
-					    }		                    
-					}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
-//					Data automática
-					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-					Date date = new Date();
-					pModel.setDataRegistro(dateFormat.format(date));
-					try {
-						clienteBO.validate(pModel);
-						midiaBO.validate(lModel);					
-					} catch (Exception e) {	
-						throw new Exception("Não validados. ");
-					}
-					try {
-						transacaoBO.inserir(tModel);
-						System.out.printf(quebraLinha + "\nValor total da compra: " + transacaoBO.getValorTotal() + "Compra realizada com sucesso." + quebraLinha + quebraLinha);					
-					} catch (Exception e) {	
-						throw new Exception("Transação não pode ser realizada. ");
-					}
-				}catch (Exception e) {	
-					throw new Exception("Mídia inválida ");
-				}
+				tModel.setCliente(pModel);	
+				Double novoVal = null;
+				transacaoBO.setValorTotal(novoVal);
+				do{
+					nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a comprar" + quebraLinha + "(para cancelar, digite N): ");
+				    if(!nomeMidia.equalsIgnoreCase("N")){
+						lModel = midiaBO.buscarMidia(nomeMidia);
+						transacaoBO.setValorTotal(lModel.getValorVenda());
+				    	tModel.addMidia(lModel);
+						Integer novaQuantidade = (lModel.getQuantidadeEstoque() - 1);
+						lModel.setQuantidadeEstoque(novaQuantidade);
+				    	System.out.printf("Mídia adicionada com sucesso. ");
+				    }		                    
+				}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
+				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				Date date = new Date();
+				pModel.setDataRegistro(dateFormat.format(date));
+				clienteBO.validate(pModel);
+				midiaBO.validate(lModel);	
+				transacaoBO.inserir(tModel);
+				System.out.printf(quebraLinha + "Compra realizada com sucesso." + quebraLinha + quebraLinha);
+				transacaoBO.toString();
 	       }catch(Exception ex){
 	        	System.err.println("LOG DE ERRO: "+ex.getMessage());
 	       }						
@@ -418,44 +403,31 @@ public class MenuBuilder {
 					try{
 						TransacaoModel tModel = new TransacaoModel();
 						String nomeMidia = null;
-						try {
-							String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a alugar: ");
-							pModel = clienteBO.buscarCliente(nomeCliente);
-							tModel.setCliente(pModel);				
-						}catch (Exception e) {	
+						String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a alugar: ");
+						pModel = clienteBO.buscarCliente(nomeCliente);
+						if(pModel == null){
 							throw new Exception("Cliente inválido ");
 						}
-						try {
-							Double acumular = null;
-							do{
-								nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a alugar (para cancelar, digite N): ");
-							    if(!nomeMidia.equalsIgnoreCase("N")){
-									lModel = midiaBO.buscarMidia(nomeMidia);
-									acumular = acumular + lModel.getValorAluguel();
-									transacaoBO.setValorTotal(acumular);
-							    	tModel.addMidia(lModel);
-							    	System.out.printf("Mídia adicionada com sucesso. ");
-							    }		                    
-							}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
-						}catch (Exception e) {	
-							throw new Exception("Mídia inválida ");
-						}
-//						Data automática
+						tModel.setCliente(pModel);
+						do{
+							nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a alugar" + quebraLinha + "(para cancelar, digite N): ");
+						    if(!nomeMidia.equalsIgnoreCase("N")){
+								lModel = midiaBO.buscarMidia(nomeMidia);
+								Integer novaQuantidade = (lModel.getQuantidadeEstoque() - 1);
+								lModel.setQuantidadeEstoque(novaQuantidade);
+								transacaoBO.setValorTotal(lModel.getValorAluguel());
+						    	tModel.addMidia(lModel);
+						    	System.out.printf("Mídia adicionada com sucesso. ");
+						    }		                    
+						}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 						Date date = new Date();
 						pModel.setDataRegistro(dateFormat.format(date));
-						try {
-							clienteBO.validate(pModel);
-							midiaBO.validate(lModel);					
-						} catch (Exception e) {	
-							throw new Exception("Não validados. ");
-						}
-						try {
-							transacaoBO.inserir(tModel);
-							System.out.printf(quebraLinha + "\nValor total da aluguel: " + transacaoBO.getValorTotal() + "Aluguel realizado com sucesso." + quebraLinha + quebraLinha);					
-						} catch (Exception e) {	
-							throw new Exception("Transação não pode ser realizada. ");
-						}
+						clienteBO.validate(pModel);
+						midiaBO.validate(lModel);
+						transacaoBO.inserir(tModel);
+						System.out.printf(quebraLinha + "Aluguel realizado com sucesso." + quebraLinha + quebraLinha);
+						transacaoBO.toString();
 			       }catch(Exception ex){
 			        	System.err.println("LOG DE ERRO: "+ex.getMessage());
 			       }						

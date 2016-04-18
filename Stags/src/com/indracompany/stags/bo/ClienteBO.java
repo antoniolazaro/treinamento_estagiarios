@@ -72,8 +72,9 @@ public class ClienteBO implements ClienteBOIf{
 				
 				if(pModel.getIdade() <= 0){
 					throw new Exception("Idade não pode ser negativa. ");
-				}
-				
+				} if(pModel.getIdade() > 135) {
+					throw new Exception("Idade inválida. ");					
+				}				
 				// considera-se erro CPF's formados por uma sequencia de numeros iguais 
 				if (pModel.getCpf().equals("00000000000") || pModel.getCpf().equals("11111111111") || pModel.getCpf().equals("22222222222") || pModel.getCpf().equals("33333333333") || pModel.getCpf().equals("44444444444") || pModel.getCpf().equals("55555555555") || pModel.getCpf().equals("66666666666") || pModel.getCpf().equals("77777777777") || pModel.getCpf().equals("88888888888") || pModel.getCpf().equals("99999999999") || (pModel.getCpf().length() != 11))
 					throw new Exception("Formato de CPF inválido. ");

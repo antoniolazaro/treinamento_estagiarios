@@ -51,6 +51,13 @@ public abstract class ModelAB {
 	
 	@Override
 	public String toString() {
-		return "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo();
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\nCódigo: ").append(getCodigo()).append("\nEstá ativo? ");
+		if(getAtivo() != null && getAtivo()){
+			buffer.append(" Ativo.");
+		}else{
+			buffer.append(" Inativo.");
+		}
+		return  buffer.toString();
 	}	
 }

@@ -124,6 +124,13 @@ public class MidiaModel extends ModelAB {
 
 	@Override
 	public String toString() {
-		return "\n\nNome: " + getNome() + "\nDescrição: " + getDescricao() + "\nCodigo de Barras: " + getCodigoBarras() + "\nData da última modificação: " + getDataRegistro() + "\nValor de Venda: " + getValorVenda() + "\nValor de Aluguel: " + getValorAluguel() +  "\nTipo de mídia: " + getTipoMidia() + "\nQuantidade no estoque: " + getQuantidadeEstoque() + "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo() + "\n";
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\n\nNome: ").append(getNome()).append("\nDescrição: ").append(getDescricao()).append("\nCodigo de Barras: ").append(getCodigoBarras()).append("\nCódigo: ").append(getCodigo()).append("\nValor de Venda: ").append(getValorVenda()).append("\nValor de Aluguel: ").append(getValorAluguel()).append("\nTipo de mídia: ").append(getTipoMidia()).append("\nQuantidade no estoque: ").append(getQuantidadeEstoque()).append("\nRegistrado em: ").append(getDataRegistro()).append("\nEstá ativo? ");
+		if(getAtivo() != null && getAtivo()){
+			buffer.append(" Ativo.");
+		}else{
+			buffer.append(" Inativo.");
+		}
+		return  buffer.toString();
 	}
 }

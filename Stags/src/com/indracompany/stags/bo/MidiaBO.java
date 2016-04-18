@@ -87,6 +87,15 @@ public class MidiaBO implements MidiaBOIf{
 				if(pModel.getQuantidadeEstoque() == null || pModel.getQuantidadeEstoque().equals("")){
 					throw new Exception("Quantidade em estoque é um campo obrigatório");
 				}
+				if(pModel.getQuantidadeEstoque() < 0){
+					throw new Exception("Quantidade em estoque não pode ser negativa");
+				}
+				if(pModel.getValorAluguel() <= 0){
+					throw new Exception("Valor de aluguel não pode ser negativa ou igual a zero");
+				}
+				if(pModel.getValorVenda() <= 0){
+					throw new Exception("Valor de venda não pode ser negativa ou igual a zero");
+				}
 			} catch (Exception e) {
 				throw new Exception("Erro ao tentar validar uma mídia -> "+e.getMessage());				
 			}

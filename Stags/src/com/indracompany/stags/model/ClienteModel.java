@@ -77,8 +77,14 @@ public class ClienteModel extends ModelAB{
 		return true;
 	}
 
-//	Como adicionar o toString de ModelAB
 	public String toString() {
-		return "\n\nNome: " + getNome() + "\nIdade: " + getIdade() + "\nCPF: " + getCpf() + "\nRegistrado em: " + getDataRegistro() + "\nCódigo: " + getCodigo() + "\nEstá ativo? " + getAtivo() + "\n";
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\n\nNome: ").append(getNome()).append("\nIdade: ").append(getIdade()).append("\nCPF: ").append(getCpf()).append("\nCódigo: ").append(getCodigo()).append("\nRegistrado em: ").append(getDataRegistro()).append("\nEstá ativo? ");
+		if(getAtivo() != null && getAtivo()){
+			buffer.append(" Ativo.");
+		}else{
+			buffer.append(" Inativo.");
+		}
+		return  buffer.toString();
 	}
 }

@@ -17,14 +17,12 @@ public class MidiaTest {
 		midiaBO = new MidiaBO();
 	}
 		
-	public void inserirMidia() throws Exception{
-		
+	public void inserirMidia() throws Exception{		
 		MidiaModel lMidia1 = new MidiaModel();
 		lMidia1.setNome("2013");
 		lMidia1.setCodigo((long) 1);
 		lMidia1.setDescricao("25");
 		lMidia1.setCodigoBarras("7364736435246");
-//		Data automática
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		lMidia1.setDataRegistro(dateFormat.format(date));		

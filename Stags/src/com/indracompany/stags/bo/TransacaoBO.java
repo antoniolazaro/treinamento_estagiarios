@@ -42,9 +42,9 @@ public class TransacaoBO implements TransacaoBOIf{
 				if(pModel.getListaMidia() == null || pModel.getListaMidia().equals("")){
 					throw new Exception("Não foram estabelecidas mídias");
 				}
-				if(pModel.getValorTotal() == null || pModel.getValorTotal().equals("")){
-					throw new Exception("Não foram estabelecidos valores");
-				}
+//				if(pModel.getValorTotal() == null || pModel.getValorTotal().equals("")){
+//					throw new Exception("Não foram estabelecidos valores");
+//				}
 			} catch (Exception e) {
 				throw new Exception("Erro ao tentar validar uma transação -> "+e.getMessage());				
 			}
@@ -52,14 +52,24 @@ public class TransacaoBO implements TransacaoBOIf{
 	}
 
 	@Override
-	public Double getValorTotal() {
-		// TODO Auto-generated method stub
-		return null;
+	public void getValorTotal(TransacaoModel pModel)throws Exception {
+		if(pModel != null){
+			try {
+				validate(pModel);
+				transacaoDAO.getValorTotal(pModel);
+			} catch (Exception e) {
+				throw new Exception("Erro ao tentar realizar transação -> "+e.getMessage());
+			}
+		}
 	}
 
 	@Override
-	public void setValorTotal(Double acumular) {
-		// TODO Auto-generated method stub
+	public void setValorTotal(Double pModel)throws Exception {
+		try {
+			transacaoDAO.setValorTotal(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar realizar transação -> "+e.getMessage());
+		}
 		
 	}
 }

@@ -20,35 +20,35 @@ public class ClienteTest {
 		lCliente1.setNome("Antônio Visionário");
 		lCliente1.setCodigo((long) 1);
 		lCliente1.setIdade(25);
-		lCliente1.setCpf("7364736435246");
+		lCliente1.setCpf("16866666325");
 		lCliente1.setAtivo(true);
 		
 		ClienteModel lCliente2 = new ClienteModel();
 		lCliente2.setNome("Luis Cardoso");
 		lCliente2.setCodigo((long) 2);
 		lCliente2.setIdade(45);
-		lCliente2.setCpf("7364736435236");
+		lCliente2.setCpf("62654176061");
 		lCliente2.setAtivo(true);
 		
 		ClienteModel lCliente3 = new ClienteModel();
 		lCliente3.setNome("Caio");
 		lCliente3.setCodigo((long) 3);
 		lCliente3.setIdade(23);
-		lCliente3.setCpf("7364736433236");
+		lCliente3.setCpf("77044848427");
 		lCliente3.setAtivo(true);
 		
 		ClienteModel lCliente4 = new ClienteModel();
 		lCliente4.setNome("Karen");
 		lCliente4.setCodigo((long) 4);
 		lCliente4.setIdade(24);
-		lCliente4.setCpf("7363336433236");
+		lCliente4.setCpf("84965903803");
 		lCliente4.setAtivo(true);
 		
 		ClienteModel lCliente5 = new ClienteModel();
 		lCliente5.setNome("Matheus");
 		lCliente5.setCodigo((long) 5);
 		lCliente5.setIdade(24);
-		lCliente5.setCpf("1264736433236");
+		lCliente5.setCpf("60193148129");
 		lCliente5.setAtivo(true);
 		
 		clienteBO.inserir(lCliente1);
