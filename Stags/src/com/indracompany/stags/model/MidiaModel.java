@@ -55,8 +55,8 @@ public class MidiaModel extends ModelAB {
 		return dataRegistro;
 	}
 
-	public void setDataRegistro(String string) {
-		this.dataRegistro = string;
+	public void setDataRegistro(String dataRegistro) {
+		this.dataRegistro = dataRegistro;
 	}
 
 	public Double getValorAluguel() {

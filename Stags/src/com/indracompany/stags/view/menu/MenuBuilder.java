@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 import com.indracompany.stags.bo.ClienteBO;
 import com.indracompany.stags.bo.MidiaBO;
+import com.indracompany.stags.bo.TransacaoBO;
 import com.indracompany.stags.bo.ab.ClienteBOIf;
 import com.indracompany.stags.bo.ab.MidiaBOIf;
+import com.indracompany.stags.bo.ab.TransacaoBOIf;
 //import com.indracompany.stags.bo.ab.TransacaoBOIf;
 import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.MidiaModel;
@@ -18,13 +20,13 @@ import com.indracompany.stags.model.TransacaoModel;
 public class MenuBuilder {
 		private ClienteBOIf clienteBO;
 		private MidiaBOIf midiaBO;
-//		private TransacaoBOIf transacaoBO;
+		private TransacaoBOIf transacaoBO;
     	String quebraLinha = System.getProperty("line.separator");
 		
 		public MenuBuilder(){
 			clienteBO = new ClienteBO();
 			midiaBO = new MidiaBO();
-//			transacaoBO = new TransacaoBOIf();
+			transacaoBO = new TransacaoBO();
 		}
 		public String executarMenuInicial() {
 			
@@ -38,8 +40,8 @@ public class MenuBuilder {
 			System.out.println("\t7. Buscar cliente");
 			System.out.println("\t8. Buscar mídia por nome");
 			System.out.println("\t9. Buscar mídia por código");
-//			System.out.println("\t10. Vender");
-//			System.out.println("\t11. Alugar");
+			System.out.println("\t10. Vender");
+			System.out.println("\t11. Alugar");
 			System.out.println("\t0. Sair");
 			
 			return pedirEntrada("\nInsira sua opção: ");
@@ -245,14 +247,17 @@ public class MenuBuilder {
 								pModel.setTipoMidia(TipoDeMidiaModel.DVD);			
 								continuar = false;
 								break;
+								
 							case "b":
 								pModel.setTipoMidia(TipoDeMidiaModel.BLURAY);
 								continuar = false;
 								break;
+								
 							case "c":					
 								pModel.setTipoMidia(TipoDeMidiaModel.STREAMING);
 								continuar = false;
 								break;
+								
 							default:
 			                    System.out.printf("Você digitou uma opção inválida.");
 			                    System.lineSeparator();
@@ -360,9 +365,101 @@ public class MenuBuilder {
 		}
 		
 		//método vender
-		public void vender(TransacaoModel transacaoBO) {
-			
+		public void vender(ClienteModel pModel, MidiaModel lModel) {
+			try{
+				TransacaoModel tModel = new TransacaoModel();
+				String nomeMidia = null;
+				try {
+					String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a comprar: ");
+					pModel = clienteBO.buscarCliente(nomeCliente);
+					tModel.setCliente(pModel);				
+				}catch (Exception e) {	
+					throw new Exception("Cliente inválido ");
+				}
+				try {
+					Double acumular = null;
+					do{
+						nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a comprar (para cancelar, digite N): ");
+					    if(!nomeMidia.equalsIgnoreCase("N")){
+							lModel = midiaBO.buscarMidia(nomeMidia);
+							// acumular tá dando erro no debug
+							acumular = acumular + lModel.getValorVenda();
+							transacaoBO.setValorTotal(acumular);
+					    	tModel.addMidia(lModel);
+					    	System.out.printf("Mídia adicionada com sucesso. ");
+					    }		                    
+					}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
+//					Data automática
+					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+					Date date = new Date();
+					pModel.setDataRegistro(dateFormat.format(date));
+					try {
+						clienteBO.validate(pModel);
+						midiaBO.validate(lModel);					
+					} catch (Exception e) {	
+						throw new Exception("Não validados. ");
+					}
+					try {
+						transacaoBO.inserir(tModel);
+						System.out.printf(quebraLinha + "\nValor total da compra: " + transacaoBO.getValorTotal() + "Compra realizada com sucesso." + quebraLinha + quebraLinha);					
+					} catch (Exception e) {	
+						throw new Exception("Transação não pode ser realizada. ");
+					}
+				}catch (Exception e) {	
+					throw new Exception("Mídia inválida ");
+				}
+	       }catch(Exception ex){
+	        	System.err.println("LOG DE ERRO: "+ex.getMessage());
+	       }						
 		}
+		
+		//método alugar
+				public void alugar(ClienteModel pModel, MidiaModel lModel) {
+					try{
+						TransacaoModel tModel = new TransacaoModel();
+						String nomeMidia = null;
+						try {
+							String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a alugar: ");
+							pModel = clienteBO.buscarCliente(nomeCliente);
+							tModel.setCliente(pModel);				
+						}catch (Exception e) {	
+							throw new Exception("Cliente inválido ");
+						}
+						try {
+							Double acumular = null;
+							do{
+								nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a alugar (para cancelar, digite N): ");
+							    if(!nomeMidia.equalsIgnoreCase("N")){
+									lModel = midiaBO.buscarMidia(nomeMidia);
+									acumular = acumular + lModel.getValorAluguel();
+									transacaoBO.setValorTotal(acumular);
+							    	tModel.addMidia(lModel);
+							    	System.out.printf("Mídia adicionada com sucesso. ");
+							    }		                    
+							}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
+						}catch (Exception e) {	
+							throw new Exception("Mídia inválida ");
+						}
+//						Data automática
+						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+						Date date = new Date();
+						pModel.setDataRegistro(dateFormat.format(date));
+						try {
+							clienteBO.validate(pModel);
+							midiaBO.validate(lModel);					
+						} catch (Exception e) {	
+							throw new Exception("Não validados. ");
+						}
+						try {
+							transacaoBO.inserir(tModel);
+							System.out.printf(quebraLinha + "\nValor total da aluguel: " + transacaoBO.getValorTotal() + "Aluguel realizado com sucesso." + quebraLinha + quebraLinha);					
+						} catch (Exception e) {	
+							throw new Exception("Transação não pode ser realizada. ");
+						}
+			       }catch(Exception ex){
+			        	System.err.println("LOG DE ERRO: "+ex.getMessage());
+			       }						
+				}
 		
 		@SuppressWarnings("resource")
 		public String pedirEntrada(String mensagemEntrada) {
