@@ -1,46 +1,55 @@
 package com.indracompany.stags.view;
 
 import java.util.Collection;
-
 import java.util.List;
-
 import java.util.Scanner;
 
 import com.indracompany.stags.bo.ClienteBO;
+import com.indracompany.stags.bo.CompraBO;
 import com.indracompany.stags.bo.ProdutoBO;
 import com.indracompany.stags.bo.ab.IClienteBO;
+import com.indracompany.stags.bo.ab.ICompraBO;
 import com.indracompany.stags.bo.ab.IProdutoBO;
 import com.indracompany.stags.model.ClienteModel;
+import com.indracompany.stags.model.CompraModel;
 import com.indracompany.stags.model.ProdutoModel;
+import com.indracompany.stags.model.TipoCompra;
 import com.indracompany.stags.model.TipoProduto;
 
 public class MenuBuilder {
 
 	IClienteBO clienteBo = new ClienteBO();
 	IProdutoBO produtoBO = new ProdutoBO();
+	ICompraBO compraBO = new CompraBO();
 	static Scanner scanner = new Scanner(System.in);
-	static String quebraLinha = System.lineSeparator();
+	final static String QUEBRA_LINHA = System.lineSeparator();
 
 	public String executarMenuInicial() {
 
 		// cliente
-		System.out.println("\t\tMenu de opções:" + "" + quebraLinha);
-		System.out.println("Cliente:" + quebraLinha);
+		System.out.println("\t\tMenu de opções:" + "" + QUEBRA_LINHA);
+		System.out.println("Cliente:" + QUEBRA_LINHA);
 		System.out.println("\t1. Adicionar Cliente");
 		System.out.println("\t2. Buscar Cliente");
 		System.out.println("\t3. Excluir Cliente");
 		System.out.println("\t4. Editar Cliente");
-		System.out.println("\t5. listar Clientes" + "" + quebraLinha);
+		System.out.println("\t5. listar Clientes" + "" + QUEBRA_LINHA);
 
-		System.out.println("Produto:" + quebraLinha);
+		System.out.println("Produto:" + QUEBRA_LINHA);
 
 		// produto
 		System.out.println("\t6. Adicionar Produto");
 		System.out.println("\t7. Buscar Produto");
 		System.out.println("\t8. Excluir Produto");
-		System.out.println("\t9. Editar Produto");
+		System.out.println("\t9. Editar Produto" + QUEBRA_LINHA);
+
+		System.out.println("Compras:" + QUEBRA_LINHA);
+		System.out.println("\t10. Comprar");
+		System.out.println("\t11. Alugar");
+		System.out.println("\t13 Listar Compras");
 		// add_maisopções
-		System.out.println("\t0. Sair" + quebraLinha);
+
+		System.out.println("\t0. Sair" + QUEBRA_LINHA);
 
 		return pedirEntrada("\nInsira sua opção: ");
 	}
@@ -59,7 +68,7 @@ public class MenuBuilder {
 	public void buscarCliente() throws Exception {
 		String nome;
 		nome = pedirEntrada("Digite o nome.");
-		System.out.println("Clientes: " + quebraLinha);
+		System.out.println("Clientes: " + QUEBRA_LINHA);
 		ClienteModel busca = clienteBo.buscar(nome);
 		System.out.println("Nome: " + busca.getNome());
 		clienteBo.tratarSituacaoCliente(busca);
@@ -199,6 +208,84 @@ public class MenuBuilder {
 
 		produtoBO.excluir(produto);
 		System.out.println("Produto Excluir: ");
+	}
+
+	// compra
+
+	public void comprar() throws Exception {
+		boolean continuar = true;
+		String nomeCliente;
+		ClienteModel cliente;
+		CompraModel compra = new CompraModel();
+		nomeCliente = pedirEntrada("Digite o nome do cliente");
+		cliente = clienteBo.buscar(nomeCliente);
+		compra.setClienteModel(cliente);
+		compra.setDias(1);
+		compra.setTipoCompra(TipoCompra.COMPRA);
+
+		do {
+
+			String opcao;
+			String nome;
+			ProdutoModel produto;
+			nome = pedirEntrada("Digite o nome do produto");
+			produto = produtoBO.buscar(nome);
+			compraBO.addlistaProduto(produto, compra);
+			opcao = pedirEntrada(
+					"Digite um para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
+			if (!opcao.equals("1")) {
+				continuar = false;
+
+			}
+		} while (continuar);
+		compraBO.vender(compra);
+	}
+
+	public void alugar() throws Exception {
+		boolean continuar = true;
+		String nomeCliente;
+		ClienteModel cliente;
+		Integer dias = 1;
+		CompraModel compra = new CompraModel();
+		nomeCliente = pedirEntrada("Digite o nome do cliente");
+		cliente = clienteBo.buscar(nomeCliente);
+		compra.setClienteModel(cliente);
+		compra.setTipoCompra(TipoCompra.ALUGUEL);
+
+		do {
+
+			String opcao;
+			String nome;
+			ProdutoModel produto;
+			nome = pedirEntrada("Digite o nome do produto");
+			produto = produtoBO.buscar(nome);
+			compraBO.addlistaProduto(produto, compra);
+			opcao = pedirEntrada(
+					"Digite um para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
+			if (!opcao.equals("1")) {
+				continuar = false;
+
+			}
+		} while (continuar);
+		dias = pedirEntradaNumeroInteger("Digite os dias para aluguel");
+		compra.setDias(dias);
+		compraBO.alugar(compra);
+	}
+
+	public void listarCompras() {
+		for (CompraModel compra : compraBO.listar()) {
+			System.out.println("Cliente : " + compra.getClienteModel().getNome() + " Código  do cliente: "
+					+ compra.getClienteModel().getCodigo());
+			System.out.println(compra.getDataCompra());
+			System.out.println("Produtos:" + QUEBRA_LINHA);
+			for (ProdutoModel produto : compra.getListaProduto()) {
+				System.out.println("Nome: " + produto.getNome());
+				System.out.println("Preço de Venda: " + produto.getPrecoVenda());
+				System.out.println("Preço de Aluguel: " + produto.getPrecoAluguel() + QUEBRA_LINHA);
+			}
+			System.out.println("Valor: " + compra.getValorTotal());
+			System.out.println("Tipo: " + compra.getTipoCompra().toString() + QUEBRA_LINHA);
+		}
 	}
 
 	public String pedirEntrada(String mensagemEntrada) {

@@ -12,30 +12,6 @@ public class CompraDaoMemory implements ICompraDao {
 
 	IProdutoDao produtoDao = new ProdutoDaoMemory();
 
-	public Double alugar(Integer dias, CompraModel compra) {
-
-		Double valor = 0.0;
-
-		for (ProdutoModel produtoModel : compra.getListaProduto()) {
-			valor += produtoModel.getPrecoAluguel() * dias;
-		}
-
-		return valor;
-	}
-
-	public Double vender(CompraModel compra) {
-		Double valor = 0.0;
-
-		for (ProdutoModel produtoModel : compra.getListaProduto()) {
-
-			valor += produtoModel.getPrecoVenda();
-
-		}
-
-		return valor;
-
-	}
-
 	public void inserir(CompraModel compra) {
 		compra.setCodigo(DataBase.getCodigoCompra());
 		DataBase.getListaCompra().add(compra);

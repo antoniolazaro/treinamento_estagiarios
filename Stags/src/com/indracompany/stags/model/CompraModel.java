@@ -9,17 +9,21 @@ public class CompraModel extends ModelAB {
 	private TipoCompra tipoCompra;
 	private List<ProdutoModel> produto;
 	private ClienteModel clienteModel;
-	private Date dataCompra;
+	private Date dataCompra = new Date();
+	private Integer dias = 1;
+	private Double valorTotal;
 
 	public CompraModel() {
 
 	}
 
-	public CompraModel(TipoCompra tipoCompra, List<ProdutoModel> produto, ClienteModel clienteModel) {
+	public CompraModel(TipoCompra tipoCompra, List<ProdutoModel> produto, ClienteModel clienteModel, Double valorTotal,
+			Integer dias) {
 		this.tipoCompra = tipoCompra;
 		this.produto = produto;
 		this.clienteModel = clienteModel;
-		this.dataCompra = getDataCompra();
+		this.valorTotal = valorTotal;
+		this.dias = dias;
 	}
 
 	public TipoCompra getTipoCompra() {
@@ -38,8 +42,12 @@ public class CompraModel extends ModelAB {
 		this.clienteModel = clienteModel;
 	}
 
-	public Date getDataCompra() {
-		return new Date();
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	public List<ProdutoModel> getListaProduto() {
@@ -48,6 +56,18 @@ public class CompraModel extends ModelAB {
 
 	public void setListaProduto(List<ProdutoModel> produto) {
 		this.produto = produto;
+	}
+
+	public Date getDataCompra() {
+		return dataCompra;
+	}
+
+	public Integer getDias() {
+		return dias;
+	}
+
+	public void setDias(Integer dias) {
+		this.dias = dias;
 	}
 
 }

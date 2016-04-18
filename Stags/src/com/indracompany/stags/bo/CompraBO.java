@@ -2,12 +2,10 @@
 package com.indracompany.stags.bo;
 
 import java.util.List;
-import java.util.Map.Entry;
 
 import com.indracompany.stags.bo.ab.ICompraBO;
 import com.indracompany.stags.dao.ICompraDao;
 import com.indracompany.stags.dao.memory.CompraDaoMemory;
-import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.CompraModel;
 import com.indracompany.stags.model.ProdutoModel;
 
@@ -21,37 +19,27 @@ public class CompraBO implements ICompraBO {
 
 	}
 
-	public Double vender(CompraModel compra) throws Exception {
-
-		if (compra.getListaProduto().size() > 0) {
-
-			for (ProdutoModel produtoModel : compra.getListaProduto()) {
-				produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
-			}
-
-		} else {
-			throw new Exception("lista Vazia");
+	public void vender(CompraModel compra) throws Exception {
+		Double valor = 0.0;
+		for (ProdutoModel produto : compra.getListaProduto()) {
+			valor += produto.getPrecoAluguel();
 		}
-		return compraDaoMemory.vender(compra);
+		compra.setValorTotal(valor);
+		inserir(compra);
 	}
 
-	public Double alugar(Integer dias, CompraModel compra) throws Exception {
-
-		if (compra.getListaProduto().size() > 0) {
-
-			for (ProdutoModel produtoModel : compra.getListaProduto()) {
-				produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
-
-			}
-		} else {
-			throw new Exception("lista Vazia");
+	public void alugar(CompraModel compra) throws Exception {
+		Double valor = 0.0;
+		for (ProdutoModel produto : compra.getListaProduto()) {
+			valor += produto.getPrecoAluguel();
 		}
 
-		return compraDaoMemory.alugar(dias, compra);
-
+		valor += valor * compra.getDias();
+		compra.setValorTotal(valor);
+		inserir(compra);
 	}
 
-	public void inserir(CompraModel compra) throws Exception {
+	private void inserir(CompraModel compra) throws Exception {
 		validate(compra);
 		compraDaoMemory.inserir(compra);
 	}
@@ -71,18 +59,24 @@ public class CompraBO implements ICompraBO {
 	public void addlistaProduto(ProdutoModel produtoModel, CompraModel compraModel) throws Exception {
 		if (produtoModel != null && compraModel != null) {
 
-			for (Entry<Long, ProdutoModel> iterar : DataBase.getMapProduto().entrySet()) {
-				if (iterar.getValue().getNome().equalsIgnoreCase(produtoModel.getNome())
-						&& iterar.getValue().getAtivo() == true) {
-					compraDaoMemory.addlistaProduto(produtoModel, compraModel);
-				} else {
-					throw new Exception("Produto Não Consta no estoque");
-				}
-			}
-		} else {
-			throw new Exception("Objetos nulos");
-		}
+			compraDaoMemory.addlistaProduto(produtoModel, compraModel);
 
+		}else {
+			throw new Exception("Compra  nula");
+		}
+	}
+
+	public void validarCompra(CompraModel compra) throws Exception {
+
+		if (compra.getListaProduto().size() > 0) {
+
+			for (ProdutoModel produtoModel : compra.getListaProduto()) {
+				produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
+			}
+
+		} else {
+			throw new Exception("lista Vazia");
+		}
 	}
 
 }

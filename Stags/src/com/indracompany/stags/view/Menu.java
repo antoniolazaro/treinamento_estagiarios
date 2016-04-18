@@ -47,6 +47,18 @@ public class Menu {
 				case "9":
 					menuBuilder.editarProduto();
 					break;
+
+				case "10":
+					menuBuilder.comprar();
+					break;
+				//
+				// case "11":
+				// menuBuilder.alugar();
+				// break;
+				//
+				// case "12":
+				// menuBuilder.listarCompra();
+				// break;
 				case "0":
 					continuar = finalizarPrograma();
 					break;

@@ -7,10 +7,6 @@ import com.indracompany.stags.model.ProdutoModel;
 
 public interface ICompraDao {
 
-	public Double vender(CompraModel compra);
-
-	public Double alugar(Integer dias,CompraModel compra);
-
 	public void inserir(CompraModel compra);
 
 	public List<CompraModel> listar();
