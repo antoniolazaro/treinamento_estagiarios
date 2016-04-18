@@ -51,14 +51,14 @@ public class Menu {
 				case "10":
 					menuBuilder.comprar();
 					break;
-				//
-				// case "11":
-				// menuBuilder.alugar();
-				// break;
-				//
-				// case "12":
-				// menuBuilder.listarCompra();
-				// break;
+
+				case "11":
+					menuBuilder.alugar();
+					break;
+
+				case "12":
+					menuBuilder.listarCompras();
+					break;
 				case "0":
 					continuar = finalizarPrograma();
 					break;

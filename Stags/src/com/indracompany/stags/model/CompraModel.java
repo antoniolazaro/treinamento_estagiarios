@@ -1,5 +1,6 @@
 package com.indracompany.stags.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
@@ -7,14 +8,14 @@ import java.util.List;
 public class CompraModel extends ModelAB {
 
 	private TipoCompra tipoCompra;
-	private List<ProdutoModel> produto;
+	private List<ProdutoModel> produto =  new ArrayList<>();
 	private ClienteModel clienteModel;
 	private Date dataCompra = new Date();
 	private Integer dias = 1;
 	private Double valorTotal;
 
 	public CompraModel() {
-
+		
 	}
 
 	public CompraModel(TipoCompra tipoCompra, List<ProdutoModel> produto, ClienteModel clienteModel, Double valorTotal,

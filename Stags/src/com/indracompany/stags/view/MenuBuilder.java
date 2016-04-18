@@ -222,6 +222,7 @@ public class MenuBuilder {
 		compra.setClienteModel(cliente);
 		compra.setDias(1);
 		compra.setTipoCompra(TipoCompra.COMPRA);
+		// compra.setListaProduto(new ArrayList<ProdutoModel>());
 
 		do {
 

@@ -61,7 +61,7 @@ public class CompraBO implements ICompraBO {
 
 			compraDaoMemory.addlistaProduto(produtoModel, compraModel);
 
-		}else {
+		} else {
 			throw new Exception("Compra  nula");
 		}
 	}
