@@ -1,6 +1,7 @@
 package com.indracompany.stags.dao.memory;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 
 import com.indracompany.stags.dao.IProdutoDao;

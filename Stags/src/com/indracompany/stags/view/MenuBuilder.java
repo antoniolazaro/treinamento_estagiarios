@@ -172,6 +172,7 @@ public class MenuBuilder {
 			System.out.println("Nome: " + produtoModel.getNome());
 			System.out.println("Preço Venda: " + produtoModel.getPrecoVenda());
 			System.out.println("Preço Aluguel: " + produtoModel.getPrecoAluguel());
+			System.out.println("Quantidade: "+produtoModel.getQuantidade());	
 			System.out.print("Tipo: ");
 			produtoBO.tratarSituacaoProduto(produtoModel);
 		}

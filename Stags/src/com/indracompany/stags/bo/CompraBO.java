@@ -4,6 +4,7 @@ package com.indracompany.stags.bo;
 import java.util.List;
 
 import com.indracompany.stags.bo.ab.ICompraBO;
+import com.indracompany.stags.bo.ab.IProdutoBO;
 import com.indracompany.stags.dao.ICompraDao;
 import com.indracompany.stags.dao.memory.CompraDaoMemory;
 import com.indracompany.stags.model.CompraModel;
@@ -12,16 +13,19 @@ import com.indracompany.stags.model.ProdutoModel;
 public class CompraBO implements ICompraBO {
 
 	private ICompraDao compraDaoMemory;
+	private IProdutoBO produtoBO;
 
 	public CompraBO() {
 
 		compraDaoMemory = new CompraDaoMemory();
-
+		produtoBO = new ProdutoBO();
 	}
 
 	public void vender(CompraModel compra) throws Exception {
 		Double valor = 0.0;
 		for (ProdutoModel produto : compra.getListaProduto()) {
+			produto.setQuantidade(produto.getQuantidade() - 1);
+			produtoBO.editar(produto);
 			valor += produto.getPrecoAluguel();
 		}
 		compra.setValorTotal(valor);
@@ -31,6 +35,8 @@ public class CompraBO implements ICompraBO {
 	public void alugar(CompraModel compra) throws Exception {
 		Double valor = 0.0;
 		for (ProdutoModel produto : compra.getListaProduto()) {
+			produto.setQuantidade(produto.getQuantidade() - 1);
+			produtoBO.editar(produto);
 			valor += produto.getPrecoAluguel();
 		}
 
