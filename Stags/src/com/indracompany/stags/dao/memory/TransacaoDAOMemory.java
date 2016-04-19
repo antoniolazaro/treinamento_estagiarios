@@ -12,17 +12,24 @@ public class TransacaoDAOMemory implements TransacaoDAOIf {
 		tModel.setCodigo(DataBase.getCodigoTransacao());
 		DataBase.getListaTransacao().add(tModel);
 	}
-	
+
+	@Override
 	public List<TransacaoModel> listar() throws Exception {
 		return DataBase.getListaTransacao();
-	}
+	}	
 
-	public Double setValorTotal(Double pModel) throws Exception {
-		TransacaoModel tModel = new TransacaoModel();
-		return tModel.setValorTotal(DataBase.getValorTotal(0.001) + pModel);
-	}
-
+	@Override
 	public List<TransacaoModel> getValorTotal(TransacaoModel tModel) throws Exception {
 		return DataBase.getListaTransacao();
+	}
+
+	@Override
+	public void incrementarValorTotal(Double pModel) throws Exception {
+		DataBase.getListaTransacao();		
+	}
+
+	@Override
+	public void setValorTotal(Double mModel) throws Exception {
+		DataBase.getListaTransacao();
 	}
 }

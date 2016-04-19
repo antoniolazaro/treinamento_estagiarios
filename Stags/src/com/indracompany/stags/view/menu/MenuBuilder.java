@@ -11,7 +11,6 @@ import com.indracompany.stags.bo.TransacaoBO;
 import com.indracompany.stags.bo.ab.ClienteBOIf;
 import com.indracompany.stags.bo.ab.MidiaBOIf;
 import com.indracompany.stags.bo.ab.TransacaoBOIf;
-//import com.indracompany.stags.bo.ab.TransacaoBOIf;
 import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.MidiaModel;
 import com.indracompany.stags.model.TipoDeMidiaModel;
@@ -52,9 +51,9 @@ public class MenuBuilder {
 			ClienteModel pModel = new ClienteModel();
 			nome = pedirEntrada(quebraLinha + "Digite nome: ");
 			pModel.setNome(nome);
-			String idade = pedirEntrada(quebraLinha + "Digite idade: ");
-			if(idade  != null && !idade.equals("")){
-				int valor = Integer.parseInt(idade);
+			CharSequence idade = pedirEntrada(quebraLinha + "Digite idade: ");
+			if(idade  != null && !idade.equals("") && clienteBO.validateCampoNumero(idade)){
+				int valor = Integer.parseInt((String) idade);
 				pModel.setIdade(valor);
 				cpf = pedirEntrada(quebraLinha + "Digite cpf válido: ");
 				pModel.setCpf(cpf);
@@ -371,28 +370,25 @@ public class MenuBuilder {
 				if(pModel == null){
 					throw new Exception("Cliente inválido ");
 				}
-				tModel.setCliente(pModel);	
-				Double novoVal = null;
-				transacaoBO.setValorTotal(novoVal);
+				tModel.setCliente(pModel);
+				tModel.setValorTotal((double) 0);
 				do{
 					nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a comprar" + quebraLinha + "(para cancelar, digite N): ");
 				    if(!nomeMidia.equalsIgnoreCase("N")){
 						lModel = midiaBO.buscarMidia(nomeMidia);
-						transacaoBO.setValorTotal(lModel.getValorVenda());
+						transacaoBO.incrementarValorTotalVenda(lModel, tModel);
+						transacaoBO.diminuirQuantidade(lModel);
 				    	tModel.addMidia(lModel);
-						Integer novaQuantidade = (lModel.getQuantidadeEstoque() - 1);
-						lModel.setQuantidadeEstoque(novaQuantidade);
 				    	System.out.printf("Mídia adicionada com sucesso. ");
 				    }		                    
 				}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				Date date = new Date();
-				pModel.setDataRegistro(dateFormat.format(date));
+				tModel.setDataRegistro(dateFormat.format(date));
 				clienteBO.validate(pModel);
 				midiaBO.validate(lModel);	
 				transacaoBO.inserir(tModel);
-				System.out.printf(quebraLinha + "Compra realizada com sucesso." + quebraLinha + quebraLinha);
-				transacaoBO.toString();
+				System.out.println(quebraLinha + "Compra realizada com sucesso." + quebraLinha + quebraLinha + tModel.toString());
 	       }catch(Exception ex){
 	        	System.err.println("LOG DE ERRO: "+ex.getMessage());
 	       }						
@@ -409,25 +405,25 @@ public class MenuBuilder {
 							throw new Exception("Cliente inválido ");
 						}
 						tModel.setCliente(pModel);
+						tModel.setValorTotal((double) 0);
 						do{
 							nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a alugar" + quebraLinha + "(para cancelar, digite N): ");
 						    if(!nomeMidia.equalsIgnoreCase("N")){
 								lModel = midiaBO.buscarMidia(nomeMidia);
-								Integer novaQuantidade = (lModel.getQuantidadeEstoque() - 1);
-								lModel.setQuantidadeEstoque(novaQuantidade);
-								transacaoBO.setValorTotal(lModel.getValorAluguel());
+								transacaoBO.incrementarValorTotalAluguel(lModel, tModel);
+								transacaoBO.diminuirQuantidade(lModel);
 						    	tModel.addMidia(lModel);
 						    	System.out.printf("Mídia adicionada com sucesso. ");
 						    }		                    
 						}while(nomeMidia != null && !nomeMidia.equalsIgnoreCase("N"));
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 						Date date = new Date();
-						pModel.setDataRegistro(dateFormat.format(date));
+						tModel.setDataRegistro(dateFormat.format(date));
 						clienteBO.validate(pModel);
 						midiaBO.validate(lModel);
 						transacaoBO.inserir(tModel);
-						System.out.printf(quebraLinha + "Aluguel realizado com sucesso." + quebraLinha + quebraLinha);
-						transacaoBO.toString();
+						System.out.println(quebraLinha + "Aluguel realizada com sucesso." + quebraLinha + quebraLinha + tModel.toString());
+						tModel.toString();
 			       }catch(Exception ex){
 			        	System.err.println("LOG DE ERRO: "+ex.getMessage());
 			       }						

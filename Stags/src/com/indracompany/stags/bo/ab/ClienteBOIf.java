@@ -18,4 +18,6 @@ public interface ClienteBOIf {
 	public ClienteModel buscarCliente(String nome) throws Exception;
 	
 	public void validate(ClienteModel pModel) throws Exception;
+
+	public boolean validateCampoNumero(CharSequence idade) throws Exception;
 }

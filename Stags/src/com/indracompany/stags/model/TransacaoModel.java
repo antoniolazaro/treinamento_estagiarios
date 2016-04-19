@@ -12,12 +12,12 @@ public class TransacaoModel extends ModelAB {
 		this();
 		this.cliente = cliente;
 		this.dataRegistro = dataRegistro;
+		this.valorTotal = valorTotal;
 	}
 	
 	public TransacaoModel() {
 		super();
 		this.listaMidia = new ArrayList<MidiaModel>();
-		this.valorTotal = 0.001;
 	}
 	
 	public List<MidiaModel> getListaMidia() {
@@ -45,17 +45,14 @@ public class TransacaoModel extends ModelAB {
 	public Double getValorTotal() {
 		return valorTotal;
 	}
-	public Double setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
-		return valorTotal;
-	}
-	public void setValorTotal1(Double valorTotal) {
+	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
 	@Override
 	public String toString() {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("*******************************************************").append("\nCliente").append(getCliente()).append("\nLista de mídias:\n").append(getListaMidia()).append("\nValor total=").append(getValorTotal()).append("\nData da transação: ").append(getDataRegistro()).append("\nCódigo: ").append(getCodigo()).append("\nEstá ativo? ");
+		buffer.append("*******************************************************").append("\nCliente: ").append(getCliente()).append("\nLista de mídias:\n").append(getListaMidia()).append("\nValor total: ").append(getValorTotal()).append("\nData da transação: ").append(getDataRegistro()).append("\nCódigo: ").append(getCodigo()).append("\nEstá ativo? ");
 		if(getAtivo() != null && getAtivo()){
 			buffer.append(" Ativo.");
 		}else{

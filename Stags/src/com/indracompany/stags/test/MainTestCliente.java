@@ -42,5 +42,4 @@ public class MainTestCliente {
 		clienteTest.inserirCliente();
 		clienteTest.buscarCliente();
 	}
-	
 }

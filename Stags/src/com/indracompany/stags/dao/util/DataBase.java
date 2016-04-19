@@ -80,9 +80,4 @@ public class DataBase {
 	public static void setListaTransacao(List<TransacaoModel> listaTransacao) {
 		DataBase.listaTransacao = listaTransacao;
 	}
-
-	public static Double getValorTotal(Double pModel) {
-		Double valorTotal = DataBase.listaTransacao.getValorTotal() + pModel;
-		return valorTotal;
-	}	
 }

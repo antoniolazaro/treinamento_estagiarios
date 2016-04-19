@@ -63,56 +63,63 @@ public class ClienteBO implements ClienteBOIf{
 		}
 	}
 
+	public boolean validateCampoNumero(CharSequence pModel) throws Exception {
+		boolean b;
+		java.util.regex.Pattern r = java.util.regex.Pattern.compile("^[0-9]+$");
+		java.util.regex.Matcher m = r.matcher(pModel);
+		b =  m.matches();
+		return b;
+	}
+	
 	public void validate(ClienteModel pModel) throws Exception {
 		if(pModel != null){
 			try {	
 				if(pModel.getNome() == null || pModel.getNome().equals("")){
 					throw new Exception("\nNome é um campo obrigatório. ");
 				}
-				
 				if(pModel.getIdade() <= 0){
 					throw new Exception("Idade não pode ser negativa. ");
 				} if(pModel.getIdade() > 135) {
 					throw new Exception("Idade inválida. ");					
-				}				
+				}
 				// considera-se erro CPF's formados por uma sequencia de numeros iguais 
 				if (pModel.getCpf().equals("00000000000") || pModel.getCpf().equals("11111111111") || pModel.getCpf().equals("22222222222") || pModel.getCpf().equals("33333333333") || pModel.getCpf().equals("44444444444") || pModel.getCpf().equals("55555555555") || pModel.getCpf().equals("66666666666") || pModel.getCpf().equals("77777777777") || pModel.getCpf().equals("88888888888") || pModel.getCpf().equals("99999999999") || (pModel.getCpf().length() != 11))
 					throw new Exception("Formato de CPF inválido. ");
-				char dig10, dig11; 
-				int sm, i, r, num, peso;
-				// "try" - protege o codigo para eventuais erros de conversao de tipo (int) 
-				try {
-						// Calculo do 1o. Digito Verificador 
-						sm = 0; 
-						peso = 10;
-						for (i=0; i<9; i++) {
-							// converte o i-esimo caractere do CPF em um numero:
-							// por exemplo, transforma o caractere '0' no inteiro 0 
-							// (48 eh a posicao de '0' na tabela ASCII) 
-							num = (int)(pModel.getCpf().charAt(i) - 48);
-							sm = sm + (num * peso); 
-							peso = peso - 1;
-						}
-						r = 11 - (sm % 11);
-						if ((r == 10) || (r == 11)) 
-							dig10 = '0';
-						else dig10 = (char)(r + 48); 
-						// converte no respectivo caractere numerico
-						// Calculo do 2o. Digito Verificador 
-						sm = 0;
-						peso = 11; 
-						for(i=0; i<10; i++) {
-							num = (int)(pModel.getCpf().charAt(i) - 48);
-							sm = sm + (num * peso); 
-							peso = peso - 1;
-						}
-						r = 11 - (sm % 11);
-						if ((r == 10) || (r == 11))
-							dig11 = '0';
-						else dig11 = (char)(r + 48); 
-						// Verifica se os digitos calculados conferem com os digitos informados.
-						if ((dig10 != pModel.getCpf().charAt(9)) || (dig11 != pModel.getCpf().charAt(10)))
-							throw new Exception("CPF inválido. ");
+					char dig10, dig11; 
+					int sm, i, r, num, peso;
+					// "try" - protege o codigo para eventuais erros de conversao de tipo (int) 
+					try {
+							// Calculo do 1o. Digito Verificador 
+							sm = 0; 
+							peso = 10;
+							for (i=0; i<9; i++) {
+								// converte o i-esimo caractere do CPF em um numero:
+								// por exemplo, transforma o caractere '0' no inteiro 0 
+								// (48 eh a posicao de '0' na tabela ASCII) 
+								num = (int)(pModel.getCpf().charAt(i) - 48);
+								sm = sm + (num * peso); 
+								peso = peso - 1;
+							}
+							r = 11 - (sm % 11);
+							if ((r == 10) || (r == 11)) 
+								dig10 = '0';
+							else dig10 = (char)(r + 48); 
+							// converte no respectivo caractere numerico
+							// Calculo do 2o. Digito Verificador 
+							sm = 0;
+							peso = 11; 
+							for(i=0; i<10; i++) {
+								num = (int)(pModel.getCpf().charAt(i) - 48);
+								sm = sm + (num * peso); 
+								peso = peso - 1;
+							}
+							r = 11 - (sm % 11);
+							if ((r == 10) || (r == 11))
+								dig11 = '0';
+							else dig11 = (char)(r + 48); 
+							// Verifica se os digitos calculados conferem com os digitos informados.
+							if ((dig10 != pModel.getCpf().charAt(9)) || (dig11 != pModel.getCpf().charAt(10)))
+								throw new Exception("CPF inválido. ");
 				} catch (Exception e) {
 					throw new Exception("Erro ao tentar validar CPF -> "+e.getMessage());
 				}

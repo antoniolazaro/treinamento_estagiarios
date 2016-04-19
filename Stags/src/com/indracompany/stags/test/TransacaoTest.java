@@ -82,4 +82,14 @@ public class TransacaoTest {
 //			}
 //		}
 	}
+	
+//	public void exibirCliente()throws Exception{
+//		System.out.println("*******************************************************");
+//		List<ClienteModel> lListaCliente = clienteBO.listar();
+//		if(lListaCliente !=null && lListaCliente.size() > 0){
+//			for(ClienteModel lCliente:lListaCliente){
+//				System.out.println(lCliente);
+//			}
+//		}
+//	}
 }
