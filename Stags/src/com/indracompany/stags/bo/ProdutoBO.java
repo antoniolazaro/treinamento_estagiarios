@@ -77,8 +77,8 @@ public class ProdutoBO implements IProdutoBO {
 		return tipoProduto;
 	}
 
-	private void validateList(Collection<ProdutoModel> lista) throws Exception {
-		if (lista == null) {
+	private void validateList(Collection<ProdutoModel> collection) throws Exception {
+		if (collection.isEmpty()) {
 			throw new Exception("Lista Vazia");
 		}
 	}

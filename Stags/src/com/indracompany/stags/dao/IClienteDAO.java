@@ -15,4 +15,6 @@ public interface IClienteDAO {
 	public List<ClienteModel> listar();
 
 	public ClienteModel buscar(String nome);
+	
+	public void reativarCliente(ClienteModel pModel);
 }

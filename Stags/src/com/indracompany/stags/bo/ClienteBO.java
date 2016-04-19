@@ -59,7 +59,7 @@ public class ClienteBO implements IClienteBO {
 	}
 
 	private void validateList(Collection<ClienteModel> lista) throws Exception {
-		if (lista == null) {
+		if (lista.isEmpty()) {
 			throw new Exception("Lista Vazia");
 		}
 	}
@@ -78,4 +78,16 @@ public class ClienteBO implements IClienteBO {
 			System.out.println("Situação: inativo");
 		}
 	}
+
+	@Override
+	public void reativarCliente(ClienteModel clienteModel) throws Exception {
+
+		if (clienteModel.getAtivo() == false)
+			clienteModel.setAtivo(true);
+		else {
+			throw new Exception("Cliente Já está ativo");
+		}
+
+	}
+
 }

@@ -33,19 +33,20 @@ public class MenuBuilder {
 		System.out.println("\t2. Buscar Cliente");
 		System.out.println("\t3. Excluir Cliente");
 		System.out.println("\t4. Editar Cliente");
-		System.out.println("\t5. listar Clientes" + "" + QUEBRA_LINHA);
+		System.out.println("\t5. Reativar Cliente");
+		System.out.println("\t6. listar Clientes" + "" + QUEBRA_LINHA);
 
 		System.out.println("Produto:" + QUEBRA_LINHA);
 
 		// produto
-		System.out.println("\t6. Adicionar Produto");
-		System.out.println("\t7. Buscar Produto");
-		System.out.println("\t8. Excluir Produto");
-		System.out.println("\t9. Editar Produto" + QUEBRA_LINHA);
+		System.out.println("\t7. Adicionar Produto");
+		System.out.println("\t8. Buscar Produto");
+		System.out.println("\t9. Excluir Produto");
+		System.out.println("\t10. Editar Produto" + QUEBRA_LINHA);
 
 		System.out.println("Compras:" + QUEBRA_LINHA);
-		System.out.println("\t10. Comprar");
-		System.out.println("\t11. Alugar");
+		System.out.println("\t11. Comprar");
+		System.out.println("\t12. Alugar");
 		System.out.println("\t13 Listar Compras");
 		// add_maisopções
 
@@ -122,6 +123,14 @@ public class MenuBuilder {
 			System.out.println();
 		}
 
+	}
+
+	public void reativarCliente() throws Exception {
+		String nome;
+		ClienteModel cliente;
+		nome = pedirEntrada("Digite o nome do cliente para reativar: ");
+		cliente = clienteBo.buscar(nome);
+		clienteBo.reativarCliente(cliente);
 	}
 
 	// produto
@@ -289,17 +298,17 @@ public class MenuBuilder {
 		}
 	}
 
-	public String pedirEntrada(String mensagemEntrada) {
+	private String pedirEntrada(String mensagemEntrada) {
 		System.out.print(mensagemEntrada);
 		return scanner.next();
 	}
 
-	public double pedirEntradaNumeroDouble(String mensagemEntrada) {
+	private double pedirEntradaNumeroDouble(String mensagemEntrada) {
 		System.out.print(mensagemEntrada);
 		return scanner.nextDouble();
 	}
 
-	public Integer pedirEntradaNumeroInteger(String mensagemEntrada) {
+	private Integer pedirEntradaNumeroInteger(String mensagemEntrada) {
 		System.out.print(mensagemEntrada);
 		return scanner.nextInt();
 	}

@@ -29,36 +29,41 @@ public class Menu {
 					break;
 
 				case "5":
-					menuBuilder.listarCliente();
+					menuBuilder.reativarCliente();
 
 					break;
 				case "6":
-					menuBuilder.inserirProduto();
+					menuBuilder.listarCliente();
 					break;
 
 				case "7":
-					menuBuilder.buscarProduto();
+					menuBuilder.inserirProduto();
 					break;
 
 				case "8":
-					menuBuilder.excluirProduto();
+					menuBuilder.buscarProduto();
 					break;
 
 				case "9":
-					menuBuilder.editarProduto();
+					menuBuilder.excluirProduto();
 					break;
 
 				case "10":
-					menuBuilder.comprar();
+					menuBuilder.editarProduto();
 					break;
 
 				case "11":
-					menuBuilder.alugar();
+					menuBuilder.comprar();
 					break;
 
 				case "12":
+					menuBuilder.alugar();
+					break;
+
+				case "13":
 					menuBuilder.listarCompras();
 					break;
+
 				case "0":
 					continuar = finalizarPrograma();
 					break;

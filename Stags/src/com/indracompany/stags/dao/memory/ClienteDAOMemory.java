@@ -45,6 +45,16 @@ public class ClienteDAOMemory implements IClienteDAO {
 			}
 		}
 		return retorno;
+
 	}
 
+	@Override
+	public void reativarCliente(ClienteModel pModel) {
+
+		int posicaoLista = DataBase.getListaCliente().indexOf(pModel);
+		if (posicaoLista >= 0) {
+			DataBase.getListaCliente().set(posicaoLista, pModel);
+		}
+
+	}
 }

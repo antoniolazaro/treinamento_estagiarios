@@ -17,4 +17,5 @@ public interface IClienteBO {
 
 	public void tratarSituacaoCliente(ClienteModel cliente);
 
+	public void reativarCliente(ClienteModel clienteModel) throws Exception;
 }
