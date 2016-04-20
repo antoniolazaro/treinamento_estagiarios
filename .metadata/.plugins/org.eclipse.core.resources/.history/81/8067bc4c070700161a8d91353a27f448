@@ -145,11 +145,11 @@ public class MenuBuilder {
 		ProdutoModel produto = new ProdutoModel();
 
 		nome = pedirEntrada("Digite o nome: ");
-		precoVenda = pedirEntradaNumeroDouble("Digite o preço de venda somente números: ");
-		precoAluguel = pedirEntradaNumeroDouble("Digite o preço de aluguel somente números: ");
+		precoVenda = pedirEntradaNumeroDouble("Digite o preço de venda: ");
+		precoAluguel = pedirEntradaNumeroDouble("Digite o preço de aluguel: ");
 		tipoProduto = pedirEntrada("Digite o tipo do produto a-> DVD, b-> BLURAY, c-> STREAM: ");
 		tipo = produtoBO.validarTipoProduto(tipoProduto);
-		quantidade = pedirEntradaNumeroInteger("Digite a quantidade somente números: ");
+		quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
 
 		produto.setNome(nome);
 		produto.setPrecoVenda(precoVenda);
@@ -194,7 +194,7 @@ public class MenuBuilder {
 			nomeAtualizar = pedirEntrada("Novo Nome : ");
 			precoVenda = pedirEntradaNumeroDouble("Digite o valor de venda somente números:");
 			precoAluguel = pedirEntradaNumeroDouble("Digite o valor de aluguel Somente números:");
-			quantidade = pedirEntradaNumeroInteger("Digite a quantidade Somente números: ");
+			quantidade = pedirEntradaNumeroInteger("Digite a quantidade: ");
 			produto.setNome(nomeAtualizar);
 			produto.setPrecoAluguel(precoAluguel);
 			produto.setPrecoVenda(precoVenda);
