@@ -47,6 +47,7 @@ public class ProdutoBO implements IProdutoBO {
 	}
 
 	private void validate(ProdutoModel pModel) throws Exception {
+
 		if (pModel != null) {
 			if (pModel.getNome().equals(""))
 				throw new Exception("Nome Obrigatorio");
@@ -56,7 +57,6 @@ public class ProdutoBO implements IProdutoBO {
 				throw new Exception("Os valores devem ser maiores que zero");
 			if (pModel.getQuantidade() <= 0)
 				throw new Exception("Quantidade Invalida");
-
 		}
 	}
 
@@ -84,8 +84,14 @@ public class ProdutoBO implements IProdutoBO {
 	}
 
 	private void validateBusca(ProdutoModel produto) throws Exception {
-		if (produto == null) {
+		if (produto == null)
 			throw new Exception("Produto  Não Existe!");
+
+	}
+
+	private void validateBuscaCompra(ProdutoModel produto) throws Exception {
+		if (produto.getQuantidade() <= 0) {
+			throw new Exception("Quantidade Insuficiente");
 		}
 	}
 

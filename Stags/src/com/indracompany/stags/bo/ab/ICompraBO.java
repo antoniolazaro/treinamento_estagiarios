@@ -11,7 +11,10 @@ public interface ICompraBO {
 
 	public void alugar(CompraModel compra) throws Exception;
 
-	public List<CompraModel> listar();
+	public List<CompraModel> listar() throws Exception;
 
 	public void addlistaProduto(ProdutoModel produtoModel, CompraModel compraModel) throws Exception;
+
+
+
 }

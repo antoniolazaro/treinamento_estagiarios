@@ -25,8 +25,8 @@ public class CompraBO implements ICompraBO {
 		Double valor = 0.0;
 		for (ProdutoModel produto : compra.getListaProduto()) {
 			produto.setQuantidade(produto.getQuantidade() - 1);
-			produtoBO.editar(produto);
-			valor += produto.getPrecoAluguel();
+			// produtoBO.editar(produto);
+			valor += produto.getPrecoVenda();
 		}
 		compra.setValorTotal(valor);
 		inserir(compra);
@@ -36,7 +36,7 @@ public class CompraBO implements ICompraBO {
 		Double valor = 0.0;
 		for (ProdutoModel produto : compra.getListaProduto()) {
 			produto.setQuantidade(produto.getQuantidade() - 1);
-			produtoBO.editar(produto);
+			// produtoBO.editar(produto);
 			valor += produto.getPrecoAluguel();
 		}
 
@@ -50,8 +50,9 @@ public class CompraBO implements ICompraBO {
 		compraDaoMemory.inserir(compra);
 	}
 
-	public List<CompraModel> listar() {
+	public List<CompraModel> listar() throws Exception {
 
+		validarListaDeCompra(compraDaoMemory.listar());
 		return compraDaoMemory.listar();
 	}
 
@@ -71,18 +72,25 @@ public class CompraBO implements ICompraBO {
 			throw new Exception("Compra  nula");
 		}
 	}
+	//
+	// public void validarCompra(CompraModel compra) throws Exception {
+	//
+	// if (compra.getListaProduto().size() > 0) {
+	//
+	// for (ProdutoModel produtoModel : compra.getListaProduto()) {
+	// produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
+	// }
+	//
+	// } else {
+	// throw new Exception("lista Vazia");
+	// }
+	// }
 
-	public void validarCompra(CompraModel compra) throws Exception {
+	private void validarListaDeCompra(List<CompraModel> listaDeCompra) throws Exception {
 
-		if (compra.getListaProduto().size() > 0) {
-
-			for (ProdutoModel produtoModel : compra.getListaProduto()) {
-				produtoModel.setQuantidade(produtoModel.getQuantidade() - 1);
-			}
-
-		} else {
-			throw new Exception("lista Vazia");
+		if (listaDeCompra.isEmpty()) {
+			throw new Exception("Não possui Compras!");
 		}
-	}
 
+	}
 }

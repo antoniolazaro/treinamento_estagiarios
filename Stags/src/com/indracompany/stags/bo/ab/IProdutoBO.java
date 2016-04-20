@@ -20,4 +20,5 @@ public interface IProdutoBO {
 	public TipoProduto validarTipoProduto(String tipo) throws Exception;
 
 	public void tratarSituacaoProduto(ProdutoModel produto);
+
 }

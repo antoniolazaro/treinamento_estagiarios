@@ -172,7 +172,7 @@ public class MenuBuilder {
 			System.out.println("Nome: " + produtoModel.getNome());
 			System.out.println("Preço Venda: " + produtoModel.getPrecoVenda());
 			System.out.println("Preço Aluguel: " + produtoModel.getPrecoAluguel());
-			System.out.println("Quantidade: "+produtoModel.getQuantidade());	
+			System.out.println("Quantidade: " + produtoModel.getQuantidade());
 			System.out.print("Tipo: ");
 			produtoBO.tratarSituacaoProduto(produtoModel);
 		}
@@ -232,7 +232,6 @@ public class MenuBuilder {
 		compra.setClienteModel(cliente);
 		compra.setDias(1);
 		compra.setTipoCompra(TipoCompra.COMPRA);
-		// compra.setListaProduto(new ArrayList<ProdutoModel>());
 
 		do {
 
@@ -241,6 +240,9 @@ public class MenuBuilder {
 			ProdutoModel produto;
 			nome = pedirEntrada("Digite o nome do produto");
 			produto = produtoBO.buscar(nome);
+			if (produto.getQuantidade() == 0) {
+				throw new Exception("Produto com quantidade insuficiente!");
+			}
 			compraBO.addlistaProduto(produto, compra);
 			opcao = pedirEntrada(
 					"Digite um para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
@@ -270,6 +272,9 @@ public class MenuBuilder {
 			ProdutoModel produto;
 			nome = pedirEntrada("Digite o nome do produto");
 			produto = produtoBO.buscar(nome);
+			if (produto.getQuantidade() == 0) {
+				throw new Exception("Produto com quantidade insuficiente!");
+			}
 			compraBO.addlistaProduto(produto, compra);
 			opcao = pedirEntrada(
 					"Digite um para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
@@ -283,9 +288,9 @@ public class MenuBuilder {
 		compraBO.alugar(compra);
 	}
 
-	public void listarCompras() {
+	public void listarCompras() throws Exception {
 		for (CompraModel compra : compraBO.listar()) {
-			System.out.println("Cliente : " + compra.getClienteModel().getNome() + " Código  do cliente: "
+			System.out.println("Cliente: " + compra.getClienteModel().getNome() + " Código  do cliente: "
 					+ compra.getClienteModel().getCodigo());
 			System.out.println(compra.getDataCompra());
 			System.out.println("Produtos:" + QUEBRA_LINHA);
