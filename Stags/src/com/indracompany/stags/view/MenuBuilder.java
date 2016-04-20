@@ -68,7 +68,7 @@ public class MenuBuilder {
 
 	public void buscarCliente() throws Exception {
 		String nome;
-		nome = pedirEntrada("Digite o nome.");
+		nome = pedirEntrada("Digite o nome:");
 		System.out.println("Clientes: " + QUEBRA_LINHA);
 		ClienteModel busca = clienteBo.buscar(nome);
 		System.out.println("Nome: " + busca.getNome());
@@ -97,7 +97,7 @@ public class MenuBuilder {
 			String nomeAtualizar;
 			String opcao;
 			nome = pedirEntrada("Digite o nome do Cliente:");
-			nomeAtualizar = pedirEntrada("Digite o nome para atualizar");
+			nomeAtualizar = pedirEntrada("Digite o nome para atualizar: ");
 			ClienteModel cliente = clienteBo.buscar(nome);
 			cliente.setNome(nomeAtualizar);
 			clienteBo.editar(cliente);
@@ -245,7 +245,7 @@ public class MenuBuilder {
 			}
 			compraBO.addlistaProduto(produto, compra);
 			opcao = pedirEntrada(
-					"Digite um para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
+					"Digite 1 para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
 			if (!opcao.equals("1")) {
 				continuar = false;
 
@@ -277,7 +277,7 @@ public class MenuBuilder {
 			}
 			compraBO.addlistaProduto(produto, compra);
 			opcao = pedirEntrada(
-					"Digite um para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
+					"Digite 1 para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
 			if (!opcao.equals("1")) {
 				continuar = false;
 
