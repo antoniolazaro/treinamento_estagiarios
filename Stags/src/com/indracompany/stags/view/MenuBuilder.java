@@ -309,14 +309,40 @@ public class MenuBuilder {
 		return scanner.next();
 	}
 
-	private double pedirEntradaNumeroDouble(String mensagemEntrada) {
-		System.out.print(mensagemEntrada);
-		return scanner.nextDouble();
+	private Double pedirEntradaNumeroDouble(String mensagemEntrada) {
+		Double retorno = null;
+		while (retorno == null) {
+			System.out.print(mensagemEntrada);
+			retorno = validarDouble(scanner.next());
+		}
+		return retorno;
 	}
 
 	private Integer pedirEntradaNumeroInteger(String mensagemEntrada) {
-		System.out.print(mensagemEntrada);
-		return scanner.nextInt();
+
+		Integer retorno = null;
+		while (retorno == null) {
+			System.out.print(mensagemEntrada);
+			retorno = validarInteger(scanner.next());
+		}
+		return retorno;
 	}
 
+	private Double validarDouble(String numero) {
+		try {
+			return Double.parseDouble(numero);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
+	private Integer validarInteger(String numero) {
+		try {
+			return Integer.parseInt(numero);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
 }
