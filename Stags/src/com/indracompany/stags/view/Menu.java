@@ -64,6 +64,14 @@ public class Menu {
 					menuBuilder.listarCompras();
 					break;
 
+				case "14":
+					menuBuilder.prudutoMaisCaro();
+					break;
+
+				case "15":
+					menuBuilder.prudutoMaisBarato();
+					break;
+
 				case "0":
 					continuar = finalizarPrograma();
 					break;

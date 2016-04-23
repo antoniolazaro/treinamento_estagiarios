@@ -21,4 +21,8 @@ public interface IProdutoBO {
 
 	public void tratarSituacaoProduto(ProdutoModel produto);
 
+	public ProdutoModel maisCaro() throws Exception;
+
+	public ProdutoModel maisBarato() throws Exception;
+
 }

@@ -1,6 +1,7 @@
 package com.indracompany.stags.view;
 
 import java.util.Collection;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,12 +44,15 @@ public class MenuBuilder {
 		System.out.println("\t8. Buscar Produto");
 		System.out.println("\t9. Excluir Produto");
 		System.out.println("\t10. Editar Produto" + QUEBRA_LINHA);
-
+		// compras
 		System.out.println("Compras:" + QUEBRA_LINHA);
 		System.out.println("\t11. Comprar");
 		System.out.println("\t12. Alugar");
 		System.out.println("\t13 Listar Compras");
-		// add_maisopções
+		// parte 4
+		System.out.println("Parte 4" + QUEBRA_LINHA);
+		System.out.println("\t14 Produto mais caro");
+		System.out.println("\t15 Produto mais barato");
 
 		System.out.println("\t0. Sair" + QUEBRA_LINHA);
 
@@ -173,8 +177,9 @@ public class MenuBuilder {
 			System.out.println("Preço Venda: " + produtoModel.getPrecoVenda());
 			System.out.println("Preço Aluguel: " + produtoModel.getPrecoAluguel());
 			System.out.println("Quantidade: " + produtoModel.getQuantidade());
-			System.out.print("Tipo: ");
+			System.out.print("Situação: ");
 			produtoBO.tratarSituacaoProduto(produtoModel);
+			System.out.println("Tipo: "+produtoModel.getTipoProduto().toString());
 		}
 
 	}
@@ -201,8 +206,8 @@ public class MenuBuilder {
 			produto.setQuantidade(quantidade);
 			produtoBO.editar(produto);
 			System.out.println("Produto Editado Com sucesso!");
-			opcao = pedirEntrada("Digite 1 para editar outro ou qualquer outra tecla para cancelar a Edição");
-			if (!opcao.equals("1")) {
+			opcao = pedirEntrada("Digite S para editar outro ou qualquer outra letra para cancelar a Edição");
+			if (!opcao.equalsIgnoreCase("s")) {
 				continuar = false;
 
 			}
@@ -217,7 +222,7 @@ public class MenuBuilder {
 		ProdutoModel produto = produtoBO.buscar(nomeProduto);
 
 		produtoBO.excluir(produto);
-		System.out.println("Produto Excluir: ");
+		System.out.println("Produto Excluido com sucesso! ");
 	}
 
 	// compra
@@ -238,15 +243,14 @@ public class MenuBuilder {
 			String opcao;
 			String nome;
 			ProdutoModel produto;
-			nome = pedirEntrada("Digite o nome do produto");
+			nome = pedirEntrada("Digite o nome do produto: ");
 			produto = produtoBO.buscar(nome);
 			if (produto.getQuantidade() == 0) {
 				throw new Exception("Produto com quantidade insuficiente!");
 			}
 			compraBO.addlistaProduto(produto, compra);
-			opcao = pedirEntrada(
-					"Digite 1 para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
-			if (!opcao.equals("1")) {
+			opcao = pedirEntrada("Digite S para add outro ou qualquer outra letra para cancelar a Edição");
+			if (!opcao.equalsIgnoreCase("s")) {
 				continuar = false;
 
 			}
@@ -270,20 +274,19 @@ public class MenuBuilder {
 			String opcao;
 			String nome;
 			ProdutoModel produto;
-			nome = pedirEntrada("Digite o nome do produto");
+			nome = pedirEntrada("Digite o nome do produto: ");
 			produto = produtoBO.buscar(nome);
 			if (produto.getQuantidade() == 0) {
 				throw new Exception("Produto com quantidade insuficiente!");
 			}
 			compraBO.addlistaProduto(produto, compra);
-			opcao = pedirEntrada(
-					"Digite 1 para add outro produto na lista ou qualquer " + "outra tecla para terminar a compra");
-			if (!opcao.equals("1")) {
+			opcao = pedirEntrada("Digite S para add outro ou qualquer outra letra para cancelar a Edição");
+			if (!opcao.equalsIgnoreCase("s")) {
 				continuar = false;
 
 			}
 		} while (continuar);
-		dias = pedirEntradaNumeroInteger("Digite os dias para aluguel");
+		dias = pedirEntradaNumeroInteger("Digite os dias para aluguel: ");
 		compra.setDias(dias);
 		compraBO.alugar(compra);
 	}
@@ -301,6 +304,7 @@ public class MenuBuilder {
 			}
 			System.out.println("Valor: " + compra.getValorTotal());
 			System.out.println("Tipo: " + compra.getTipoCompra().toString() + QUEBRA_LINHA);
+			System.out.println("************************************************************");
 		}
 	}
 
@@ -332,7 +336,7 @@ public class MenuBuilder {
 		try {
 			return Double.parseDouble(numero);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			return null;
 		}
 	}
@@ -341,8 +345,29 @@ public class MenuBuilder {
 		try {
 			return Integer.parseInt(numero);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			return null;
 		}
 	}
+
+	public void prudutoMaisCaro() throws Exception {
+		ProdutoModel produto;
+
+		produto = produtoBO.maisCaro();
+		System.out.print(QUEBRA_LINHA);
+		System.out.println("Códdigo" + produto.getCodigo());
+		System.out.println("Nome" + produto.getNome());
+		System.out.println("Preço Venda" + produto.getPrecoVenda());
+	}
+
+	public void prudutoMaisBarato() throws Exception {
+		ProdutoModel produto;
+
+		produto = produtoBO.maisBarato();
+		System.out.print(QUEBRA_LINHA);
+		System.out.println("Códdigo" + produto.getCodigo());
+		System.out.println("Nome" + produto.getNome());
+		System.out.println("Preço Venda" + produto.getPrecoVenda());
+	}
+
 }

@@ -103,4 +103,28 @@ public class ProdutoBO implements IProdutoBO {
 		}
 	}
 
+	public ProdutoModel maisCaro() throws Exception {
+		validateList(produtoDaoMemory.listaProduto());
+		ProdutoModel produtoRetorno = new ProdutoModel();
+		produtoRetorno.setPrecoVenda(0.0);
+		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
+			if (produto.getPrecoVenda() > produtoRetorno.getPrecoVenda()) {
+				produtoRetorno = produto;
+			}
+		}
+		return produtoRetorno;
+	}
+
+	public ProdutoModel maisBarato() throws Exception {
+		validateList(produtoDaoMemory.listaProduto());
+		ProdutoModel produtoRetorno = new ProdutoModel();
+		produtoRetorno.setPrecoVenda(9223372036854775807.0);
+		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
+			if (produto.getPrecoVenda() < produtoRetorno.getPrecoVenda()) {
+				produtoRetorno = produto;
+			}
+		}
+		return produtoRetorno;
+	}
+
 }

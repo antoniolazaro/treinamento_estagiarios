@@ -61,4 +61,16 @@ public class ProdutoDaoMemory implements IProdutoDao {
 		return listaRetorno;
 	}
 
+	@Override
+	public Collection<ProdutoModel> listaProduto() {
+		Collection<ProdutoModel> listaRetorno = new ArrayList<>();
+		Collection<ProdutoModel> listaProduto = DataBase.getMapProduto().values();
+		for (ProdutoModel produtoModel : listaProduto) {
+
+			listaRetorno.add(produtoModel);
+		}
+
+		return listaRetorno;
+	}
+
 }
