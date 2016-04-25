@@ -149,6 +149,18 @@ public class MenuBuilder {
 			}
 		}
 		
+		public void buscarCliente(ClienteModel pModel) throws Exception {
+			String nome = pedirEntrada(quebraLinha + "Digite nome do cliente a detalhar: ");
+			try {
+				if(pModel.getAtivo() != false){
+					clienteBO.buscarCliente(nome);	
+				} else 
+					throw new Exception("Cliente não encontrado. ");
+			} catch (Exception e) {	
+				throw new Exception("Erro ao tentar buscar um cliente -> "+e.getMessage());
+			}
+		}
+		
 		//Segue a parte de mídia
 		public void inserirMidia() throws Exception {
 			MidiaModel pModel = new MidiaModel();
@@ -363,19 +375,7 @@ public class MenuBuilder {
 			} catch (Exception e) {	
 				throw new Exception("Erro ao tentar excluir uma mídia -> "+e.getMessage());
 			}
-		}
-		
-		public void buscarCliente(ClienteModel pModel) throws Exception {
-			String nome = pedirEntrada(quebraLinha + "Digite nome do cliente a detalhar: ");
-			try {
-				if(pModel.getAtivo() != false){
-					clienteBO.buscarCliente(nome);	
-				} else 
-					throw new Exception("Cliente não encontrado. ");
-			} catch (Exception e) {	
-				throw new Exception("Erro ao tentar buscar um cliente -> "+e.getMessage());
-			}
-		}		
+		}	
 		
 		public void buscarMidia(MidiaModel pModel) throws Exception {
 			String nome = pedirEntrada(quebraLinha + "Digite nome da mídia a detalhar: ");
