@@ -19,4 +19,6 @@ public interface MidiaBOIf {
 	public void validate(MidiaModel pModel) throws Exception;
 	
 	public MidiaModel buscar(Long codigo) throws Exception;
+
+	public boolean validateCampoNumero(CharSequence pModel) throws Exception;
 }

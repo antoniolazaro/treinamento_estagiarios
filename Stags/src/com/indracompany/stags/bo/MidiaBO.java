@@ -35,6 +35,15 @@ public class MidiaBO implements MidiaBOIf{
 	}
 
 	@Override
+	public boolean validateCampoNumero(CharSequence pModel) throws Exception {
+		boolean b;
+		java.util.regex.Pattern r = java.util.regex.Pattern.compile("^[0-9]+$");
+		java.util.regex.Matcher m = r.matcher(pModel);
+		b =  m.matches();
+		return b;
+	}
+
+	@Override
 	public void excluir(MidiaModel pModel) throws Exception {
 		try {
 			validate(pModel);
@@ -64,7 +73,8 @@ public class MidiaBO implements MidiaBOIf{
 			throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
 		}
 	}
-
+	
+	@Override
 	public void validate(MidiaModel pModel)throws Exception {
 		if(pModel != null){
 			try {

@@ -99,6 +99,7 @@ public class MidiaModel extends ModelAB {
 		result = prime * result + ((dataRegistro == null) ? 0 : dataRegistro.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((quantidadeEstoque == null) ? 0 : quantidadeEstoque.hashCode());
 		result = prime * result + ((tipoMidia == null) ? 0 : tipoMidia.hashCode());
 		result = prime * result + ((valorAluguel == null) ? 0 : valorAluguel.hashCode());
 		result = prime * result + ((valorVenda == null) ? 0 : valorVenda.hashCode());
@@ -114,10 +115,42 @@ public class MidiaModel extends ModelAB {
 		if (getClass() != obj.getClass())
 			return false;
 		MidiaModel other = (MidiaModel) obj;
+		if (codigoBarras == null) {
+			if (other.codigoBarras != null)
+				return false;
+		} else if (!codigoBarras.equals(other.codigoBarras))
+			return false;
+		if (dataRegistro == null) {
+			if (other.dataRegistro != null)
+				return false;
+		} else if (!dataRegistro.equals(other.dataRegistro))
+			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (quantidadeEstoque == null) {
+			if (other.quantidadeEstoque != null)
+				return false;
+		} else if (!quantidadeEstoque.equals(other.quantidadeEstoque))
+			return false;
+		if (tipoMidia != other.tipoMidia)
+			return false;
+		if (valorAluguel == null) {
+			if (other.valorAluguel != null)
+				return false;
+		} else if (!valorAluguel.equals(other.valorAluguel))
+			return false;
+		if (valorVenda == null) {
+			if (other.valorVenda != null)
+				return false;
+		} else if (!valorVenda.equals(other.valorVenda))
 			return false;
 		return true;
 	}

@@ -63,6 +63,7 @@ public class ClienteBO implements ClienteBOIf{
 		}
 	}
 
+	@Override
 	public boolean validateCampoNumero(CharSequence pModel) throws Exception {
 		boolean b;
 		java.util.regex.Pattern r = java.util.regex.Pattern.compile("^[0-9]+$");
@@ -70,7 +71,8 @@ public class ClienteBO implements ClienteBOIf{
 		b =  m.matches();
 		return b;
 	}
-	
+
+	@Override
 	public void validate(ClienteModel pModel) throws Exception {
 		if(pModel != null){
 			try {	

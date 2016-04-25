@@ -88,12 +88,15 @@ public class MenuBuilder {
 								break;
 								
 							case "b":
-								Integer opcao2 = Integer.parseInt(pedirEntrada(quebraLinha + "Digite nova idade: "));
-								if(opcao2 != null && !opcao2.equals("")){
+								CharSequence idade = pedirEntrada(quebraLinha + "Digite nova idade: ");
+								if(idade != null && !idade.equals("") && clienteBO.validateCampoNumero(idade)){
+									Integer opcao2 = Integer.parseInt((String) idade);
 									pModel.setIdade(opcao2);
 									clienteBO.validate(pModel);
 									clienteBO.editar(pModel);
 					                System.out.printf(quebraLinha + "Idade editada com sucesso." + quebraLinha);
+								} else {
+									throw new Exception("Formato inválido.");
 								}
 								break;
 								
@@ -106,8 +109,15 @@ public class MenuBuilder {
 					                System.out.printf(quebraLinha + "CPF editado com sucesso." + quebraLinha);
 								}
 								break;
-								
+
 							case "d":
+								pModel.setAtivo(true);
+								clienteBO.validate(pModel);
+								clienteBO.editar(pModel);	
+				                System.out.printf(quebraLinha + "Cliente reativado com sucesso." + quebraLinha);					
+								break;
+								
+							case "e":
 			                	continuar = MainExecutorMenu.voltarPrograma();
 								break;
 	
@@ -146,10 +156,20 @@ public class MenuBuilder {
 				pModel.setDescricao(descricao);
 				String codBarras = pedirEntrada(quebraLinha + "Digite código de barras: ");
 				pModel.setCodigoBarras(codBarras);
-				Double valorVenda = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de venda: "));
-				pModel.setValorVenda(valorVenda);
-				Double valorAluguel = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de aluguel: "));
-				pModel.setValorAluguel(valorAluguel);
+				CharSequence venda = pedirEntrada(quebraLinha + "Digite valor de venda: ");
+				if(venda  != null && !venda.equals("") && midiaBO.validateCampoNumero(venda)){
+					Double valorVenda = Double.parseDouble((String) venda);
+					pModel.setValorVenda(valorVenda);
+					CharSequence aluguel = pedirEntrada(quebraLinha + "Digite valor de aluguel: ");
+					if(aluguel  != null && !aluguel.equals("") && midiaBO.validateCampoNumero(aluguel)){
+						Double valorAluguel = Double.parseDouble((String) aluguel);
+						pModel.setValorAluguel(valorAluguel);
+					} else {
+						throw new Exception("Formato do valor do aluguel inválido.");
+					}
+				} else {
+					throw new Exception("Formato do valor de venda inválido.");
+				}
 	//			Data automática
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				Date date = new Date();
@@ -184,25 +204,39 @@ public class MenuBuilder {
 							String opcaoa = pedirEntrada(quebraLinha + "Digite novo nome: ");
 							pModel.setNome(opcaoa);
 							midiaBO.validate(pModel);
-							midiaBO.editar(pModel);							
+							midiaBO.editar(pModel);
+			                System.out.printf(quebraLinha + "Nome editado com sucesso." + quebraLinha);
 							break;
 
 						case "b":
-							Double opcaob = Double.parseDouble(pedirEntrada(quebraLinha + "Digite novo valor de venda: "));
-							pModel.setValorVenda(opcaob);
-							midiaBO.validate(pModel);
-							midiaBO.editar(pModel);
+							CharSequence venda = pedirEntrada(quebraLinha + "Digite novo valor de venda: ");
+							if(venda != null && !venda.equals("") && clienteBO.validateCampoNumero(venda)){
+								Double opcaob = Double.parseDouble((String) venda);
+								pModel.setValorVenda(opcaob);
+								midiaBO.validate(pModel);
+								midiaBO.editar(pModel);
+				                System.out.printf(quebraLinha + "Valor de Venda editado com sucesso." + quebraLinha);
+							}else {
+								throw new Exception("Formato inválido.");
+							}
 							break;
 							
 						case "c":
-							Double valorAluguel = Double.parseDouble(pedirEntrada(quebraLinha + "Digite novo valor de aluguel: "));
-							pModel.setValorAluguel(valorAluguel);
-							midiaBO.validate(pModel);
-							midiaBO.editar(pModel);
+							CharSequence aluguel = pedirEntrada(quebraLinha + "Digite novo valor de aluguel: ");
+							if(aluguel != null && !aluguel.equals("") && clienteBO.validateCampoNumero(aluguel)){
+								Double opcaoc = Double.parseDouble((String) aluguel);
+								pModel.setValorAluguel(opcaoc);
+								midiaBO.validate(pModel);
+								midiaBO.editar(pModel);
+				                System.out.printf(quebraLinha + "Valor de Aluguel editado com sucesso." + quebraLinha);
+							}else {
+								throw new Exception("Formato inválido.");
+							}
 							break;
 							
 						case "d":							
 							tipoMidiaEditarMenu(pModel); 
+			                System.out.printf(quebraLinha + "Tipo de mídia editada com sucesso." + quebraLinha);
 							break;
 						
 						case "e":					
@@ -210,9 +244,17 @@ public class MenuBuilder {
 							pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
 							midiaBO.validate(pModel);
 							midiaBO.editar(pModel);
+			                System.out.printf(quebraLinha + "Quantidade editada com sucesso." + quebraLinha);
 							break;
 							
-						case "f":		
+						case "f":
+							pModel.setAtivo(true);
+							midiaBO.validate(pModel);
+							midiaBO.editar(pModel);
+			                System.out.printf(quebraLinha + "Mídia reativada com sucesso." + quebraLinha);
+							break;
+						
+						case "g":		
 		                	continuar = MainExecutorMenu.voltarPrograma();
 		        			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		        			Date date = new Date();
@@ -367,7 +409,7 @@ public class MenuBuilder {
 				String nomeMidia = null;
 				String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a comprar: ");
 				pModel = clienteBO.buscarCliente(nomeCliente);
-				if(pModel == null){
+				if(pModel == null || pModel.getAtivo() == false){
 					throw new Exception("Cliente inválido ");
 				}
 				tModel.setCliente(pModel);
@@ -401,7 +443,7 @@ public class MenuBuilder {
 						String nomeMidia = null;
 						String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a alugar: ");
 						pModel = clienteBO.buscarCliente(nomeCliente);
-						if(pModel == null){
+						if(pModel == null || pModel.getAtivo() == false){
 							throw new Exception("Cliente inválido ");
 						}
 						tModel.setCliente(pModel);
@@ -441,7 +483,8 @@ public class MenuBuilder {
 		       System.out.println("\ta. Editar nome");
 		       System.out.println("\tb. Editar idade");
 		       System.out.println("\tc. Editar cpf");
-		       System.out.println("\td. Sair");
+		       System.out.println("\td. Reativar cliente");
+		       System.out.println("\te. Sair");
 		        		
 		       return pedirEntrada(quebraLinha + "Insira sua opção: ");
 		}
@@ -453,7 +496,8 @@ public class MenuBuilder {
 		       System.out.println("\tc. Editar valor de aluguel");
 		       System.out.println("\td. Editar tipo de mídia");
 		       System.out.println("\te. Editar quantidade em estoque");
-		       System.out.println("\tf. Sair");
+		       System.out.println("\tf. Reativar mídia");
+		       System.out.println("\tg. Sair");
 		        		
 		       return pedirEntrada(quebraLinha + "Insira sua opção: ");
 		}
