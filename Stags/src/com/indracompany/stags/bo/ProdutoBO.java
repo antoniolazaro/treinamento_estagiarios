@@ -127,4 +127,18 @@ public class ProdutoBO implements IProdutoBO {
 		return produtoRetorno;
 	}
 
+	@Override
+	public Double calcularMedia() throws Exception {
+
+		Double media = (double) 0;
+
+		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
+			media += produto.getPrecoVenda();
+
+		}
+
+		return media / produtoDaoMemory.listaProduto().size();
+
+	}
+
 }

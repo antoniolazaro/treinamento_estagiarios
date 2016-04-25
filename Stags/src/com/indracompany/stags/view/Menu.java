@@ -72,6 +72,10 @@ public class Menu {
 					menuBuilder.prudutoMaisBarato();
 					break;
 
+				case "16":
+					menuBuilder.mediaPreco();
+					break;
+
 				case "0":
 					continuar = finalizarPrograma();
 					break;

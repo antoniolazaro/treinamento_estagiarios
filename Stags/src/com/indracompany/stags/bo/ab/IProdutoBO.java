@@ -25,4 +25,5 @@ public interface IProdutoBO {
 
 	public ProdutoModel maisBarato() throws Exception;
 
+	public Double calcularMedia() throws Exception;
 }

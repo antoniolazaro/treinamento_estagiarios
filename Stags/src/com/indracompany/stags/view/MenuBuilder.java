@@ -53,6 +53,7 @@ public class MenuBuilder {
 		System.out.println("Parte 4" + QUEBRA_LINHA);
 		System.out.println("\t14 Produto mais caro");
 		System.out.println("\t15 Produto mais barato");
+		System.out.println("\t16 Media de preço");
 
 		System.out.println("\t0. Sair" + QUEBRA_LINHA);
 
@@ -179,7 +180,7 @@ public class MenuBuilder {
 			System.out.println("Quantidade: " + produtoModel.getQuantidade());
 			System.out.print("Situação: ");
 			produtoBO.tratarSituacaoProduto(produtoModel);
-			System.out.println("Tipo: "+produtoModel.getTipoProduto().toString());
+			System.out.println("Tipo: " + produtoModel.getTipoProduto().toString());
 		}
 
 	}
@@ -350,6 +351,7 @@ public class MenuBuilder {
 		}
 	}
 
+	// parte 4
 	public void prudutoMaisCaro() throws Exception {
 		ProdutoModel produto;
 
@@ -368,6 +370,10 @@ public class MenuBuilder {
 		System.out.println("Códdigo" + produto.getCodigo());
 		System.out.println("Nome" + produto.getNome());
 		System.out.println("Preço Venda" + produto.getPrecoVenda());
+	}
+
+	public void mediaPreco() throws Exception {
+		System.out.println("Amédia de preço dos produtos é = " + produtoBO.calcularMedia());
 	}
 
 }
