@@ -388,17 +388,13 @@ public class MenuBuilder {
 		
 		public void buscar(MidiaModel pModel) throws Exception {
 			try {
-				try {
-					Long codigo = Long.parseLong(pedirEntrada(quebraLinha + "Digite código da mídia a detalhar: "));
-					if(pModel.getAtivo() != false){
-						midiaBO.buscar(codigo);		
-					} else 
-						throw new Exception("Mídia não encontrada. ");					
-				} catch (Exception e) {	
-					throw new Exception("Formato inválido ");
-				}
-			} catch (Exception e) {	
-				throw new Exception("Erro ao tentar buscar uma mídia -> "+e.getMessage());
+				Long codigo = Long.parseLong(pedirEntrada(quebraLinha + "Digite código da mídia a detalhar: "));
+				if(pModel.getAtivo() != false){
+					midiaBO.buscar(codigo);
+				} else
+					throw new Exception("Mídia não encontrada. ");	
+			} catch (Exception e) {
+				throw new Exception("Formato inválido ");
 			}
 		}
 		
@@ -535,5 +531,5 @@ public class MenuBuilder {
 					System.out.println(midia);
 				}
 			}
-		}
+		}		
 }

@@ -65,11 +65,10 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 					System.out.println("Mídia encontrada: "+midia.toString());
 					return midia;
 				}
-				throw new Exception("Mídia não encontrada. ");
 			}
+			throw new Exception("Mídia não encontrada. ");
 		} catch (Exception e) {
 			throw new Exception("Erro -> "+e.getMessage());
 		}
-		throw new Exception("Mídia não encontrada. ");
 	}
 }
