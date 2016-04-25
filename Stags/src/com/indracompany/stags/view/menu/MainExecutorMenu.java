@@ -31,19 +31,19 @@ public class MainExecutorMenu {
 		                    break;
 		                    
 		                case "4":
-		                	menuBuilder.inserirMidia();
+		                	menuBuilder.buscarCliente(cliente);
 		                    break;        
 		                    
 		                case "5":
-		                	menuBuilder.editarMidia(midia);
+		                	menuBuilder.inserirMidia();
 		                    break;
 		                    
 		                case "6":
-		                	menuBuilder.excluirMidia(midia);	                   
+		                	menuBuilder.editarMidia(midia);                   
 		                    break;
 		                    
-		                case "7":	    
-		                	menuBuilder.buscarCliente(cliente);	                  
+		                case "7":
+		                	menuBuilder.excluirMidia(midia);	    
 		                    break;
 		                    
 		                case "8":

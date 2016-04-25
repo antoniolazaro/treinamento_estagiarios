@@ -29,18 +29,21 @@ public class MenuBuilder {
 		}
 		public String executarMenuInicial() {
 			
-			System.out.println("\t\tMenu de opções:");
+			System.out.println("\t\tMenu de opções:" + quebraLinha + quebraLinha);
+			System.out.println("Área de Cliente:");
 			System.out.println("\t1. Inserir cliente");
 			System.out.println("\t2. Editar cliente");
 			System.out.println("\t3. Excluir cliente");
-			System.out.println("\t4. Inserir mídia");
-			System.out.println("\t5. Editar mídia");
-			System.out.println("\t6. Excluir mídia");
-			System.out.println("\t7. Buscar cliente");
+			System.out.println("\t4. Buscar cliente" + quebraLinha);
+			System.out.println("Área de Mídia:");
+			System.out.println("\t5. Inserir mídia");
+			System.out.println("\t6. Editar mídia");
+			System.out.println("\t7. Excluir mídia");
 			System.out.println("\t8. Buscar mídia por nome");
-			System.out.println("\t9. Buscar mídia por código");
+			System.out.println("\t9. Buscar mídia por código" + quebraLinha);
+			System.out.println("Área de Transação:");
 			System.out.println("\t10. Vender");
-			System.out.println("\t11. Alugar");
+			System.out.println("\t11. Alugar" + quebraLinha);
 			System.out.println("\t0. Sair");
 			
 			return pedirEntrada("\nInsira sua opção: ");
