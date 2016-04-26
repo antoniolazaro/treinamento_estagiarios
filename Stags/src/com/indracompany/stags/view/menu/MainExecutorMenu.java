@@ -35,30 +35,46 @@ public class MainExecutorMenu {
 		                    break;        
 		                    
 		                case "5":
+		                	menuBuilder.exibirHistoricoAluguelCliente(cliente);
+		                    break;		                    
+		                    
+		                case "6":
 		                	menuBuilder.inserirMidia();
 		                    break;
 		                    
-		                case "6":
+		                case "7":
 		                	menuBuilder.editarMidia(midia);                   
 		                    break;
 		                    
-		                case "7":
+		                case "8":
 		                	menuBuilder.excluirMidia(midia);	    
 		                    break;
 		                    
-		                case "8":
+		                case "9":
 		                	menuBuilder.buscarMidia(midia);                
 		                    break;
 		                    
-		                case "9":
+		                case "10":
 		                	menuBuilder.buscar(midia);                
 		                    break;
 		                    
-		                case "10":
-		                	menuBuilder.vender(cliente, midia);                
+		                case "11":
+		                	menuBuilder.exibirMidiaPrecoVendaAluguel();                
 		                    break;
 		                    
-		                case "11":
+		                case "12":
+		                	menuBuilder.exibirMidiaPrecoMaisBaratoCaroVendaAluguel();                
+		                    break;
+		                    
+		                case "13":
+		                	menuBuilder.exibirHistoricoAluguelMidia(midia);          
+		                    break;
+
+		                case "14":
+		                	menuBuilder.vender(cliente, midia);          
+		                    break;
+		                    
+		                case "15":
 		                	menuBuilder.alugar(cliente, midia);                
 		                    break;
 

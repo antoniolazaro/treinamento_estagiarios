@@ -150,4 +150,13 @@ public class ClienteBO implements ClienteBOIf{
 			throw new Exception("Erro ao tentar buscar um cliente pelo nome -> "+e.getMessage());
 		}
 	}
+
+	@Override
+	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
+		try {
+			return clienteDAO.exibirHistoricoAluguelCliente(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir histórico de aluguel de um cliente -> "+e.getMessage());
+		}
+	}
 }

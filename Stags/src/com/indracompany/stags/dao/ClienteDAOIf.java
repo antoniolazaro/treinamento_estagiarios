@@ -17,4 +17,6 @@ public interface ClienteDAOIf {
 	public ClienteModel buscar(ClienteModel pModel) throws Exception;
 
 	public ClienteModel buscarCliente(String nome)  throws Exception;
+
+	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
 }

@@ -57,4 +57,12 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 			throw new Exception("Erro -> "+e.getMessage());
 		}
 	}
+
+	//precisa construir
+	@Override
+	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\n\nMédia de Preços: ").append("\nVenda: ").append("d").append("\nAluguel: ").append("d");
+		return  buffer.toString();
 	}
+}

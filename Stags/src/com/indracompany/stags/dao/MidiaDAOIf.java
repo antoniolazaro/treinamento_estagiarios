@@ -19,4 +19,22 @@ public interface MidiaDAOIf {
 	public MidiaModel buscarMidia(String nome) throws Exception;
 	
 	public MidiaModel buscar(Long codigo) throws Exception;
+
+	public MidiaModel mediaPrecoVenda() throws Exception;
+
+	public MidiaModel mediaPrecoAluguel() throws Exception;
+
+	public MidiaModel midiaMaisCaraVenda() throws Exception;
+
+	public MidiaModel midiaMaisCaraAluguel() throws Exception;
+
+	public MidiaModel midiaMaisBarataVenda() throws Exception;
+
+	public MidiaModel midiaMaisBarataAluguel() throws Exception;
+
+	public String exibirMidiaPrecoVendaAluguel() throws Exception;
+
+	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception;
+
+	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
 }

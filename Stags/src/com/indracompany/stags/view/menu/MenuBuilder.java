@@ -34,16 +34,20 @@ public class MenuBuilder {
 			System.out.println("\t1. Inserir cliente");
 			System.out.println("\t2. Editar cliente");
 			System.out.println("\t3. Excluir cliente");
-			System.out.println("\t4. Buscar cliente" + quebraLinha);
+			System.out.println("\t4. Buscar cliente");
+			System.out.println("\t5. Exibir histórico de alugueis de um cliente" + quebraLinha);
 			System.out.println("Área de Mídia:");
-			System.out.println("\t5. Inserir mídia");
-			System.out.println("\t6. Editar mídia");
-			System.out.println("\t7. Excluir mídia");
-			System.out.println("\t8. Buscar mídia por nome");
-			System.out.println("\t9. Buscar mídia por código" + quebraLinha);
+			System.out.println("\t6. Inserir mídia");
+			System.out.println("\t7. Editar mídia");
+			System.out.println("\t8. Excluir mídia");
+			System.out.println("\t9. Buscar mídia por nome");
+			System.out.println("\t10. Buscar mídia por código");
+			System.out.println("\t11. Exibir media de preço de venda ou aluguel das mídias da loja");
+			System.out.println("\t12. Exibir produto mais caro e mais barato em venda ou aluguel");
+			System.out.println("\t13. Exibir histórico de alugueis de uma mídia da loja" + quebraLinha);
 			System.out.println("Área de Transação:");
-			System.out.println("\t10. Vender");
-			System.out.println("\t11. Alugar" + quebraLinha);
+			System.out.println("\t14. Vender");
+			System.out.println("\t15. Alugar" + quebraLinha);
 			System.out.println("\t0. Sair");
 			
 			return pedirEntrada("\nInsira sua opção: ");
@@ -158,6 +162,14 @@ public class MenuBuilder {
 					throw new Exception("Cliente não encontrado. ");
 			} catch (Exception e) {	
 				throw new Exception("Erro ao tentar buscar um cliente -> "+e.getMessage());
+			}
+		}
+		
+		public void exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
+			try {
+				clienteBO.exibirHistoricoAluguelCliente(pModel);
+			} catch (Exception e) {
+				throw new Exception("Não foi possível ");
 			}
 		}
 		
@@ -398,6 +410,33 @@ public class MenuBuilder {
 					throw new Exception("Mídia não encontrada. ");	
 			} catch (Exception e) {
 				throw new Exception("Formato inválido ");
+			}
+		}
+		
+		public void exibirMidiaPrecoVendaAluguel() throws Exception {
+			try {
+				midiaBO.exibirMidiaPrecoVendaAluguel();
+			} catch (Exception e) {
+				throw new Exception("Não foi possível ");
+			}
+		}
+		
+		public void exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
+			try {
+				midiaBO.exibirMidiaPrecoMaisBaratoCaroVendaAluguel();
+			} catch (Exception e) {
+				throw new Exception("Não foi possível ");
+			}
+		}
+		
+		public void exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
+			try {
+				String nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a fim de obter histórico: ");
+				MidiaModel mModel = midiaBO.buscarMidia(nomeMidia);
+		    	System.out.printf("\nHistórico: \n");
+				midiaBO.exibirHistoricoAluguelMidia(mModel);
+			} catch (Exception e) {
+				throw new Exception("Não foi possível ");
 			}
 		}
 		

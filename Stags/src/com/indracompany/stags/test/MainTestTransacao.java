@@ -1,13 +1,11 @@
-package com.indracompany.stags.bo;
-
-import com.indracompany.stags.test.ClienteTest;
+package com.indracompany.stags.test;
 
 public class MainTestTransacao {
-//private static ClienteTest clienteTest;
-//	
-//	static{
-//		clienteTest = new ClienteTest();
-//	}
+	private static ClienteTest clienteTest;
+	
+	static{
+		clienteTest = new ClienteTest();
+	}
 //	
 //	public static void main(String[] args) {
 //		try {

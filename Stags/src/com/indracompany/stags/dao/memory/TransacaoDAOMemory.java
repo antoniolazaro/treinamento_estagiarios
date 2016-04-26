@@ -31,5 +31,5 @@ public class TransacaoDAOMemory implements TransacaoDAOIf {
 	@Override
 	public void setValorTotal(Double mModel) throws Exception {
 		DataBase.getListaTransacao();
-	}
+	}		
 }

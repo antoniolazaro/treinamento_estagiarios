@@ -21,4 +21,10 @@ public interface MidiaBOIf {
 	public MidiaModel buscar(Long codigo) throws Exception;
 
 	public boolean validateCampoNumero(CharSequence pModel) throws Exception;
+
+	public String exibirMidiaPrecoVendaAluguel() throws Exception;
+
+	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception;
+
+	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
 }

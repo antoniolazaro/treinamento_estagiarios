@@ -44,6 +44,7 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		return lModel;		
 	}
 	
+	@Override
 	public MidiaModel buscarMidia(String nome) throws Exception {
 		try {
 			for(MidiaModel midia  : listar()){
@@ -58,6 +59,7 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		}				
 	}
 	
+	@Override
 	public MidiaModel buscar(Long codigo) throws Exception {
 		try {
 			for(MidiaModel midia  : listar()){
@@ -70,5 +72,74 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		} catch (Exception e) {
 			throw new Exception("Erro -> "+e.getMessage());
 		}
+	}
+
+	//precisa construir
+	@Override
+	public MidiaModel mediaPrecoVenda() throws Exception {
+		Long codigo;
+		return null;
+		
+	}
+
+	//precisa construir
+	@Override
+	public MidiaModel mediaPrecoAluguel() throws Exception {
+		Long codigo;
+		return null;
+		
+	}
+
+	//precisa construir
+	@Override
+	public MidiaModel midiaMaisCaraVenda() throws Exception {
+		Long codigo;
+		return null;
+		
+	}
+
+	@Override
+	public MidiaModel midiaMaisCaraAluguel() throws Exception {
+		Long codigo;
+		return null;
+		
+	}
+
+	//precisa construir
+	@Override
+	public MidiaModel midiaMaisBarataVenda() throws Exception {
+		Long codigo;
+		return null;
+		
+	}
+
+	//precisa construir
+	@Override
+	public MidiaModel midiaMaisBarataAluguel() throws Exception {
+		Long codigo;
+		return null;
+		
+	}
+	
+	@Override
+	public String exibirMidiaPrecoVendaAluguel() throws Exception {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\n\nMédia de Preços: ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel());
+		return  buffer.toString();
+	}
+	
+	@Override
+	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\n\nMídia para: ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel());
+		return  buffer.toString();
+	}
+	
+	//precisa construir
+	@Override
+	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("\n\nMédia de Preços: ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel());
+		return  buffer.toString();
 	}
 }

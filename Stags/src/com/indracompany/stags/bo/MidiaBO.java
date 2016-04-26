@@ -139,4 +139,31 @@ public class MidiaBO implements MidiaBOIf{
 			throw new Exception("Erro ao tentar buscar uma mídia pelo código -> "+e.getMessage());
 		}
 	}
+	
+	@Override
+	public String exibirMidiaPrecoVendaAluguel() throws Exception {
+		try {
+			return midiaDAO.exibirMidiaPrecoVendaAluguel();
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+		}
+	}
+	
+	@Override
+	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
+		try {
+			return midiaDAO.exibirMidiaPrecoMaisBaratoCaroVendaAluguel();
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+		}
+	}
+
+	@Override
+	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
+		try {
+			return midiaDAO.exibirHistoricoAluguelMidia(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+		}
+	}
 }
