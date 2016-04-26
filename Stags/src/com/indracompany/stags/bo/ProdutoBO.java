@@ -108,8 +108,11 @@ public class ProdutoBO implements IProdutoBO {
 		ProdutoModel produtoRetorno = new ProdutoModel();
 		produtoRetorno.setPrecoVenda(0.0);
 		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
-			if (produto.getPrecoVenda() > produtoRetorno.getPrecoVenda()) {
-				produtoRetorno = produto;
+			if (produto.getAtivo() && produto.getQuantidade() > 0) {
+
+				if (produto.getPrecoVenda() > produtoRetorno.getPrecoVenda()) {
+					produtoRetorno = produto;
+				}
 			}
 		}
 		return produtoRetorno;
@@ -120,8 +123,11 @@ public class ProdutoBO implements IProdutoBO {
 		ProdutoModel produtoRetorno = new ProdutoModel();
 		produtoRetorno.setPrecoVenda(9223372036854775807.0);
 		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
-			if (produto.getPrecoVenda() < produtoRetorno.getPrecoVenda()) {
-				produtoRetorno = produto;
+			if (produto.getAtivo() && produto.getQuantidade() > 0) {
+
+				if (produto.getPrecoVenda() < produtoRetorno.getPrecoVenda()) {
+					produtoRetorno = produto;
+				}
 			}
 		}
 		return produtoRetorno;
@@ -133,7 +139,10 @@ public class ProdutoBO implements IProdutoBO {
 		Double media = (double) 0;
 
 		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
-			media += produto.getPrecoVenda();
+			if (produto.getAtivo() && produto.getQuantidade() > 0) {
+
+				media += produto.getPrecoVenda();
+			}
 
 		}
 

@@ -24,9 +24,13 @@ public class CompraBO implements ICompraBO {
 	public void vender(CompraModel compra) throws Exception {
 		Double valor = 0.0;
 		for (ProdutoModel produto : compra.getListaProduto()) {
-			produto.setQuantidade(produto.getQuantidade() - 1);
-			// produtoBO.editar(produto);
-			valor += produto.getPrecoVenda();
+
+			if (produto.getAtivo() && produto.getQuantidade() > 0) {
+
+				produto.setQuantidade(produto.getQuantidade() - 1);
+				// produtoBO.editar(produto);
+				valor += produto.getPrecoVenda();
+			}
 		}
 		compra.setValorTotal(valor);
 		inserir(compra);

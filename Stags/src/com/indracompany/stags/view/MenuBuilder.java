@@ -121,9 +121,9 @@ public class MenuBuilder {
 		List<ClienteModel> listagem = clienteBo.listar();
 		System.out.println("Clientes: ");
 		for (ClienteModel clienteModel : listagem) {
-			System.out.println(clienteModel.getNome());
+			System.out.println("Nome: " + clienteModel.getNome());
 			clienteBo.tratarSituacaoCliente(clienteModel);
-			System.out.println(clienteModel.getCodigo());
+			System.out.println("Código: " + clienteModel.getCodigo());
 			System.out.println();
 			System.out.println();
 		}
@@ -136,6 +136,7 @@ public class MenuBuilder {
 		nome = pedirEntrada("Digite o nome do cliente para reativar: ");
 		cliente = clienteBo.buscar(nome);
 		clienteBo.reativarCliente(cliente);
+		System.out.println("Cliente reativado!");
 	}
 
 	// produto
@@ -194,6 +195,8 @@ public class MenuBuilder {
 			Double precoVenda;
 			Double precoAluguel;
 			Integer quantidade;
+			String tipoProduto;
+			TipoProduto tipo;
 
 			nome = pedirEntrada("Digite o nome: ");
 			ProdutoModel produto = produtoBO.buscar(nome);
@@ -201,10 +204,14 @@ public class MenuBuilder {
 			precoVenda = pedirEntradaNumeroDouble("Digite o valor de venda somente números:");
 			precoAluguel = pedirEntradaNumeroDouble("Digite o valor de aluguel Somente números:");
 			quantidade = pedirEntradaNumeroInteger("Digite a quantidade Somente números: ");
+			tipoProduto = pedirEntrada("Digite o tipo do produto a-> DVD, b-> BLURAY, c-> STREAM: ");
+			tipo = produtoBO.validarTipoProduto(tipoProduto);
+
 			produto.setNome(nomeAtualizar);
 			produto.setPrecoAluguel(precoAluguel);
 			produto.setPrecoVenda(precoVenda);
 			produto.setQuantidade(quantidade);
+			produto.setTipoProduto(tipo);
 			produtoBO.editar(produto);
 			System.out.println("Produto Editado Com sucesso!");
 			opcao = pedirEntrada("Digite S para editar outro ou qualquer outra letra para cancelar a Edição");
@@ -235,6 +242,9 @@ public class MenuBuilder {
 		CompraModel compra = new CompraModel();
 		nomeCliente = pedirEntrada("Digite o nome do cliente");
 		cliente = clienteBo.buscar(nomeCliente);
+		if (cliente.getAtivo() == false) {
+			throw new Exception("Cliente inativo!");
+		}
 		compra.setClienteModel(cliente);
 		compra.setDias(1);
 		compra.setTipoCompra(TipoCompra.COMPRA);
@@ -257,6 +267,7 @@ public class MenuBuilder {
 			}
 		} while (continuar);
 		compraBO.vender(compra);
+		System.out.println("Compra realizada com sucesso!");
 	}
 
 	public void alugar() throws Exception {
@@ -267,6 +278,9 @@ public class MenuBuilder {
 		CompraModel compra = new CompraModel();
 		nomeCliente = pedirEntrada("Digite o nome do cliente");
 		cliente = clienteBo.buscar(nomeCliente);
+		if (cliente.getAtivo() == false) {
+			throw new Exception("Cliente inativo!");
+		}
 		compra.setClienteModel(cliente);
 		compra.setTipoCompra(TipoCompra.ALUGUEL);
 
@@ -290,6 +304,7 @@ public class MenuBuilder {
 		dias = pedirEntradaNumeroInteger("Digite os dias para aluguel: ");
 		compra.setDias(dias);
 		compraBO.alugar(compra);
+		System.out.println("você realizou a transação com sucesso!");
 	}
 
 	public void listarCompras() throws Exception {
@@ -357,9 +372,9 @@ public class MenuBuilder {
 
 		produto = produtoBO.maisCaro();
 		System.out.print(QUEBRA_LINHA);
-		System.out.println("Códdigo" + produto.getCodigo());
-		System.out.println("Nome" + produto.getNome());
-		System.out.println("Preço Venda" + produto.getPrecoVenda());
+		System.out.println("Código: " + produto.getCodigo());
+		System.out.println("Nome: " + produto.getNome());
+		System.out.println("Preço Venda: " + produto.getPrecoVenda());
 	}
 
 	public void prudutoMaisBarato() throws Exception {
@@ -367,9 +382,9 @@ public class MenuBuilder {
 
 		produto = produtoBO.maisBarato();
 		System.out.print(QUEBRA_LINHA);
-		System.out.println("Códdigo" + produto.getCodigo());
-		System.out.println("Nome" + produto.getNome());
-		System.out.println("Preço Venda" + produto.getPrecoVenda());
+		System.out.println("Código: " + produto.getCodigo());
+		System.out.println("Nome: " + produto.getNome());
+		System.out.println("Preço Venda: " + produto.getPrecoVenda());
 	}
 
 	public void mediaPreco() throws Exception {
