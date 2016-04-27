@@ -120,20 +120,28 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		return auxiliar;
 	}
 
-	//precisa construir
 	@Override
 	public MidiaModel midiaMaisBarataVenda() throws Exception {
-		Long codigo;
-		return null;
-		
+		MidiaModel auxiliar = new MidiaModel();
+		auxiliar.setValorVenda(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
+		for(MidiaModel midia  : listar()){
+			if(midia.getValorVenda() < auxiliar.getValorVenda()) {
+				auxiliar = midia;
+			}
+		}
+		return auxiliar;	
 	}
 
-	//precisa construir
 	@Override
 	public MidiaModel midiaMaisBarataAluguel() throws Exception {
-		Long codigo;
-		return null;
-		
+		MidiaModel auxiliar = new MidiaModel();
+		auxiliar.setValorAluguel(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
+		for(MidiaModel midia  : listar()){
+			if(midia.getValorAluguel() < auxiliar.getValorAluguel()) {
+				auxiliar = midia;
+			}
+		}
+		return auxiliar;
 	}
 	
 	@Override
