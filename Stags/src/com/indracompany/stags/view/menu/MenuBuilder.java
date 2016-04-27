@@ -167,7 +167,10 @@ public class MenuBuilder {
 		
 		public void exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
 			try {
-				System.out.println(transacaoBO.exibirHistoricoAluguelCliente(pModel));
+				String nomeCliente = pedirEntrada(quebraLinha + "Digite nome do cliente a fim de obter seu histórico: ");
+				ClienteModel mModel = clienteBO.buscarCliente(nomeCliente);
+		    	System.out.printf("\nHistórico: \n");
+				System.out.println(transacaoBO.exibirHistoricoAluguelCliente(mModel));
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
 			}
