@@ -44,17 +44,7 @@ public class ClienteDAOMemory implements ClienteDAOIf {
 		return lModel;		
 	}
 	
-	public ClienteModel buscarCliente(String nome) throws Exception {
-		try{
-			for(ClienteModel cliente  : listar()){
-				if(cliente.getNome().equalsIgnoreCase(nome)){
-					System.out.println("Cliente encontrado: "+cliente.toString());
-					return cliente;
-				}
-			}
-			throw new Exception("Cliente não encontrado. ");
-		} catch (Exception e) {
-			throw new Exception("Erro -> "+e.getMessage());
-		}
+	public void buscarCliente(String nome) throws Exception {
+		DataBase.getListaCliente();		
 	}
 }

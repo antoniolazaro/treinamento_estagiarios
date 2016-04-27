@@ -144,10 +144,16 @@ public class ClienteBO implements ClienteBOIf{
 	
 	@Override
 	public ClienteModel buscarCliente(String nome) throws Exception {
-		try {
-			return clienteDAO.buscarCliente(nome);
+		try{
+			for(ClienteModel cliente  : listar()){
+				if(cliente.getNome().equalsIgnoreCase(nome)){
+					System.out.println("Cliente encontrado: "+cliente.toString());
+					return cliente;
+				}
+			}
+			throw new Exception("Cliente não encontrado. ");
 		} catch (Exception e) {
-			throw new Exception("Erro ao tentar buscar um cliente pelo nome -> "+e.getMessage());
+			throw new Exception("Erro -> "+e.getMessage());
 		}
 	}
 }

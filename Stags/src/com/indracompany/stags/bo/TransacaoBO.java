@@ -124,7 +124,6 @@ public class TransacaoBO implements TransacaoBOIf{
 		try{
 			buffer.append("\n\nHistórico: ");
 			int a=0;
-			// quando passa pra esse for dá erro!
 			for(TransacaoModel transacao  : listar()){
 				if(transacao.getCliente().equals(pModel) && transacao.getCompra()==false){
 					buffer.append("\n" + transacao.toString());
@@ -132,7 +131,6 @@ public class TransacaoBO implements TransacaoBOIf{
 				}
 			}
 			if(a != 0) {
-//				return transacaoDAO.exibirHistoricoAluguelCliente(pModel);
 				return  buffer.toString();
 			}
 			if(a == 0) {
@@ -151,7 +149,6 @@ public class TransacaoBO implements TransacaoBOIf{
 		try{
 			buffer.append("\n\nHistórico: ");
 			int a=0;
-			// quando passa pra esse for dá erro! igual ao histórico de aluguel por cliente
 			for(TransacaoModel transacao  : listar()){
 				if(transacao.listaMidia.equals(pModel) && transacao.getCompra()==false){
 					buffer.append("\n" + transacao.toString());
@@ -159,7 +156,6 @@ public class TransacaoBO implements TransacaoBOIf{
 				}
 			}
 			if(a != 0) {
-//				return transacaoDAO.exibirHistoricoAluguelMidia(pModel);
 				return  buffer.toString();
 			}
 			if(a == 0) {
