@@ -154,7 +154,7 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	@Override
 	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMídias com maior e menor preço do cadastro ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel() + "\n");
+		buffer.append("\n\nMídias com maior e menor preço do cadastro ").append("\nVenda: ").append("\nMais caro: ").append(midiaMaisCaraVenda() + "\n").append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\n\n\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel() + "\n").append("\nMais barato: ").append(midiaMaisBarataAluguel() + "\n");
 		return  buffer.toString();
 	}	
 }
