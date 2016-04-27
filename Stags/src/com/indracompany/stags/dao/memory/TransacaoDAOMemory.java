@@ -55,7 +55,6 @@ public class TransacaoDAOMemory implements TransacaoDAOIf {
 		}
 	}
 
-	//precisa construir
 	@Override
 	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
 		try{

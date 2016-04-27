@@ -9,6 +9,7 @@ import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.MidiaModel;
 
 public class MidiaDAOMemory implements MidiaDAOIf {
+	
 	@Override
 	public void inserir(MidiaModel pModel) throws Exception {
 		pModel.setCodigo(DataBase.getCodigoMidia());
@@ -74,20 +75,26 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		}
 	}
 
-	//precisa construir
 	@Override
-	public MidiaModel mediaPrecoVenda() throws Exception {
-		Long codigo;
-		return null;
-		
+	public Double mediaPrecoVenda() throws Exception {
+		int quantidadeMidia = listar().size();
+		Double mediaPrecoVenda = (double) 0;
+		for(Long a = (long) 1; a == quantidadeMidia; a++ ) {
+			MidiaModel midia = buscar(a);
+			mediaPrecoVenda += midia.getValorVenda();
+		}
+		return mediaPrecoVenda/quantidadeMidia;		
 	}
 
-	//precisa construir
 	@Override
-	public MidiaModel mediaPrecoAluguel() throws Exception {
-		Long codigo;
-		return null;
-		
+	public Double mediaPrecoAluguel() throws Exception {
+		int quantidadeMidia = listar().size();
+		Double mediaPrecoAluguel = (double) 0;
+		for(Long a = (long) 1; a == quantidadeMidia; a++ ) {
+			MidiaModel midia = buscar(a);
+			mediaPrecoAluguel += midia.getValorAluguel();
+		}
+		return mediaPrecoAluguel/quantidadeMidia;
 	}
 
 	//precisa construir
@@ -124,14 +131,14 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	@Override
 	public String exibirMidiaPrecoVendaAluguel() throws Exception {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMédia de Preços: ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel());
+		buffer.append("\n\nMédia de preço das mídias cadastradas para: ").append("\nVenda: ").append(mediaPrecoVenda() + "\n").append("\nAluguel: ").append(mediaPrecoAluguel() + "\n");
 		return  buffer.toString();
 	}
 	
 	@Override
 	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMídia para: ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel());
+		buffer.append("\n\nMaior e menor preço da mídia para: ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel());
 		return  buffer.toString();
 	}	
 }
