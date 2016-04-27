@@ -2,6 +2,7 @@ package com.indracompany.stags.bo.ab;
 
 import java.util.List;
 
+import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.MidiaModel;
 import com.indracompany.stags.model.TransacaoModel;
 
@@ -24,4 +25,6 @@ public interface TransacaoBOIf {
 	public void incrementarValorTotalVenda(MidiaModel lModel, TransacaoModel tModel) throws Exception;
 
 	public void mostrarCompra(TransacaoModel pModel) throws Exception;
+
+	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
 }

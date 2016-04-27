@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.indracompany.stags.bo.ab.TransacaoBOIf;
 import com.indracompany.stags.dao.memory.TransacaoDAOMemory;
+import com.indracompany.stags.model.ClienteModel;
 import com.indracompany.stags.model.MidiaModel;
 import com.indracompany.stags.model.TransacaoModel;
 
@@ -114,6 +115,15 @@ public class TransacaoBO implements TransacaoBOIf{
 			} catch (Exception e) {
 				throw new Exception("Erro ao tentar realizar transação -> "+e.getMessage());
 			}
+		}
+	}
+	
+	@Override
+	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
+		try {
+			return transacaoDAO.exibirHistoricoAluguelCliente(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir histórico de aluguel de um cliente -> "+e.getMessage());
 		}
 	}
 }

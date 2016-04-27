@@ -7,6 +7,7 @@ public class TransacaoModel extends ModelAB {
 	private ClienteModel cliente;
 	private String dataRegistro;
 	private Double valorTotal;
+	private Boolean compra;
 	
 	public TransacaoModel(List<MidiaModel> listaMidia, ClienteModel cliente, String dataRegistro, Double valorTotal) {		
 		this();
@@ -38,7 +39,6 @@ public class TransacaoModel extends ModelAB {
 	public String getDataRegistro() {
 		return dataRegistro;
 	}
-
 	public void setDataRegistro(String dataRegistro) {
 		this.dataRegistro = dataRegistro;
 	}
@@ -47,8 +47,14 @@ public class TransacaoModel extends ModelAB {
 	}
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
+	}	
+	public Boolean getCompra() {
+		return compra;
 	}
-	
+	public void setCompra(Boolean compra) {
+		this.compra = compra;
+	}	
+
 	@Override
 	public String toString() {
 		StringBuilder buffer = new StringBuilder();
@@ -59,5 +65,5 @@ public class TransacaoModel extends ModelAB {
 			buffer.append(" Inativo.");
 		}
 		return  buffer.toString();		
-	}	
+	}
 }

@@ -167,7 +167,7 @@ public class MenuBuilder {
 		
 		public void exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
 			try {
-				clienteBO.exibirHistoricoAluguelCliente(pModel);
+				transacaoBO.exibirHistoricoAluguelCliente(pModel);
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
 			}
@@ -456,6 +456,7 @@ public class MenuBuilder {
 					nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a comprar" + quebraLinha + "(para cancelar, digite N): ");
 				    if(!nomeMidia.equalsIgnoreCase("N")){
 						lModel = midiaBO.buscarMidia(nomeMidia);
+						tModel.setCompra(true);
 						transacaoBO.incrementarValorTotalVenda(lModel, tModel);
 						transacaoBO.diminuirQuantidade(lModel);
 				    	tModel.addMidia(lModel);
@@ -490,6 +491,7 @@ public class MenuBuilder {
 							nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a alugar" + quebraLinha + "(para cancelar, digite N): ");
 						    if(!nomeMidia.equalsIgnoreCase("N")){
 								lModel = midiaBO.buscarMidia(nomeMidia);
+								tModel.setCompra(false);
 								transacaoBO.incrementarValorTotalAluguel(lModel, tModel);
 								transacaoBO.diminuirQuantidade(lModel);
 						    	tModel.addMidia(lModel);

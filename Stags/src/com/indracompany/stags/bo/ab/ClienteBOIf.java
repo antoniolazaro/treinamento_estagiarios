@@ -20,6 +20,4 @@ public interface ClienteBOIf {
 	public void validate(ClienteModel pModel) throws Exception;
 
 	public boolean validateCampoNumero(CharSequence idade) throws Exception;
-
-	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
 }
