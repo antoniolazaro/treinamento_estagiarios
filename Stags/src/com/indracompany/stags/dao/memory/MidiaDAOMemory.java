@@ -1,5 +1,6 @@
 package com.indracompany.stags.dao.memory;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -7,7 +8,6 @@ import com.indracompany.stags.bo.MidiaBO;
 import com.indracompany.stags.dao.MidiaDAOIf;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.MidiaModel;
-import com.indracompany.stags.model.TipoDeMidiaModel;
 
 public class MidiaDAOMemory implements MidiaDAOIf {
 	
@@ -77,23 +77,25 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	}
 
 	@Override
-	public Double mediaPrecoVenda() throws Exception {
+	public String mediaPrecoVenda() throws Exception {
 		Integer quantidadeMidia = listar().size();
 		Double mediaPrecoVenda = (double) 0;
 		for(MidiaModel midia  : listar()){
 			mediaPrecoVenda += midia.getValorVenda();
-		}
-		return mediaPrecoVenda/quantidadeMidia;
+		}		
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		return df.format(mediaPrecoVenda/quantidadeMidia);
 	}
 
 	@Override
-	public Double mediaPrecoAluguel() throws Exception {
+	public String mediaPrecoAluguel() throws Exception {
 		Integer quantidadeMidia = listar().size();
 		Double mediaPrecoAluguel = (double) 0;
 		for(MidiaModel midia  : listar()){
 			mediaPrecoAluguel += midia.getValorAluguel();
-		}
-		return mediaPrecoAluguel/quantidadeMidia;
+		}		
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		return df.format(mediaPrecoAluguel/quantidadeMidia);
 	}
 
 	@Override

@@ -20,9 +20,9 @@ public interface MidiaDAOIf {
 	
 	public MidiaModel buscar(Long codigo) throws Exception;
 
-	public Double mediaPrecoVenda() throws Exception;
+	public String mediaPrecoVenda() throws Exception;
 
-	public Double mediaPrecoAluguel() throws Exception;
+	public String mediaPrecoAluguel() throws Exception;
 
 	public MidiaModel midiaMaisCaraVenda() throws Exception;
 
