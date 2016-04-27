@@ -1,6 +1,5 @@
 package com.indracompany.stags.dao.memory;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -47,116 +46,43 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	}
 	
 	@Override
-	public MidiaModel buscarMidia(String nome) throws Exception {
-		try {
-			for(MidiaModel midia  : listar()){
-				if(midia.getNome().equalsIgnoreCase(nome)){
-					System.out.println("Mídia encontrado: "+midia.toString());
-					return midia;
-				}
-			}
-			throw new Exception("Mídia não encontrada. ");
-		} catch (Exception e) {
-			throw new Exception("Erro -> "+e.getMessage());
-		}				
+	public void buscarMidia(String nome) throws Exception {
+		DataBase.getListaMidia();
 	}
 	
 	@Override
-	public MidiaModel buscar(Long codigo) throws Exception {
-		try {
-			for(MidiaModel midia  : listar()){
-				if(midia.getCodigo().equals(codigo)){
-					System.out.println("Mídia encontrada: "+midia.toString());
-					return midia;
-				}
-			}
-			throw new Exception("Mídia não encontrada. ");
-		} catch (Exception e) {
-			throw new Exception("Erro -> "+e.getMessage());
-		}
+	public void buscar(Long codigo) throws Exception {
+		DataBase.getListaMidia();
 	}
 
 	@Override
-	public String mediaPrecoVenda() throws Exception {
-		Integer quantidadeMidia = listar().size();
-		Double mediaPrecoVenda = (double) 0;
-		for(MidiaModel midia  : listar()){
-			mediaPrecoVenda += midia.getValorVenda();
-		}		
-		DecimalFormat df = new DecimalFormat("###,##0.00");
-		return df.format(mediaPrecoVenda/quantidadeMidia);
+	public void mediaPrecoVenda() throws Exception {
+		DataBase.getListaMidia();
 	}
 
 	@Override
-	public String mediaPrecoAluguel() throws Exception {
-		Integer quantidadeMidia = listar().size();
-		Double mediaPrecoAluguel = (double) 0;
-		for(MidiaModel midia  : listar()){
-			mediaPrecoAluguel += midia.getValorAluguel();
-		}		
-		DecimalFormat df = new DecimalFormat("###,##0.00");
-		return df.format(mediaPrecoAluguel/quantidadeMidia);
+	public void mediaPrecoAluguel() throws Exception {
+		DataBase.getListaMidia();
 	}
 
 	@Override
-	public MidiaModel midiaMaisCaraVenda() throws Exception {		
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorVenda((double) 0);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorVenda() > auxiliar.getValorVenda()) {
-				auxiliar = midia;
-			}
-		}
-		return auxiliar;
+	public void midiaMaisCaraVenda() throws Exception {	
+		DataBase.getListaMidia();
 	}
 
 	@Override
-	public MidiaModel midiaMaisCaraAluguel() throws Exception {
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorAluguel((double) 0);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorAluguel() > auxiliar.getValorAluguel()) {
-				auxiliar = midia;
-			}
-		}
-		return auxiliar;
+	public void midiaMaisCaraAluguel() throws Exception {
+		DataBase.getListaMidia();
 	}
 
 	@Override
-	public MidiaModel midiaMaisBarataVenda() throws Exception {
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorVenda(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorVenda() < auxiliar.getValorVenda()) {
-				auxiliar = midia;
-			}
-		}
-		return auxiliar;	
+	public void midiaMaisBarataVenda() throws Exception {
+		DataBase.getListaMidia();
 	}
 
 	@Override
-	public MidiaModel midiaMaisBarataAluguel() throws Exception {
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorAluguel(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorAluguel() < auxiliar.getValorAluguel()) {
-				auxiliar = midia;
-			}
-		}
-		return auxiliar;
+	public void midiaMaisBarataAluguel() throws Exception {
+		DataBase.getListaMidia();
 	}
-	
-	@Override
-	public String exibirMidiaPrecoVendaAluguel() throws Exception {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMédia de preço das mídias cadastradas ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel() + "\n");
-		return  buffer.toString();
-	}
-	
-	@Override
-	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMídias com maior e menor preço do cadastro ").append("\nVenda: ").append("\nMais caro: ").append(midiaMaisCaraVenda() + "\n").append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\n\n\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel() + "\n").append("\nMais barato: ").append(midiaMaisBarataAluguel() + "\n");
-		return  buffer.toString();
-	}	
+
 }

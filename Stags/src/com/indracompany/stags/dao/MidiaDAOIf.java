@@ -16,23 +16,19 @@ public interface MidiaDAOIf {
 	
 	public MidiaModel buscar(MidiaModel pModel) throws Exception;
 
-	public MidiaModel buscarMidia(String nome) throws Exception;
+	public void buscarMidia(String nome) throws Exception;
 	
-	public MidiaModel buscar(Long codigo) throws Exception;
+	public void buscar(Long codigo) throws Exception;
 
-	public String mediaPrecoVenda() throws Exception;
+	public void mediaPrecoVenda() throws Exception;
 
-	public String mediaPrecoAluguel() throws Exception;
+	public void mediaPrecoAluguel() throws Exception;
 
-	public MidiaModel midiaMaisCaraVenda() throws Exception;
+	public void midiaMaisCaraVenda() throws Exception;
 
-	public MidiaModel midiaMaisCaraAluguel() throws Exception;
+	public void midiaMaisCaraAluguel() throws Exception;
 
-	public MidiaModel midiaMaisBarataVenda() throws Exception;
+	public void midiaMaisBarataVenda() throws Exception;
 
-	public MidiaModel midiaMaisBarataAluguel() throws Exception;
-
-	public String exibirMidiaPrecoVendaAluguel() throws Exception;
-
-	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception;
+	public void midiaMaisBarataAluguel() throws Exception;
 }

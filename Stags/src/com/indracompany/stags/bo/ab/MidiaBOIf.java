@@ -25,4 +25,16 @@ public interface MidiaBOIf {
 	public String exibirMidiaPrecoVendaAluguel() throws Exception;
 
 	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception;
+
+	public String mediaPrecoVenda() throws Exception;
+
+	public String mediaPrecoAluguel() throws Exception;
+
+	public MidiaModel midiaMaisCaraVenda() throws Exception;
+
+	public MidiaModel midiaMaisCaraAluguel() throws Exception;
+
+	public MidiaModel midiaMaisBarataVenda() throws Exception;
+
+	public MidiaModel midiaMaisBarataAluguel() throws Exception;
 }
