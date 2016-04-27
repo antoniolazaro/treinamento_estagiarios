@@ -139,14 +139,14 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	@Override
 	public String exibirMidiaPrecoVendaAluguel() throws Exception {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMédia de preço das mídias cadastradas para: ").append("\nVenda: ").append(mediaPrecoVenda() + "\n").append("\nAluguel: ").append(mediaPrecoAluguel() + "\n");
+		buffer.append("\n\nMédia de preço das mídias cadastradas ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel() + "\n");
 		return  buffer.toString();
 	}
 	
 	@Override
 	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMaior e menor preço da mídia para: ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel());
+		buffer.append("\n\nMídias com maior e menor preço do cadastro ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel() + "\n");
 		return  buffer.toString();
 	}	
 }

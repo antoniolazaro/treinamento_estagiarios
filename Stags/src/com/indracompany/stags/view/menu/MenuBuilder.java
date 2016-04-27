@@ -415,7 +415,7 @@ public class MenuBuilder {
 		
 		public void exibirMidiaPrecoVendaAluguel() throws Exception {
 			try {
-				midiaBO.exibirMidiaPrecoVendaAluguel();
+				System.out.println(midiaBO.exibirMidiaPrecoVendaAluguel());
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
 			}
@@ -423,7 +423,7 @@ public class MenuBuilder {
 		
 		public void exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception {
 			try {
-				midiaBO.exibirMidiaPrecoMaisBaratoCaroVendaAluguel();
+				System.out.println(midiaBO.exibirMidiaPrecoMaisBaratoCaroVendaAluguel());
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
 			}
@@ -434,7 +434,7 @@ public class MenuBuilder {
 				String nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a fim de obter histórico: ");
 				MidiaModel mModel = midiaBO.buscarMidia(nomeMidia);
 		    	System.out.printf("\nHistórico: \n");
-				transacaoBO.exibirHistoricoAluguelMidia(mModel);
+		    	System.out.println(transacaoBO.exibirHistoricoAluguelMidia(mModel));
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
 			}
