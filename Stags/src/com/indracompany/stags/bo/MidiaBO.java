@@ -170,68 +170,92 @@ public class MidiaBO implements MidiaBOIf{
 	
 	@Override
 	public String mediaPrecoAluguel() throws Exception {
-		Integer quantidadeMidia = listar().size();
-		Double mediaPrecoAluguel = (double) 0;
-		for(MidiaModel midia  : listar()){
-			mediaPrecoAluguel += midia.getValorAluguel();
-		}		
-		DecimalFormat df = new DecimalFormat("###,##0.00");
-		return df.format(mediaPrecoAluguel/quantidadeMidia);
+		try {
+			Integer quantidadeMidia = listar().size();
+			Double mediaPrecoAluguel = (double) 0;
+			for(MidiaModel midia  : listar()){
+				mediaPrecoAluguel += midia.getValorAluguel();
+			}		
+			DecimalFormat df = new DecimalFormat("###,##0.00");
+			return df.format(mediaPrecoAluguel/quantidadeMidia);
+		}catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+		}
 	}
 	
 	@Override
-	public MidiaModel midiaMaisCaraVenda() throws Exception {		
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorVenda((double) 0);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorVenda() > auxiliar.getValorVenda()) {
-				auxiliar = midia;
+	public MidiaModel midiaMaisCaraVenda() throws Exception {	
+		try {	
+			MidiaModel auxiliar = new MidiaModel();
+			auxiliar.setValorVenda((double) 0);
+			for(MidiaModel midia  : listar()){
+				if(midia.getValorVenda() > auxiliar.getValorVenda()) {
+					auxiliar = midia;
+				}
 			}
+			return auxiliar;			
+		}catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
 		}
-		return auxiliar;
 	}
 
 	@Override
 	public MidiaModel midiaMaisCaraAluguel() throws Exception {
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorAluguel((double) 0);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorAluguel() > auxiliar.getValorAluguel()) {
-				auxiliar = midia;
+		try {
+			MidiaModel auxiliar = new MidiaModel();
+			auxiliar.setValorAluguel((double) 0);
+			for(MidiaModel midia  : listar()){
+				if(midia.getValorAluguel() > auxiliar.getValorAluguel()) {
+					auxiliar = midia;
+				}
 			}
+			return auxiliar;			
+		}catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
 		}
-		return auxiliar;
 	}
 	
 	@Override
 	public MidiaModel midiaMaisBarataVenda() throws Exception {
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorVenda(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorVenda() < auxiliar.getValorVenda()) {
-				auxiliar = midia;
+		try {
+			MidiaModel auxiliar = new MidiaModel();
+			auxiliar.setValorVenda(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
+			for(MidiaModel midia  : listar()){
+				if(midia.getValorVenda() < auxiliar.getValorVenda()) {
+					auxiliar = midia;
+				}
 			}
+			return auxiliar;			
+		}catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
 		}
-		return auxiliar;	
 	}
 
 	@Override
 	public MidiaModel midiaMaisBarataAluguel() throws Exception {
-		MidiaModel auxiliar = new MidiaModel();
-		auxiliar.setValorAluguel(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
-		for(MidiaModel midia  : listar()){
-			if(midia.getValorAluguel() < auxiliar.getValorAluguel()) {
-				auxiliar = midia;
+		try {
+			MidiaModel auxiliar = new MidiaModel();
+			auxiliar.setValorAluguel(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
+			for(MidiaModel midia  : listar()){
+				if(midia.getValorAluguel() < auxiliar.getValorAluguel()) {
+					auxiliar = midia;
+				}
 			}
+			return auxiliar;			
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
 		}
-		return auxiliar;
 	}
 	
 	@Override
 	public String exibirMidiaPrecoVendaAluguel() throws Exception {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMédia de preço das mídias cadastradas ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel() + "\n");
-		return  buffer.toString();
+		try {
+			StringBuilder buffer = new StringBuilder();
+			buffer.append("\n\nMédia de preço das mídias cadastradas ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel() + "\n");
+			return  buffer.toString();			
+		}catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+		}
 	}
 
 	@Override
