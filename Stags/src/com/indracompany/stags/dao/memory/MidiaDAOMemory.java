@@ -77,21 +77,19 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 
 	@Override
 	public Double mediaPrecoVenda() throws Exception {
-		int quantidadeMidia = listar().size();
+		Integer quantidadeMidia = listar().size();
 		Double mediaPrecoVenda = (double) 0;
-		for(Long a = (long) 1; a == quantidadeMidia; a++ ) {
-			MidiaModel midia = buscar(a);
+		for(MidiaModel midia  : listar()){
 			mediaPrecoVenda += midia.getValorVenda();
 		}
-		return mediaPrecoVenda/quantidadeMidia;		
+		return mediaPrecoVenda/quantidadeMidia;
 	}
 
 	@Override
 	public Double mediaPrecoAluguel() throws Exception {
-		int quantidadeMidia = listar().size();
+		Integer quantidadeMidia = listar().size();
 		Double mediaPrecoAluguel = (double) 0;
-		for(Long a = (long) 1; a == quantidadeMidia; a++ ) {
-			MidiaModel midia = buscar(a);
+		for(MidiaModel midia  : listar()){
 			mediaPrecoAluguel += midia.getValorAluguel();
 		}
 		return mediaPrecoAluguel/quantidadeMidia;
