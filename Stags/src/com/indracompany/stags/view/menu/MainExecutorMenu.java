@@ -59,7 +59,7 @@ public class MainExecutorMenu {
 		                    break;
 		                    
 		                case "11":
-		                	menuBuilder.exibirMidiaPrecoVendaAluguel();                
+		                	menuBuilder.exibirMidiaPrecoVendaAluguel();              
 		                    break;
 		                    
 		                case "12":

@@ -7,6 +7,7 @@ import com.indracompany.stags.bo.MidiaBO;
 import com.indracompany.stags.dao.MidiaDAOIf;
 import com.indracompany.stags.dao.util.DataBase;
 import com.indracompany.stags.model.MidiaModel;
+import com.indracompany.stags.model.TipoDeMidiaModel;
 
 public class MidiaDAOMemory implements MidiaDAOIf {
 	
@@ -95,19 +96,28 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		return mediaPrecoAluguel/quantidadeMidia;
 	}
 
-	//precisa construir
 	@Override
-	public MidiaModel midiaMaisCaraVenda() throws Exception {
-		Long codigo;
-		return null;
-		
+	public MidiaModel midiaMaisCaraVenda() throws Exception {		
+		MidiaModel auxiliar = new MidiaModel();
+		auxiliar.setValorVenda((double) 0);
+		for(MidiaModel midia  : listar()){
+			if(midia.getValorVenda() > auxiliar.getValorVenda()) {
+				auxiliar = midia;
+			}
+		}
+		return auxiliar;
 	}
 
 	@Override
 	public MidiaModel midiaMaisCaraAluguel() throws Exception {
-		Long codigo;
-		return null;
-		
+		MidiaModel auxiliar = new MidiaModel();
+		auxiliar.setValorAluguel((double) 0);
+		for(MidiaModel midia  : listar()){
+			if(midia.getValorAluguel() > auxiliar.getValorAluguel()) {
+				auxiliar = midia;
+			}
+		}
+		return auxiliar;
 	}
 
 	//precisa construir
