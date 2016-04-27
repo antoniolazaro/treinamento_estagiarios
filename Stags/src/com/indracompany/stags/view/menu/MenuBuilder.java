@@ -434,7 +434,7 @@ public class MenuBuilder {
 				String nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a fim de obter histórico: ");
 				MidiaModel mModel = midiaBO.buscarMidia(nomeMidia);
 		    	System.out.printf("\nHistórico: \n");
-				midiaBO.exibirHistoricoAluguelMidia(mModel);
+				transacaoBO.exibirHistoricoAluguelMidia(mModel);
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
 			}

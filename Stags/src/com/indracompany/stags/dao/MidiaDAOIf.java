@@ -35,6 +35,4 @@ public interface MidiaDAOIf {
 	public String exibirMidiaPrecoVendaAluguel() throws Exception;
 
 	public String exibirMidiaPrecoMaisBaratoCaroVendaAluguel() throws Exception;
-
-	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
 }

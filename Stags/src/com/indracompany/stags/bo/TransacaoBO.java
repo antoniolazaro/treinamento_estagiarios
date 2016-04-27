@@ -126,4 +126,13 @@ public class TransacaoBO implements TransacaoBOIf{
 			throw new Exception("Erro ao tentar exibir histórico de aluguel de um cliente -> "+e.getMessage());
 		}
 	}
+
+	@Override
+	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
+		try {
+			return transacaoDAO.exibirHistoricoAluguelMidia(pModel);
+		} catch (Exception e) {
+			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+		}
+	}
 }

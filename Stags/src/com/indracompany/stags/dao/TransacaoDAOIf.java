@@ -3,6 +3,7 @@ package com.indracompany.stags.dao;
 import java.util.List;
 
 import com.indracompany.stags.model.ClienteModel;
+import com.indracompany.stags.model.MidiaModel;
 import com.indracompany.stags.model.TransacaoModel;
 
 public interface TransacaoDAOIf {
@@ -17,4 +18,6 @@ public interface TransacaoDAOIf {
 	public void setValorTotal(Double mModel) throws Exception;
 
 	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
+
+	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
 }

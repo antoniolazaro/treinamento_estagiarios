@@ -157,13 +157,4 @@ public class MidiaBO implements MidiaBOIf{
 			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
 		}
 	}
-
-	@Override
-	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
-		try {
-			return midiaDAO.exibirHistoricoAluguelMidia(pModel);
-		} catch (Exception e) {
-			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
-		}
-	}
 }

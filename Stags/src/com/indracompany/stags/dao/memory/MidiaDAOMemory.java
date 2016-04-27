@@ -133,13 +133,5 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 		StringBuilder buffer = new StringBuilder();
 		buffer.append("\n\nMídia para: ").append("\nVenda:\n").append("\nMais caro: ").append(midiaMaisCaraVenda()).append("\nMais barato: ").append(midiaMaisBarataVenda()).append("\nAluguel: ").append("\nMais caro: ").append(midiaMaisCaraAluguel()).append("\nMais barato: ").append(midiaMaisBarataAluguel());
 		return  buffer.toString();
-	}
-	
-	//precisa construir
-	@Override
-	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("\n\nMédia de Preços: ").append("\nVenda: ").append(mediaPrecoVenda()).append("\nAluguel: ").append(mediaPrecoAluguel());
-		return  buffer.toString();
-	}
+	}	
 }
