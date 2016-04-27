@@ -1,7 +1,7 @@
 package com.indracompany.stags.view.menu;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,8 +27,7 @@ public class MenuBuilder {
 			midiaBO = new MidiaBO();
 			transacaoBO = new TransacaoBO();
 		}
-		public String executarMenuInicial() {
-			
+		public String executarMenuInicial(){
 			System.out.println("\t\tMenu de opções:" + quebraLinha + quebraLinha);
 			System.out.println("Área de Cliente:");
 			System.out.println("\t1. Inserir cliente");

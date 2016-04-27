@@ -120,19 +120,55 @@ public class TransacaoBO implements TransacaoBOIf{
 	
 	@Override
 	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
-		try {
-			return transacaoDAO.exibirHistoricoAluguelCliente(pModel);
+		StringBuilder buffer = new StringBuilder();
+		try{
+			buffer.append("\n\nHistórico: ");
+			int a=0;
+			// quando passa pra esse for dá erro!
+			for(TransacaoModel transacao  : listar()){
+				if(transacao.getCliente().equals(pModel) && transacao.getCompra()==false){
+					buffer.append("\n" + transacao.toString());
+					a++;
+				}
+			}
+			if(a != 0) {
+//				return transacaoDAO.exibirHistoricoAluguelCliente(pModel);
+				return  buffer.toString();
+			}
+			if(a == 0) {
+				buffer.append("Não houve transação relacionada a esse cliente. ");
+				return buffer.toString();
+			}
 		} catch (Exception e) {
-			throw new Exception("Erro ao tentar exibir histórico de aluguel de um cliente -> "+e.getMessage());
+			throw new Exception("Erro -> "+e.getMessage());
 		}
+		return buffer.toString();
 	}
 
 	@Override
 	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
-		try {
-			return transacaoDAO.exibirHistoricoAluguelMidia(pModel);
+		StringBuilder buffer = new StringBuilder();
+		try{
+			buffer.append("\n\nHistórico: ");
+			int a=0;
+			// quando passa pra esse for dá erro! igual ao histórico de aluguel por cliente
+			for(TransacaoModel transacao  : listar()){
+				if(transacao.listaMidia.equals(pModel) && transacao.getCompra()==false){
+					buffer.append("\n" + transacao.toString());
+					a++;
+				}
+			}
+			if(a != 0) {
+//				return transacaoDAO.exibirHistoricoAluguelMidia(pModel);
+				return  buffer.toString();
+			}
+			if(a == 0) {
+				buffer.append("Não houve transação relacionada a essa mídia. ");
+				return buffer.toString();			
+			}
 		} catch (Exception e) {
-			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
+			throw new Exception("Erro -> "+e.getMessage());
 		}
+		return buffer.toString();
 	}
 }

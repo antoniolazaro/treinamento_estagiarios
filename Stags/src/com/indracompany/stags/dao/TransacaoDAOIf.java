@@ -17,7 +17,7 @@ public interface TransacaoDAOIf {
 
 	public void setValorTotal(Double mModel) throws Exception;
 
-	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
+	public void exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
 
-	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
+	public void exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
 }

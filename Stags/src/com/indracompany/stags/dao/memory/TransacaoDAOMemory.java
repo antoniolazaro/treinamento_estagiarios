@@ -36,42 +36,12 @@ public class TransacaoDAOMemory implements TransacaoDAOIf {
 	}
 	
 	@Override
-	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {
-		try{
-			int a=0;
-			// quando passa pra esse for dá erro!
-			for(TransacaoModel transacao  : listar()){
-				if(transacao.getCliente().equals(pModel) && transacao.getCompra()==false){
-					System.out.println("Transação encontrada: "+transacao.toString());
-					a++;
-				}
-			}
-			if(a != 0) {
-				return("Transação encontrada. ");
-			}
-			throw new Exception("Transação não encontrada. ");
-		} catch (Exception e) {
-			throw new Exception("Erro -> "+e.getMessage());
-		}
+	public void exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception {		
+		DataBase.getListaTransacao();		
 	}
 
 	@Override
-	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
-		try{
-			int a=0;
-			// quando passa pra esse for dá erro! igual ao histórico de aluguel por cliente
-			for(TransacaoModel transacao  : listar()){
-				if(transacao.listaMidia.equals(pModel) && transacao.getCompra()==false){
-					System.out.println("Transação encontrada: "+transacao.toString());
-					a++;
-				}
-			}
-			if(a != 0) {
-				return("Transação encontrada. ");
-			}
-			throw new Exception("Transação não encontrada. ");
-		} catch (Exception e) {
-			throw new Exception("Erro -> "+e.getMessage());
-		}
+	public void exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
+		DataBase.getListaTransacao();		
 	}
 }
