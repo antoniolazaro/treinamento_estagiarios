@@ -54,6 +54,7 @@ public class MenuBuilder {
 		System.out.println("\t14 Produto mais caro");
 		System.out.println("\t15 Produto mais barato");
 		System.out.println("\t16 Media de preço");
+		System.out.println("\t17 Buscar Produto por Código");
 
 		System.out.println("\t0. Sair" + QUEBRA_LINHA);
 
@@ -348,6 +349,16 @@ public class MenuBuilder {
 		return retorno;
 	}
 
+	private Long pedirEntradaNumeroLong(String mensagemEntrada) {
+
+		Long retorno = null;
+		while (retorno == null) {
+			System.out.print(mensagemEntrada);
+			retorno = validarLong(scanner.next());
+		}
+		return retorno;
+	}
+
 	private Double validarDouble(String numero) {
 		try {
 			return Double.parseDouble(numero);
@@ -360,6 +371,15 @@ public class MenuBuilder {
 	private Integer validarInteger(String numero) {
 		try {
 			return Integer.parseInt(numero);
+		} catch (Exception e) {
+
+			return null;
+		}
+	}
+
+	private Long validarLong(String numero) {
+		try {
+			return Long.parseLong(numero);
 		} catch (Exception e) {
 
 			return null;
@@ -389,6 +409,24 @@ public class MenuBuilder {
 
 	public void mediaPreco() throws Exception {
 		System.out.println("Amédia de preço dos produtos é = " + produtoBO.calcularMedia());
+	}
+
+	public void buscarProdutoCodigo() throws Exception {
+		Long codigo;
+
+		ProdutoModel produtoPesquisa;
+
+		codigo = pedirEntradaNumeroLong("Digite o codigo");
+		ProdutoModel produto = new ProdutoModel();
+		produto.setCodigo(codigo);
+		produtoPesquisa = produtoBO.buscarPorCodigo(produto);
+		System.out.println("**************************************************");
+		System.out.println("Nome: " + produtoPesquisa.getNome());
+		System.out.println("Preço Venda: " + produtoPesquisa.getPrecoVenda());
+		System.out.println("Preço Alguel: " + produtoPesquisa.getPrecoAluguel());
+		System.out.println("Tipo: " + produtoPesquisa.getTipoProduto().toString());
+		System.out.println("Quantidade: " + produtoPesquisa.getQuantidade());
+		System.out.println("**************************************************");
 	}
 
 }

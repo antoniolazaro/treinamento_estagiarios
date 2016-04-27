@@ -15,8 +15,7 @@ public interface IProdutoDao {
 	public Collection<ProdutoModel> buscarPorNome(String nome);
 
 	public ProdutoModel buscar(String nome);
-	
+
 	public Collection<ProdutoModel> listaProduto();
-	
 
 }

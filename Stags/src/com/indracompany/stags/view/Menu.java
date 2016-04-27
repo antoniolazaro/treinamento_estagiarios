@@ -76,6 +76,10 @@ public class Menu {
 					menuBuilder.mediaPreco();
 					break;
 
+				case "17":
+					menuBuilder.buscarProdutoCodigo();
+					break;
+
 				case "0":
 					continuar = finalizarPrograma();
 					break;

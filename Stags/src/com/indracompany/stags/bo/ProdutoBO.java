@@ -46,6 +46,18 @@ public class ProdutoBO implements IProdutoBO {
 		return produtoDaoMemory.buscar(nome);
 	}
 
+	public ProdutoModel buscarPorCodigo(ProdutoModel produto) throws Exception {
+		ProdutoModel produtoRetorno = null;
+		for (ProdutoModel produtoModel : produtoDaoMemory.listaProduto()) {
+
+			if (produto.getCodigo().equals(produtoModel.getCodigo())) {
+				validarBusca(produtoModel);
+				produtoRetorno = produtoModel;
+			}
+		}
+		return produtoRetorno;
+	}
+
 	private void validate(ProdutoModel pModel) throws Exception {
 
 		if (pModel != null) {
@@ -92,6 +104,12 @@ public class ProdutoBO implements IProdutoBO {
 	private void validateBuscaCompra(ProdutoModel produto) throws Exception {
 		if (produto.getQuantidade() <= 0) {
 			throw new Exception("Quantidade Insuficiente");
+		}
+	}
+
+	private void validarBusca(ProdutoModel produto) throws Exception {
+		if (produto.getAtivo() == false) {
+			throw new Exception("Produto Não está ativo em nosso estoque!");
 		}
 	}
 
