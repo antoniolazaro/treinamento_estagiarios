@@ -156,10 +156,13 @@ public class MidiaBO implements MidiaBOIf{
 	@Override
 	public String mediaPrecoVenda() throws Exception {
 		try {
-			Integer quantidadeMidia = listar().size();
+			Integer quantidadeMidia = 0;
 			Double mediaPrecoVenda = (double) 0;
 			for(MidiaModel midia  : listar()){
-				mediaPrecoVenda += midia.getValorVenda();
+				if (midia.getAtivo()) {
+					mediaPrecoVenda += midia.getValorVenda();
+					quantidadeMidia++;					
+				}
 			}		
 			DecimalFormat df = new DecimalFormat("###,##0.00");
 			return df.format(mediaPrecoVenda/quantidadeMidia);
@@ -171,10 +174,13 @@ public class MidiaBO implements MidiaBOIf{
 	@Override
 	public String mediaPrecoAluguel() throws Exception {
 		try {
-			Integer quantidadeMidia = listar().size();
+			Integer quantidadeMidia = 0;
 			Double mediaPrecoAluguel = (double) 0;
 			for(MidiaModel midia  : listar()){
-				mediaPrecoAluguel += midia.getValorAluguel();
+				if (midia.getAtivo()) {
+					mediaPrecoAluguel += midia.getValorAluguel();
+					quantidadeMidia++;
+				}
 			}		
 			DecimalFormat df = new DecimalFormat("###,##0.00");
 			return df.format(mediaPrecoAluguel/quantidadeMidia);
@@ -189,8 +195,10 @@ public class MidiaBO implements MidiaBOIf{
 			MidiaModel auxiliar = new MidiaModel();
 			auxiliar.setValorVenda((double) 0);
 			for(MidiaModel midia  : listar()){
-				if(midia.getValorVenda() > auxiliar.getValorVenda()) {
-					auxiliar = midia;
+				if (midia.getAtivo()) {
+					if(midia.getValorVenda() > auxiliar.getValorVenda()) {
+						auxiliar = midia;
+					}
 				}
 			}
 			return auxiliar;			
@@ -205,8 +213,10 @@ public class MidiaBO implements MidiaBOIf{
 			MidiaModel auxiliar = new MidiaModel();
 			auxiliar.setValorAluguel((double) 0);
 			for(MidiaModel midia  : listar()){
-				if(midia.getValorAluguel() > auxiliar.getValorAluguel()) {
-					auxiliar = midia;
+				if (midia.getAtivo()) {
+					if(midia.getValorAluguel() > auxiliar.getValorAluguel()) {
+						auxiliar = midia;
+					}
 				}
 			}
 			return auxiliar;			
@@ -221,8 +231,10 @@ public class MidiaBO implements MidiaBOIf{
 			MidiaModel auxiliar = new MidiaModel();
 			auxiliar.setValorVenda(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
 			for(MidiaModel midia  : listar()){
-				if(midia.getValorVenda() < auxiliar.getValorVenda()) {
-					auxiliar = midia;
+				if (midia.getAtivo()) {
+					if(midia.getValorVenda() < auxiliar.getValorVenda()) {
+						auxiliar = midia;
+					}
 				}
 			}
 			return auxiliar;			
@@ -237,8 +249,10 @@ public class MidiaBO implements MidiaBOIf{
 			MidiaModel auxiliar = new MidiaModel();
 			auxiliar.setValorAluguel(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.7);
 			for(MidiaModel midia  : listar()){
-				if(midia.getValorAluguel() < auxiliar.getValorAluguel()) {
-					auxiliar = midia;
+				if (midia.getAtivo()) {
+					if(midia.getValorAluguel() < auxiliar.getValorAluguel()) {
+						auxiliar = midia;
+					}
 				}
 			}
 			return auxiliar;			

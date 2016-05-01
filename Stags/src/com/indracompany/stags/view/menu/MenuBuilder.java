@@ -185,20 +185,18 @@ public class MenuBuilder {
 				pModel.setDescricao(descricao);
 				String codBarras = pedirEntrada(quebraLinha + "Digite código de barras: ");
 				pModel.setCodigoBarras(codBarras);
-				CharSequence venda = pedirEntrada(quebraLinha + "Digite valor de venda: ");
-				if(venda  != null && !venda.equals("") && midiaBO.validateCampoNumero(venda)){
-					Double valorVenda = Double.parseDouble((String) venda);
-					pModel.setValorVenda(valorVenda);
-					CharSequence aluguel = pedirEntrada(quebraLinha + "Digite valor de aluguel: ");
-					if(aluguel  != null && !aluguel.equals("") && midiaBO.validateCampoNumero(aluguel)){
-						Double valorAluguel = Double.parseDouble((String) aluguel);
-						pModel.setValorAluguel(valorAluguel);
-					} else {
-						throw new Exception("Formato do valor do aluguel inválido.");
-					}
+				Double venda = Double.parseDouble((String) pedirEntrada(quebraLinha + "Digite valor de venda: Formato(xx.xx)"));
+				if(venda  != null && !venda.equals("")){
+					pModel.setValorVenda(venda);
 				} else {
 					throw new Exception("Formato do valor de venda inválido.");
 				}
+				Double valorAluguel = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de aluguel: Formato(xx.xx)"));
+				if(valorAluguel  != null && !valorAluguel.equals("")){
+					pModel.setValorAluguel(valorAluguel);
+				} else {
+					throw new Exception("Formato do valor do aluguel inválido.");
+				}				
 	//			Data automática
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				Date date = new Date();
@@ -207,9 +205,18 @@ public class MenuBuilder {
 	//			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 	//			String dataRegistroStr = pedirEntrada("\nDigite data(Formato: dd/MM/yyyy): ");
 	//			java.sql.Date dataRegistro = new java.sql.Date(format.parse(dataRegistroStr).getTime());
-	//			pModel.setDataRegistro(dataRegistro);						
-				Integer quantidadequantidadeEstoque = Integer.parseInt(pedirEntrada(quebraLinha + "Digite quantidade em estoque: "));
-				pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
+	//			pModel.setDataRegistro(dataRegistro);
+				CharSequence estoque = pedirEntrada(quebraLinha + "Digite quantidade em estoque: ");
+				if(estoque  != null && !estoque.equals("")){
+					if(midiaBO.validateCampoNumero(estoque)){
+						Integer quantidadequantidadeEstoque = Integer.parseInt((String) estoque);
+						pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
+					} else {
+						throw new Exception("Campo quantidade não aceita letras.");
+					}
+				} else {
+					throw new Exception("Formato da quantidade em estoque inválida.");
+				}
 				tipoMidiaInserirMenu(pModel);	
 				midiaBO.validate(pModel);			
 				midiaBO.inserir(pModel);
@@ -238,10 +245,10 @@ public class MenuBuilder {
 							break;
 
 						case "b":
-							CharSequence venda = pedirEntrada(quebraLinha + "Digite novo valor de venda: ");
-							if(venda != null && !venda.equals("") && clienteBO.validateCampoNumero(venda)){
-								Double opcaob = Double.parseDouble((String) venda);
-								pModel.setValorVenda(opcaob);
+
+							Double valorVenda = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de venda: "));
+							if(valorVenda != null && !valorVenda.equals("")){
+								pModel.setValorVenda(valorVenda);
 								midiaBO.validate(pModel);
 								midiaBO.editar(pModel);
 				                System.out.printf(quebraLinha + "Valor de Venda editado com sucesso." + quebraLinha);
@@ -251,10 +258,9 @@ public class MenuBuilder {
 							break;
 							
 						case "c":
-							CharSequence aluguel = pedirEntrada(quebraLinha + "Digite novo valor de aluguel: ");
-							if(aluguel != null && !aluguel.equals("") && clienteBO.validateCampoNumero(aluguel)){
-								Double opcaoc = Double.parseDouble((String) aluguel);
-								pModel.setValorAluguel(opcaoc);
+							Double valorAluguel = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de aluguel: "));
+							if(valorAluguel != null && !valorAluguel.equals("")){
+								pModel.setValorAluguel(valorAluguel);
 								midiaBO.validate(pModel);
 								midiaBO.editar(pModel);
 				                System.out.printf(quebraLinha + "Valor de Aluguel editado com sucesso." + quebraLinha);
@@ -269,8 +275,17 @@ public class MenuBuilder {
 							break;
 						
 						case "e":					
-							Integer quantidadequantidadeEstoque = Integer.parseInt(pedirEntrada(quebraLinha + "Digite nova quantidade em estoque: "));
-							pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
+							CharSequence estoque = pedirEntrada(quebraLinha + "Digite nova quantidade em estoque: ");
+							if(estoque  != null && !estoque.equals("")){
+								if(midiaBO.validateCampoNumero(estoque)){
+									Integer quantidadequantidadeEstoque = Integer.parseInt((String) estoque);
+									pModel.setQuantidadeEstoque(quantidadequantidadeEstoque);
+								} else {
+									throw new Exception("Campo quantidade não aceita letras.");
+								}
+							} else {
+								throw new Exception("Formato da quantidade em estoque inválida.");
+							}
 							midiaBO.validate(pModel);
 							midiaBO.editar(pModel);
 			                System.out.printf(quebraLinha + "Quantidade editada com sucesso." + quebraLinha);
@@ -435,7 +450,6 @@ public class MenuBuilder {
 			try {
 				String nomeMidia = pedirEntrada(quebraLinha + "Digite nome da mídia a fim de obter histórico: ");
 				MidiaModel mModel = midiaBO.buscarMidia(nomeMidia);
-		    	System.out.printf("\nHistórico: \n");
 		    	System.out.println(transacaoBO.exibirHistoricoAluguelMidia(mModel));
 			} catch (Exception e) {
 				throw new Exception("Não foi possível ");
