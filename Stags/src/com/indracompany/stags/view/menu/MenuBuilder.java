@@ -185,13 +185,13 @@ public class MenuBuilder {
 				pModel.setDescricao(descricao);
 				String codBarras = pedirEntrada(quebraLinha + "Digite código de barras: ");
 				pModel.setCodigoBarras(codBarras);
-				Double venda = Double.parseDouble((String) pedirEntrada(quebraLinha + "Digite valor de venda: Formato(xx.xx)"));
+				Double venda = Double.parseDouble((String) pedirEntrada(quebraLinha + "Digite valor de venda - Formato(xx.xx):"));
 				if(venda  != null && !venda.equals("")){
 					pModel.setValorVenda(venda);
 				} else {
 					throw new Exception("Formato do valor de venda inválido.");
 				}
-				Double valorAluguel = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de aluguel: Formato(xx.xx)"));
+				Double valorAluguel = Double.parseDouble(pedirEntrada(quebraLinha + "Digite valor de aluguel - Formato(xx.xx):"));
 				if(valorAluguel  != null && !valorAluguel.equals("")){
 					pModel.setValorAluguel(valorAluguel);
 				} else {

@@ -37,4 +37,6 @@ public interface MidiaBOIf {
 	public MidiaModel midiaMaisBarataVenda() throws Exception;
 
 	public MidiaModel midiaMaisBarataAluguel() throws Exception;
+
+//	public boolean validateCampoValor(CharSequence pModel) throws Exception;
 }
