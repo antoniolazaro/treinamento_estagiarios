@@ -20,6 +20,4 @@ public interface TransacaoDAOIf {
 	public void exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
 
 	public void exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
-
-//	public void addMidia(MidiaModel pModel, TransacaoModel tModel) throws Exception;
 }

@@ -150,7 +150,7 @@ public class TransacaoBO implements TransacaoBOIf{
 			buffer.append("\n\nHistórico: ");
 			int a=0;
 			for(TransacaoModel transacao  : listar()){
-				if(transacao.getListaMidia().equals(pModel) && transacao.getCompra()==false){
+				if(transacao.getListaMidia().contains(pModel) && transacao.getCompra()==false){
 					buffer.append("\n" + transacao.toString());
 					a++;
 				}
@@ -167,9 +167,4 @@ public class TransacaoBO implements TransacaoBOIf{
 		}
 		return buffer.toString();
 	}
-
-//	@Override
-//	public void addMidia(MidiaModel pModel, TransacaoModel tModel) throws Exception {
-//		transacaoDAO.addMidia(pModel, tModel);
-//	}
 }

@@ -24,33 +24,43 @@ public class TransacaoModel extends ModelAB {
 	public List<MidiaModel> getListaMidia() {
 		return listaMidia;
 	}
+	
 	public void setListaMidia(List<MidiaModel> listaMidia) {
 		this.listaMidia = listaMidia;
 	}
+	
 	public void addMidia(MidiaModel pModel) {
 		this.listaMidia.add(pModel);
 	}
+	
 	public ClienteModel getCliente() {
 		return cliente;
 	}
+	
 	public void setCliente(ClienteModel cliente) {
 		this.cliente = cliente;
 	}
+	
 	public String getDataRegistro() {
 		return dataRegistro;
 	}
+	
 	public void setDataRegistro(String dataRegistro) {
 		this.dataRegistro = dataRegistro;
 	}
+	
 	public Double getValorTotal() {
 		return valorTotal;
 	}
+	
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
-	}	
+	}
+	
 	public Boolean getCompra() {
 		return compra;
 	}
+	
 	public void setCompra(Boolean compra) {
 		this.compra = compra;
 	}	

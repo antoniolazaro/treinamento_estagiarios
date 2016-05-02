@@ -84,5 +84,4 @@ public class MidiaDAOMemory implements MidiaDAOIf {
 	public void midiaMaisBarataAluguel() throws Exception {
 		DataBase.getListaMidia();
 	}
-
 }

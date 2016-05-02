@@ -282,14 +282,4 @@ public class MidiaBO implements MidiaBOIf{
 			throw new Exception("Erro ao tentar exibir -> "+e.getMessage());
 		}
 	}
-
-//	@Override
-//	public boolean validateCampoValor(CharSequence pModel) throws Exception {
-//		String caracteres="0987654321."; java.util.regex.Pattern.compile("^[0-9]+$")  [\.]?
-//		if(!Pattern.compile((String) pModel).matcher(caracteres).matches()) {
-//			throw new Exception("O campo cliente deve conter somente números!");
-//			// PatternSyntaxException
-//		}
-//		return true;
-//	}
 }
