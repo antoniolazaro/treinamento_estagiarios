@@ -2,7 +2,6 @@ package com.indracompany.stags.bo;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import com.indracompany.stags.bo.ab.MidiaBOIf;
 import com.indracompany.stags.dao.MidiaDAOIf;
@@ -286,7 +285,7 @@ public class MidiaBO implements MidiaBOIf{
 
 //	@Override
 //	public boolean validateCampoValor(CharSequence pModel) throws Exception {
-//		String caracteres="0987654321.";
+//		String caracteres="0987654321."; java.util.regex.Pattern.compile("^[0-9]+$")  [\.]?
 //		if(!Pattern.compile((String) pModel).matcher(caracteres).matches()) {
 //			throw new Exception("O campo cliente deve conter somente números!");
 //			// PatternSyntaxException

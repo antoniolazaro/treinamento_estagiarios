@@ -29,4 +29,6 @@ public interface TransacaoBOIf {
 	public String exibirHistoricoAluguelCliente(ClienteModel pModel) throws Exception;
 
 	public String exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception;
+
+//	public void addMidia(MidiaModel pModel, TransacaoModel tModel) throws Exception;
 }

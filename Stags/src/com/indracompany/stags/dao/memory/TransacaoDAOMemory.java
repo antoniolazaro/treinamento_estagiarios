@@ -44,4 +44,10 @@ public class TransacaoDAOMemory implements TransacaoDAOIf {
 	public void exibirHistoricoAluguelMidia(MidiaModel pModel) throws Exception {
 		DataBase.getListaTransacao();		
 	}
+
+//	@Override
+//	public void addMidia(MidiaModel pModel, TransacaoModel tModel) {
+//		tModel.getListaMidia().add(pModel);
+//		DataBase.getListaTransacao().add(tModel);
+//	}
 }
