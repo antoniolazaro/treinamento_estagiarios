@@ -32,6 +32,7 @@ public class ProdutoBO implements IProdutoBO {
 			throw new Exception("produto nao encontrado");
 		} else {
 			produto.setAtivo(false);
+			produto.setQuantidade(0);
 			produtoDaoMemory.excluir(produto);
 		}
 	}
@@ -53,9 +54,11 @@ public class ProdutoBO implements IProdutoBO {
 			if (produto.getCodigo().equals(produtoModel.getCodigo())) {
 				validarBusca(produtoModel);
 				produtoRetorno = produtoModel;
+				return produtoRetorno;
 			}
+
 		}
-		return produtoRetorno;
+		throw new Exception("Produto nao existe!");
 	}
 
 	private void validate(ProdutoModel pModel) throws Exception {
@@ -110,6 +113,7 @@ public class ProdutoBO implements IProdutoBO {
 	private void validarBusca(ProdutoModel produto) throws Exception {
 		if (produto.getAtivo() == false) {
 			throw new Exception("Produto Não está ativo em nosso estoque!");
+
 		}
 	}
 
@@ -154,17 +158,39 @@ public class ProdutoBO implements IProdutoBO {
 	@Override
 	public Double calcularMedia() throws Exception {
 
+		int count = 0;
+
 		Double media = (double) 0;
 
 		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
 			if (produto.getAtivo() && produto.getQuantidade() > 0) {
 
 				media += produto.getPrecoVenda();
+				count++;
 			}
 
 		}
 
-		return media / produtoDaoMemory.listaProduto().size();
+		return media / count;
+
+	}
+
+	public Double calcularMediaAluguel() throws Exception {
+
+		int count = 0;
+
+		Double media = (double) 0;
+
+		for (ProdutoModel produto : produtoDaoMemory.listaProduto()) {
+			if (produto.getAtivo() && produto.getQuantidade() > 0) {
+
+				media += produto.getPrecoAluguel();
+				count++;
+			}
+
+		}
+
+		return media / count;
 
 	}
 

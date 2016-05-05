@@ -55,6 +55,7 @@ public class MenuBuilder {
 		System.out.println("\t15 Produto mais barato");
 		System.out.println("\t16 Media de preço");
 		System.out.println("\t17 Buscar Produto por Código");
+		System.out.println("\t18 Média de Aluguel");
 
 		System.out.println("\t0. Sair" + QUEBRA_LINHA);
 
@@ -170,7 +171,7 @@ public class MenuBuilder {
 
 	public void buscarProduto() throws Exception {
 		String nome;
-		nome = pedirEntrada("Digite o nome.");
+		nome = pedirEntrada("Digite o nome: ");
 
 		Collection<ProdutoModel> busca = produtoBO.buscarPorNome(nome);
 		System.out.println("Produtos: ");
@@ -229,7 +230,6 @@ public class MenuBuilder {
 
 		String nomeProduto = pedirEntrada("Digite o nome do produto: ");
 		ProdutoModel produto = produtoBO.buscar(nomeProduto);
-
 		produtoBO.excluir(produto);
 		System.out.println("Produto Excluido com sucesso! ");
 	}
@@ -277,7 +277,7 @@ public class MenuBuilder {
 		ClienteModel cliente;
 		Integer dias = 1;
 		CompraModel compra = new CompraModel();
-		nomeCliente = pedirEntrada("Digite o nome do cliente");
+		nomeCliente = pedirEntrada("Digite o nome do cliente: ");
 		cliente = clienteBo.buscar(nomeCliente);
 		if (cliente.getAtivo() == false) {
 			throw new Exception("Cliente inativo!");
@@ -416,7 +416,7 @@ public class MenuBuilder {
 
 		ProdutoModel produtoPesquisa;
 
-		codigo = pedirEntradaNumeroLong("Digite o codigo");
+		codigo = pedirEntradaNumeroLong("Digite o codigo: ");
 		ProdutoModel produto = new ProdutoModel();
 		produto.setCodigo(codigo);
 		produtoPesquisa = produtoBO.buscarPorCodigo(produto);
@@ -427,6 +427,11 @@ public class MenuBuilder {
 		System.out.println("Tipo: " + produtoPesquisa.getTipoProduto().toString());
 		System.out.println("Quantidade: " + produtoPesquisa.getQuantidade());
 		System.out.println("**************************************************");
+	}
+
+	public void calcularMediaAlguel() throws Exception {
+		System.out.println("Amédia de preço dos produtos é = " + produtoBO.calcularMediaAluguel());
+
 	}
 
 }

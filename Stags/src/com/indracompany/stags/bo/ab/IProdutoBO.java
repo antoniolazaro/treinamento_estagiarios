@@ -28,4 +28,6 @@ public interface IProdutoBO {
 	public Double calcularMedia() throws Exception;
 
 	public ProdutoModel buscarPorCodigo(ProdutoModel produto) throws Exception;
+
+	public Double calcularMediaAluguel() throws Exception;
 }

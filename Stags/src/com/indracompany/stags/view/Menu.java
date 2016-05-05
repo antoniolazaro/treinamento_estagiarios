@@ -80,6 +80,10 @@ public class Menu {
 					menuBuilder.buscarProdutoCodigo();
 					break;
 
+				case "18":
+					menuBuilder.calcularMediaAlguel();
+					break;
+
 				case "0":
 					continuar = finalizarPrograma();
 					break;
